@@ -838,8 +838,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Come Unity Session Project
-  metroPackageVersion: 
+  metroPackageName: ComeUnitySessionProject
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -847,7 +847,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Come Unity Session Project
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Come Unity Session Project
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -913,7 +913,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: e343c9b4-c302-4668-8b05-eb1ce7f7755d
   framebufferDepthMemorylessMode: 0
