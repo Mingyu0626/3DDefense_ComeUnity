@@ -7,11 +7,26 @@ public class PlayerAction : MonoBehaviour
 {
     PlayerInputAction action;
     InputAction moveAction;
+    PlayerAnimation playerAnimation;
 
     private void Awake()
     {
         action = new PlayerInputAction();
         moveAction = action.Player.Move;
+        playerAnimation = GetComponent<PlayerAnimation>();
+        moveAction.started += OnMoveStarted;
+        moveAction.canceled += OnMoveCanceled;
+    }
+
+
+    void OnMoveStarted(InputAction.CallbackContext context)
+    {
+        playerAnimation.PlayWalkAnimation(); // 걷는 애니메이션 시작
+    }
+
+    void OnMoveCanceled(InputAction.CallbackContext context)
+    {
+        playerAnimation.PlayIdleAnimation(); // 서있는 애니메이션 시작
     }
 
 
