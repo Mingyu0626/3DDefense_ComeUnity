@@ -14,6 +14,7 @@ public class PlayerAction : MonoBehaviour
         action = new PlayerInputAction();
         moveAction = action.Player.Move;
         playerAnimation = GetComponent<PlayerAnimation>();
+        moveAction.Enable();
         moveAction.started += OnMoveStarted;
         moveAction.canceled += OnMoveCanceled;
     }
@@ -21,18 +22,25 @@ public class PlayerAction : MonoBehaviour
 
     void OnMoveStarted(InputAction.CallbackContext context)
     {
-        playerAnimation.PlayWalkAnimation(); // 걷는 애니메이션 시작
+        if (playerAnimation != null)
+        {
+            Debug.Log("Play WalkAnimation");
+            playerAnimation.PlayWalkAnimation();
+        }
     }
 
     void OnMoveCanceled(InputAction.CallbackContext context)
     {
-        playerAnimation.PlayIdleAnimation(); // 서있는 애니메이션 시작
+        if (playerAnimation != null)
+        {
+            Debug.Log("Play IdleAnimation");
+            playerAnimation.PlayIdleAnimation();
+        }
     }
 
 
     void Start()
-    {
-        moveAction.Enable();
+    { 
     }
 
     void Update()
