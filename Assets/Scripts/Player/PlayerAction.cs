@@ -52,9 +52,8 @@ public class PlayerAction : MonoBehaviour
 
     void Move(float x, float z)
     {
-        this.transform.position = new Vector3(
-                this.transform.position.x + x * movementSpeed, 
-                this.transform.position.y, 
-                this.transform.position.z + z * movementSpeed);
+        Vector3 moveDirection = new Vector3(
+                x * movementSpeed, 0, z * movementSpeed);
+        this.transform.Translate(moveDirection, Space.Self);
     }
 }

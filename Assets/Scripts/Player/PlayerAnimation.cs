@@ -8,7 +8,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Awake()
     {
-        animator = transform.Find("PBRCharacter").GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
     }
 
     void Start()
