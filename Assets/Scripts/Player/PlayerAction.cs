@@ -8,7 +8,7 @@ public class PlayerAction : MonoBehaviour
     PlayerInputAction action;
     InputAction moveAction;
     PlayerAnimation playerAnimation;
-    private float movementSpeed = 0.3f;
+    private float movementSpeed = 1f;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class PlayerAction : MonoBehaviour
     {
         if (playerAnimation != null)
         {
-            Debug.Log("Play WalkAnimation");
+            // Debug.Log("Play WalkAnimation");
             playerAnimation.PlayWalkAnimation();
         }
     }
@@ -34,7 +34,7 @@ public class PlayerAction : MonoBehaviour
     {
         if (playerAnimation != null)
         {
-            Debug.Log("Play IdleAnimation");
+            // Debug.Log("Play IdleAnimation");
             playerAnimation.PlayIdleAnimation();
         }
     }
