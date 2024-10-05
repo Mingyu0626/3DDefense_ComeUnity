@@ -8,6 +8,7 @@ public class PlayerAction : MonoBehaviour
     PlayerInputAction action;
     InputAction moveAction;
     PlayerAnimation playerAnimation;
+    private float movementSpeed = 0.3f;
 
     private void Awake()
     {
@@ -52,8 +53,8 @@ public class PlayerAction : MonoBehaviour
     void Move(float x, float z)
     {
         this.transform.position = new Vector3(
-                this.transform.position.x + x, 
+                this.transform.position.x + x * movementSpeed, 
                 this.transform.position.y, 
-                this.transform.position.z + z);
+                this.transform.position.z + z * movementSpeed);
     }
 }
