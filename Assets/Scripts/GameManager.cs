@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-
     public static GameManager Instance { get; private set; }
     public int stageNum { get; set; } = 0;
     public bool isWin { get; set; } = false;
