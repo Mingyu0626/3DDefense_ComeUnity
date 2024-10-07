@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    private int[] GoalEnemies = new int[] { 20, 30, 50, 100 };
-    private int MaxStage = 4;
+    private int[] goalEnemies = new int[] { 20, 30, 50, 100 };
+    private int maxStage = 4;
     int currentNumOfEnemies;
+    
     void Start()
     {
         
@@ -22,7 +23,7 @@ public class StageManager : MonoBehaviour
     void ClearStage()
     {
         GameManager.Instance.stageNum++;
-        if (MaxStage == GameManager.Instance.stageNum)
+        if (maxStage == GameManager.Instance.stageNum)
         {
             GameManager.Instance.EndGame(true);
         }
