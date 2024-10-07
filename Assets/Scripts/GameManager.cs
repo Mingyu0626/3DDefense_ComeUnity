@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
     public static GameManager Instance { get; private set; }
     public int stageNum { get; set; } = 0;
     public bool isWin { get; set; } = false;
@@ -14,12 +13,12 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (_instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        _instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
