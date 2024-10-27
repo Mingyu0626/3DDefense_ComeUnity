@@ -8,7 +8,7 @@ public class PlayerAction : MonoBehaviour
     PlayerInputAction action;
     InputAction moveAction;
     PlayerAnimation playerAnimation;
-    private float movementSpeed = 1f;
+    private float movementSpeed = 0.05f;
 
     private void Awake()
     {
