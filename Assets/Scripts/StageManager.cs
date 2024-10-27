@@ -6,7 +6,7 @@ public class StageManager : MonoBehaviour
 {
     private int[] goalEnemies = new int[] { 20, 30, 50, 100 };
     private int maxStage = 4;
-    int currentNumOfEnemies;
+    private int currentNumOfEnemies;
     
     void Start()
     {
@@ -33,6 +33,9 @@ public class StageManager : MonoBehaviour
     {
         GameManager.Instance.EndGame(false);
     }
+
+    int getCurrentNumOfEnemies() { return currentNumOfEnemies; }
+    void setCurrentNumOfEnemies(int val) { currentNumOfEnemies = val; }
 
 
 }
