@@ -2,17 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : PoolAble
 {
-    // Start is called before the first frame update
+    private int hp;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SetHP(int val) { hp = val; }
+    public int GetHP() { return hp; }
+    public void ApplyDamage(int damage) 
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            ReleaseObject();
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PlayerBullet"))
+        {
+            Bullet playerBullet = other.GetComponent<Bullet>();
+            ApplyDamage(playerBullet.GetDamage());
+        }
     }
 }
