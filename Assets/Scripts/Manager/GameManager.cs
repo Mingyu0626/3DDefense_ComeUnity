@@ -25,8 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // TODO
-        // 
+        Invoke("StartGame", 2f);
     }
 
     void Update()
