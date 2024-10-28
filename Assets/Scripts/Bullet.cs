@@ -27,12 +27,17 @@ public class Bullet : PoolAble
     {
         if (other.CompareTag("Player"))
         {
+            return;
         }
         
-        if (other.CompareTag("Enemy"))
+        else if (other.CompareTag("Enemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
             enemy.ApplyDamage(GetDamage());
+        }
+        else
+        {
+            ReturnToPool();
         }
     }
 }
