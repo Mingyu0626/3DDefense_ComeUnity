@@ -6,7 +6,7 @@ public class StageManager : MonoBehaviour
 {
     private int[] goalEnemies = new int[] { 20, 30, 50, 100 };
     private int numOfStages = 3;
-    private int currentStage = 1;
+    private int currentStageLevel = 1;
     private int currentNumOfEnemies;
     
     void Start()
@@ -23,8 +23,8 @@ public class StageManager : MonoBehaviour
 
     void ClearStage()
     {
-        currentStage++;
-        if (currentStage == numOfStages)
+        currentStageLevel++;
+        if (currentStageLevel == numOfStages)
         {
             GameManager.Instance.EndGame(true);
         }
@@ -34,9 +34,4 @@ public class StageManager : MonoBehaviour
     {
         GameManager.Instance.EndGame(false);
     }
-
-    int getCurrentNumOfEnemies() { return currentNumOfEnemies; }
-    void setCurrentNumOfEnemies(int val) { currentNumOfEnemies = val; }
-
-
 }
