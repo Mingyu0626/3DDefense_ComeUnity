@@ -53,7 +53,7 @@ public class ButtonManager : MonoBehaviour
     }
     private void AddListenerOnButton(Button btn, string sceneName)
     {
-        btn.onClick.AddListener(() => GameManager.Instance.LoadSceneWithName(sceneName));
+        btn.onClick.AddListener(() => GameManager.instance.LoadSceneWithName(sceneName));
     }
 
     void Start()

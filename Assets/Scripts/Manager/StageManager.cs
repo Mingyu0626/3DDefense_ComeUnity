@@ -26,12 +26,12 @@ public class StageManager : MonoBehaviour
         currentStageLevel++;
         if (currentStageLevel == numOfStages)
         {
-            GameManager.Instance.EndGame(true);
+            GameManager.instance.EndGame(true);
         }
     }
 
     void FailStage()
     {
-        GameManager.Instance.EndGame(false);
+        GameManager.instance.EndGame(false);
     }
 }

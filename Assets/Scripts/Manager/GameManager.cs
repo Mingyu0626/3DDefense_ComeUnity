@@ -5,19 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager instance { get; private set; }
     private bool isWin = false;
 
 
 
     void Awake()
     {
-        if (Instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
