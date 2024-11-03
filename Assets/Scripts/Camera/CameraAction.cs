@@ -12,14 +12,14 @@ public class CameraAction : MonoBehaviour
     [SerializeField]
     private Transform playerTransform;
 
-    private float turnSpeed = 0.2f;
-    private float minXRotation = -10f;
+    private float turnSpeed = 0.1f;
+    private float minXRotation = -5f;
     private float maxXRotation = 30f;
     private float xRotation = 0f;
     private float yRotation = 0f;
 
     private float rotationTime = 0.1f;
-    private float distanceFromPlayer = 15f;
+    private float distanceFromPlayer = 20f;
     private float yPositionCorrection = 8f;
 
     private Vector3 targetRotation;
