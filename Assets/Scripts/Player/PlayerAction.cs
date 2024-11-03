@@ -9,6 +9,7 @@ public class PlayerAction : MonoBehaviour
     InputAction moveAction;
     PlayerAnimation playerAnimation;
     private float movementSpeed = 0.05f;
+    private Transform cameraTransform;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class PlayerAction : MonoBehaviour
         moveAction.Enable();
         moveAction.started += OnMoveStarted;
         moveAction.canceled += OnMoveCanceled;
+        cameraTransform = Camera.main.transform;
     }
 
 
@@ -52,8 +54,20 @@ public class PlayerAction : MonoBehaviour
 
     void Move(float x, float z)
     {
-        Vector3 moveDirection = new Vector3(
-                x * movementSpeed, 0, z * movementSpeed);
-        this.transform.Translate(moveDirection, Space.Self);
+        Vector3 moveDirection = new Vector3(x * movementSpeed, 0, z * movementSpeed);
+        // Rotate(moveDirection);
+        transform.Translate(moveDirection, Space.Self);
     }
+
+    void Rotate(Vector3 moveDirection)
+    {
+        if (moveDirection != Vector3.zero)
+        {
+            Vector3 cameraForward = cameraTransform.forward;
+            cameraForward.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.1f);
+        }
+    }
+
 }
