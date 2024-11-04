@@ -31,7 +31,7 @@ public class Bullet : PoolAble
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Bullet's OntriggerEnter Called");
+        Debug.Log("Bullet's OnTriggerEnter() Called");
         if (other.CompareTag("Player"))
         {
             return;
