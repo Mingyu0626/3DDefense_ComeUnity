@@ -4,5 +4,32 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public string spawnedEnemyName;
+    [SerializeField]
+    private string spawnedEnemyName;
+
+    void Awake()
+    {
+        
+    }
+
+    void Start()
+    {
+        SpawnEnemy();
+    }
+
+    void Update()
+    {
+        
+    }
+
+
+    private void SpawnEnemy()
+    {
+        GameObject enemyGameObject = ObjectPoolManager.Instance.GetGameObject(spawnedEnemyName);
+        if (enemyGameObject != null)
+        {
+            enemyGameObject.transform.position = transform.position;
+            Debug.Log("Enemy Spawned!");
+        }
+    }
 }
