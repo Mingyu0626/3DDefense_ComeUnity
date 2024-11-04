@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Enemy : PoolAble
 {
+    private int maxHp = 1;
     private int hp;
-    void Start()
+    void OnEnable()
     {
-        
+        hp = maxHp;
     }
 
     void Update()
     {
         
+    }
+
+    void OnDisable()
+    {
+
     }
 
     public void SetHP(int val) { hp = val; }
