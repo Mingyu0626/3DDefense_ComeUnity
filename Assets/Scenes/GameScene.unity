@@ -15730,6 +15730,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9183913443229823750, guid: f432554f564e69242897607d34218939,
+        type: 3}
+      propertyPath: shootingPointGameObject
+      value: 
+      objectReference: {fileID: 361365929}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -26341,6 +26346,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1674217769}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1681564221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1681564223}
+  - component: {fileID: 1681564222}
+  m_Layer: 0
+  m_Name: ObjectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1681564222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681564221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1214db4033e330f48b97fa6517621e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfos:
+  - objectName: Bullet
+    prefab: {fileID: 8641637574131557690, guid: dd3b4d20089eb20438909b5a41779ec7,
+      type: 3}
+    count: 100
+--- !u!4 &1681564223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681564221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -89.17, y: 12.05, z: -105.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1688978320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32813,3 +32867,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 771058940}
+  - {fileID: 1681564223}

@@ -5,17 +5,23 @@ using UnityEngine;
 public class Bullet : PoolAble
 {
     private int damage = 1;
-    private float speed = 0.5f;
+    private float speed = 30f;
     private float durationTime = 3f;
-    void Start()
+    void OnEnable()
     {
         Invoke("ReturnToPool", durationTime);
     }
 
     void Update()
     {
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
     }
+
+    void OnDisable()
+    {
+        CancelInvoke("ReturnToPool");
+    }
+
     private void ReturnToPool()
     {
         ReleaseObject();
@@ -25,6 +31,7 @@ public class Bullet : PoolAble
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Bullet's OntriggerEnter Called");
         if (other.CompareTag("Player"))
         {
             return;

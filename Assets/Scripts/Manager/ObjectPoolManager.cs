@@ -56,7 +56,7 @@ public class ObjectPoolManager : MonoBehaviour
             goDic.Add(objectInfos[i].objectName, objectInfos[i].prefab);
             objectPoolDic.Add(objectInfos[i].objectName, pool);
 
-            for (int j = 0; j < objectInfos[j].count; j++)
+            for (int j = 0; j < objectInfos[i].count; j++)
             {
                 objectName = objectInfos[i].objectName;
                 PoolAble poolAbleGo = CreatePooledItem().GetComponent<PoolAble>();
