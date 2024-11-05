@@ -67,10 +67,10 @@ public class CameraAction : MonoBehaviour
 
     void UpdatePlayerRotation()
     {
-        Vector3 playerForward = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
-        if (playerForward != Vector3.zero)
+        Vector3 cameraForward = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+        if (cameraForward != Vector3.zero)
         {
-            playerTransform.forward = playerForward;
+            playerTransform.forward = cameraForward;
         }
     }
 }
