@@ -9,9 +9,9 @@ public class TurtleShell : Enemy
         
     }
 
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 
     void OnDisable()

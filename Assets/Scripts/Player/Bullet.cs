@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : PoolAble
 {
     private int damage = 1;
-    private float speed = 30f;
+    private float speed = 40f;
     private float durationTime = 3f;
     void OnEnable()
     {

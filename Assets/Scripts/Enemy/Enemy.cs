@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Enemy : PoolAble
 {
-    private int maxHp = 1;
-    private int hp;
+    protected int maxHp = 1;
+    protected int hp;
+    protected int damage;
+    protected float speed = 5f;
     void OnEnable()
     {
         hp = maxHp;
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        
+        TracePlayer();
     }
 
     void OnDisable()
     {
-
+        
     }
 
     public void SetHP(int val) { hp = val; }
@@ -39,5 +41,12 @@ public class Enemy : PoolAble
             Bullet playerBullet = other.GetComponent<Bullet>();
             ApplyDamage(playerBullet.GetDamage());
         }
+    }
+
+    private void TracePlayer()
+    {
+        Transform playerTransform = PlayerInfo.Instance.PlayerTransform;
+        transform.LookAt(playerTransform);
+        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
     }
 }
