@@ -58,8 +58,10 @@ public class StageManager : MonoBehaviour
         // 현재 스테이지가 마지막 스테이지라면,
         // GameManager의 isWin 변수를 true로 변경
         // GameManager의 EndGame을 호출
+        Debug.Log("Clearstage() 호출");
         if (currentStage == numOfStages)
         {
+            Debug.Log("게임 클리어");
             GameManager.Instance.EndGame(true);
         }
         currentStage++;
