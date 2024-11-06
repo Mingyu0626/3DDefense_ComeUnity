@@ -11,12 +11,14 @@ public class CameraAction : MonoBehaviour
 
     [SerializeField]
     private Transform playerTransform;
+    [SerializeField]
+    private Transform shootingPointTransform;
 
     private float turnSpeed = 0.1f;
     private float minXRotation = -5f;
     private float maxXRotation = 30f;
-    private float xRotation = 0f;
-    private float yRotation = 0f;
+    private float xAxis = 0f;
+    private float yAxis = 0f;
 
     private float rotationTime = 0.1f;
     private float distanceFromPlayer = 20f;
@@ -42,27 +44,25 @@ public class CameraAction : MonoBehaviour
     void LateUpdate()
     {
         Vector2 mouseDelta = turnAction.ReadValue<Vector2>();
-        TurnYAxis(mouseDelta);
-        TurnXAxis(mouseDelta);
+        Turn(mouseDelta);
+        UpdateCameraTransform();
+        UpdatePlayerRotation();
+        UpdateShootingPointRotation();
+    }
 
-        targetRotation = Vector3.SmoothDamp(targetRotation, new Vector3(xRotation, yRotation),
-            ref currentVelocity, rotationTime);
+    void Turn(Vector2 delta)
+    {
+        yAxis += delta.x * turnSpeed;
+        xAxis -= delta.y * turnSpeed;
+        xAxis = Mathf.Clamp(xAxis, minXRotation, maxXRotation);
+        targetRotation = Vector3.SmoothDamp(targetRotation, new Vector3(xAxis, yAxis), ref currentVelocity, rotationTime);
         transform.eulerAngles = targetRotation;
+    }
+
+    void UpdateCameraTransform()
+    {
         transform.position = playerTransform.position - transform.forward * distanceFromPlayer;
         transform.position += Vector3.up * yPositionCorrection;
-
-        UpdatePlayerRotation();
-    }
-
-    void TurnYAxis(Vector2 delta)
-    {
-        yRotation += delta.x * turnSpeed;
-    }
-
-    void TurnXAxis(Vector2 delta)
-    {
-        xRotation -= delta.y * turnSpeed;
-        xRotation = Mathf.Clamp(xRotation, minXRotation, maxXRotation);
     }
 
     void UpdatePlayerRotation()
@@ -71,6 +71,20 @@ public class CameraAction : MonoBehaviour
         if (cameraForward != Vector3.zero)
         {
             playerTransform.forward = cameraForward;
+        }
+    }
+
+    void UpdateShootingPointRotation()
+    {
+        Vector3 cameraForward = transform.forward.normalized;
+        // cameraForward.y Clamp하는게 나으려나
+        if (cameraForward.y < -0.1f)
+        {
+            cameraForward.y = -0.1f;
+        }
+        if (cameraForward != Vector3.zero)
+        {
+            shootingPointTransform.forward = cameraForward;
         }
     }
 }
