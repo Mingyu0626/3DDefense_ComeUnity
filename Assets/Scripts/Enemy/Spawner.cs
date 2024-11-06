@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour
     private string spawnedEnemyName;
     private float spawnIntervalTime = 3f;
 
+    // 스포너도 PoolAble 상속해가지고 그냥 ClearStage()때 일시 비활성화, 일정 시간 이후 활성화 이런식으로 해볼까
+
     void Awake()
     {
         
@@ -24,6 +26,7 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             SpawnEnemy();
+            StageManager.Instance.CurrentEnemyCount++;
             yield return new WaitForSeconds(spawnIntervalTime);
         }
     }

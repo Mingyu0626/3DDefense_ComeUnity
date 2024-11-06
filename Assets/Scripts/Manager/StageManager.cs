@@ -44,6 +44,13 @@ public class StageManager : MonoBehaviour
         {
             ClearStage();
         }
+
+
+        // 현재 살아있는 몬스터 수가 50마리를 넘으면, FailStage 호출
+        if (50 < CurrentEnemyCount)
+        {
+            FailStage();
+        }
     }
 
     void ClearStage()
@@ -55,8 +62,9 @@ public class StageManager : MonoBehaviour
         {
             GameManager.Instance.EndGame(true);
         }
-
         currentStage++;
+        CurrentEnemyCount = 0;
+        CurrentKilledEnemyCount = 0;
     }
 
     void FailStage()

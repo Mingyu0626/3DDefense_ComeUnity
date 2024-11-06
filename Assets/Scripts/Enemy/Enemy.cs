@@ -31,6 +31,8 @@ public class Enemy : PoolAble
         if (hp <= 0)
         {
             ReleaseObject();
+            StageManager.Instance.CurrentKilledEnemyCount++;
+            StageManager.Instance.CurrentEnemyCount--;
         }
     }
     
