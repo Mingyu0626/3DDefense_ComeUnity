@@ -15,10 +15,10 @@ public class PlayerAction : MonoBehaviour
     {
         action = new PlayerInputAction();
         moveAction = action.Player.Move;
-        playerAnimation = GetComponent<PlayerAnimation>();
         moveAction.Enable();
         moveAction.started += OnMoveStarted;
         moveAction.canceled += OnMoveCanceled;
+        playerAnimation = GetComponent<PlayerAnimation>();
         cameraTransform = Camera.main.transform;
     }
 
@@ -56,7 +56,7 @@ public class PlayerAction : MonoBehaviour
     {
         Vector3 moveDirection = new Vector3(x * movementSpeed, 0, z * movementSpeed);
         // Rotate(moveDirection);
-        transform.Translate(moveDirection, Space.Self);
+        transform.Translate(moveDirection * Time.deltaTime, Space.Self);
     }
 
     void Rotate(Vector3 moveDirection)
