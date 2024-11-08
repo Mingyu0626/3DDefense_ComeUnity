@@ -29,10 +29,11 @@ public class StageManager : MonoBehaviour
         // 스테이지 별 목표 적 처치 수를 설정(원하는 값으로 커스터마이즈)
         // 예시) 1스테이지는 20마리, 2스테이지는 50마리, 3스테이지는 100마리 ...
         goalEnemyCount = new int[numOfStages + 1];
-        for (int i = 0; i < numOfStages; i++)
+        for (int i = 1; i <= numOfStages; i++)
         {
             goalEnemyCount[i] = (i + 1) * 20;
         }
+        UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
     void Update()
@@ -44,6 +45,13 @@ public class StageManager : MonoBehaviour
         {
             ClearStage();
         }
+
+
+        // 현재 살아있는 몬스터 수가 50마리를 넘으면, FailStage 호출
+        if (50 < CurrentEnemyCount)
+        {
+            FailStage();
+        }
     }
 
     void ClearStage()
@@ -51,12 +59,18 @@ public class StageManager : MonoBehaviour
         // 현재 스테이지가 마지막 스테이지라면,
         // GameManager의 isWin 변수를 true로 변경
         // GameManager의 EndGame을 호출
+        Debug.Log("Clearstage() 호출");
         if (currentStage == numOfStages)
         {
+            Debug.Log("게임 클리어");
             GameManager.Instance.EndGame(true);
         }
-
         currentStage++;
+        CurrentEnemyCount = 0;
+        CurrentKilledEnemyCount = 0;
+        UIManager.Instance.SetCurrentEnemyCountTMP(CurrentEnemyCount);
+        UIManager.Instance.SetKilledEnemyCountTMP(CurrentKilledEnemyCount);
+        UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
     void FailStage()
