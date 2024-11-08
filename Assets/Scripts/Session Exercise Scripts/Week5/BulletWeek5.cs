@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BulletWeek5 : MonoBehaviour
 {
-    public int Damage { get; private set; }
     private float speed = 40f;
     private float duration = 3f;
+    public int Damage { get; private set; }
     void Start()
     {
         Invoke("DestroyBullet", duration);
