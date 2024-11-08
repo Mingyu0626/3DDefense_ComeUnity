@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI killedEnemyCountTMP;
     [SerializeField]
     private TextMeshProUGUI goalEnemyCountTMP;
+    [SerializeField]
+    private Slider hpBar;
 
     void Awake()
     {
@@ -24,6 +28,8 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
+        hpBar.maxValue = PlayerInfo.Instance.MaxHP;
+        SetPlayerHPSlider(Convert.ToInt32(hpBar.maxValue));
     }
 
     public void SetCurrentEnemyCountTMP(int val)
@@ -39,5 +45,10 @@ public class UIManager : MonoBehaviour
     public void SetGoalEnemyCountTMP(int val)
     {
         goalEnemyCountTMP.SetText(val.ToString());
+    }
+
+    public void SetPlayerHPSlider(int val)
+    {
+        hpBar.value = val;
     }
 }
