@@ -6,22 +6,44 @@ using UnityEngine.InputSystem;
 public class PlayerAction : MonoBehaviour
 {
     PlayerInputAction action;
-    InputAction moveAction;
+    InputAction moveAction, fireAction;
     PlayerAnimation playerAnimation;
     private float movementSpeed = 0.05f;
     private Transform cameraTransform;
+    [SerializeField]
+    private GameObject shootingPointGameObject;
 
     private void Awake()
     {
         action = new PlayerInputAction();
         moveAction = action.Player.Move;
+        playerAnimation = GetComponent<PlayerAnimation>();
         moveAction.Enable();
         moveAction.started += OnMoveStarted;
         moveAction.canceled += OnMoveCanceled;
-        playerAnimation = GetComponent<PlayerAnimation>();
+
+        fireAction = action.Player.Fire;
+        fireAction.Enable();
+        fireAction.performed += OnFirePerformed;
         cameraTransform = Camera.main.transform;
     }
 
+    void Start()
+    {
+    }
+
+    void Update()
+    {
+        Vector3 keyboardVector = moveAction.ReadValue<Vector3>();
+        Move(keyboardVector.x, keyboardVector.z);
+    }
+
+    void Move(float x, float z)
+    {
+        Vector3 moveDirection = new Vector3(x * movementSpeed, 0, z * movementSpeed);
+        // Rotate(moveDirection);
+        transform.Translate(moveDirection, Space.Self);
+    }
 
     void OnMoveStarted(InputAction.CallbackContext context)
     {
@@ -41,25 +63,18 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-
-    void Start()
-    { 
-    }
-
-    void Update()
+    void OnFirePerformed(InputAction.CallbackContext context)
     {
-        Vector3 keyboardVector = moveAction.ReadValue<Vector3>();
-        Move(keyboardVector.x, keyboardVector.z);
+        GameObject bulletGameObject = ObjectPoolManager.Instance.GetGameObject("Bullet");
+        if (bulletGameObject != null && shootingPointGameObject != null)
+        {
+            bulletGameObject.transform.position = shootingPointGameObject.transform.position;
+            bulletGameObject.transform.rotation = shootingPointGameObject.transform.rotation;
+        }
     }
 
-    void Move(float x, float z)
-    {
-        Vector3 moveDirection = new Vector3(x * movementSpeed, 0, z * movementSpeed);
-        // Rotate(moveDirection);
-        transform.Translate(moveDirection * Time.deltaTime, Space.Self);
-    }
 
-    void Rotate(Vector3 moveDirection)
+    void Rotate(Vector3 moveDirection) // 카메라 회전은 PlayerAction이 담당하지 않음, 미사용 함수
     {
         if (moveDirection != Vector3.zero)
         {
@@ -69,5 +84,6 @@ public class PlayerAction : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.1f);
         }
     }
+
 
 }
