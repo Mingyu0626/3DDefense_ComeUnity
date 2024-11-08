@@ -29,10 +29,11 @@ public class StageManager : MonoBehaviour
         // 스테이지 별 목표 적 처치 수를 설정(원하는 값으로 커스터마이즈)
         // 예시) 1스테이지는 20마리, 2스테이지는 50마리, 3스테이지는 100마리 ...
         goalEnemyCount = new int[numOfStages + 1];
-        for (int i = 0; i < numOfStages; i++)
+        for (int i = 1; i <= numOfStages; i++)
         {
             goalEnemyCount[i] = (i + 1) * 20;
         }
+        UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
     void Update()
@@ -67,6 +68,9 @@ public class StageManager : MonoBehaviour
         currentStage++;
         CurrentEnemyCount = 0;
         CurrentKilledEnemyCount = 0;
+        UIManager.Instance.SetCurrentEnemyCountTMP(CurrentEnemyCount);
+        UIManager.Instance.SetKilledEnemyCountTMP(CurrentKilledEnemyCount);
+        UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
     void FailStage()
