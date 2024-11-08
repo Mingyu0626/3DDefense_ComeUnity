@@ -27,9 +27,9 @@ public class PlayerAction : MonoBehaviour
         fireAction.performed += OnFirePerformed;
         cameraTransform = Camera.main.transform;
     }
-
     void Start()
     {
+
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class PlayerAction : MonoBehaviour
     {
         Vector3 moveDirection = new Vector3(x * movementSpeed, 0, z * movementSpeed);
         // Rotate(moveDirection);
-        transform.Translate(moveDirection, Space.Self);
+        transform.Translate(moveDirection * Time.deltaTime, Space.Self);
     }
 
     void OnMoveStarted(InputAction.CallbackContext context)
@@ -73,7 +73,6 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-
     void Rotate(Vector3 moveDirection) // 카메라 회전은 PlayerAction이 담당하지 않음, 미사용 함수
     {
         if (moveDirection != Vector3.zero)
@@ -84,6 +83,4 @@ public class PlayerAction : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.1f);
         }
     }
-
-
 }
