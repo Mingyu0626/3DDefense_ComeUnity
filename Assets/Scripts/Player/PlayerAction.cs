@@ -8,7 +8,7 @@ public class PlayerAction : MonoBehaviour
     PlayerInputAction action;
     InputAction moveAction, fireAction;
     PlayerAnimation playerAnimation;
-    private float movementSpeed = 0.05f;
+    private float movementSpeed = 20f;
     private Transform cameraTransform;
     [SerializeField]
     private GameObject shootingPointGameObject;
@@ -40,9 +40,9 @@ public class PlayerAction : MonoBehaviour
 
     void Move(float x, float z)
     {
-        Vector3 moveDirection = new Vector3(x * movementSpeed, 0, z * movementSpeed);
+        Vector3 moveDirection = new Vector3(x, 0, z);
         // Rotate(moveDirection);
-        transform.Translate(moveDirection * Time.deltaTime, Space.Self);
+        transform.Translate(moveDirection * movementSpeed * Time.deltaTime, Space.Self);
     }
 
     void OnMoveStarted(InputAction.CallbackContext context)

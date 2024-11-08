@@ -7,7 +7,7 @@ public class PlayerActionWeek5 : MonoBehaviour
 {
     InputActions action;
     InputAction moveAction, fireAction;
-    private float movementSpeed = 0.05f;
+    private float movementSpeed = 20f;
     [SerializeField]
     private GameObject shootingPoint;
     [SerializeField]
@@ -36,8 +36,8 @@ public class PlayerActionWeek5 : MonoBehaviour
 
     void Move(float x, float z)
     {
-        Vector3 moveDirection = new Vector3(x * movementSpeed, 0, z * movementSpeed);
-        transform.Translate(moveDirection * Time.deltaTime, Space.Self);
+        Vector3 moveDirection = new Vector3(x, 0, z);
+        transform.Translate(moveDirection * movementSpeed * Time.deltaTime, Space.Self);
     }
 
     void OnFirePerformed(InputAction.CallbackContext context)
