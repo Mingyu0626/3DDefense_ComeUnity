@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : PoolAble
 {
     protected int maxHp = 1;
-    protected int hp;
+    private int hp;
     protected int damage;
     protected float speed = 5f;
     void OnEnable()
