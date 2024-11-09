@@ -19,7 +19,7 @@ public class BulletWeek5 : MonoBehaviour
 
     void OnDestroy()
     {
-        CancelInvoke("ReturnToPool");
+        CancelInvoke("DestroyBullet");
     }
 
     private void DestroyBullet()
