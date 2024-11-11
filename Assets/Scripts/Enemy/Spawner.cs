@@ -41,7 +41,6 @@ public class Spawner : MonoBehaviour
             float randX = Random.Range(-5f, 5f);
             float randZ = Random.Range(-5f, 5f);
             enemyGameObject.transform.position = transform.position + new Vector3(randX, 0, randZ);
-            Debug.Log("Enemy Spawned!");
         }
     }
 }

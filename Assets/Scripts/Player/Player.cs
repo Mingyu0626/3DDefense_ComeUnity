@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInfo : HPComponent
+public class Player : HPComponent
 {
     // 오로지 Enemy의 TracePlayer만을 위한 코드인데, 개선 방안이 분명 존재할것임
-    public static PlayerInfo Instance { get; private set; }
+    // Enemy에서 다른 방식으로 공격 대상의 Transform을 실시간으로 변경할 수 있으면
+    // 싱글톤으로 할 필요도 없어짐
+    public static Player Instance { get; private set; }
     public Transform PlayerTransform { get; private set; }
 
     protected override void Awake()
@@ -21,5 +23,16 @@ public class PlayerInfo : HPComponent
     void Update()
     {
         PlayerTransform = transform;
+    }
+
+    protected override void ApplyDamage(int damage)
+    {
+        base.ApplyDamage(damage);
+        UIManager.Instance.SetPlayerHPSlider(curHP);
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
     }
 }

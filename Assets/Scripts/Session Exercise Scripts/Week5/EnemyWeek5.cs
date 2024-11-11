@@ -43,7 +43,7 @@ public class EnemyWeek5 : MonoBehaviour
 
     private void TracePlayer()
     {
-        Transform playerTransform = PlayerInfo.Instance.PlayerTransform;
+        Transform playerTransform = Player.Instance.PlayerTransform;
         transform.LookAt(playerTransform);
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
     }
