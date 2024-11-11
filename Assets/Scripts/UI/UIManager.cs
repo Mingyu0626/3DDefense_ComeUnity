@@ -15,7 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI goalEnemyCountTMP;
     [SerializeField]
-    private Slider hpBar;
+    private Slider playerHpBar;
+    [SerializeField]
+    private Slider basementHpBar;
 
     void Awake()
     {
@@ -28,8 +30,10 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
-        hpBar.maxValue = PlayerInfo.Instance.MaxHP;
-        SetPlayerHPSlider(Convert.ToInt32(hpBar.maxValue));
+        playerHpBar.maxValue = Player.Instance.MaxHP;
+        SetPlayerHPSlider(Convert.ToInt32(playerHpBar.maxValue));
+        basementHpBar.maxValue = Basement.Instance.MaxHP;
+        SetBasementHPSlider(Convert.ToInt32(basementHpBar.maxValue));
     }
 
     public void SetCurrentEnemyCountTMP(int val)
@@ -49,6 +53,11 @@ public class UIManager : MonoBehaviour
 
     public void SetPlayerHPSlider(int val)
     {
-        hpBar.value = val;
+        playerHpBar.value = val;
+    }
+
+    public void SetBasementHPSlider(int val)
+    {
+        basementHpBar.value = val;
     }
 }
