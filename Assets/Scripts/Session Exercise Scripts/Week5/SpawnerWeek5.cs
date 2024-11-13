@@ -4,11 +4,11 @@ using UnityEngine;
 public class SpawnerWeek5 : MonoBehaviour
 {
     [SerializeField]
-    private GameObject spawnedEnemy;
-    private float spawnIntervalTime = 3f;
+    private GameObject spawnedEnemy; // 해당 스포너에서 소환할 Enemy, 해당 스크립트가 들어있는 게임 오브젝트의 inspector 창에 적 GameObject를 드래그 & 드랍. 
+    private float spawnIntervalTime = 3f; // 스폰 간격
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 5f, spawnIntervalTime);
+        InvokeRepeating(nameof(SpawnEnemy), 5f, spawnIntervalTime);
     }
 
     private void SpawnEnemy()
@@ -17,7 +17,9 @@ public class SpawnerWeek5 : MonoBehaviour
         {
             float randX = Random.Range(-5f, 5f);
             float randZ = Random.Range(-5f, 5f);
-            Instantiate(spawnedEnemy, transform.position + new Vector3(randX, 0, randZ), transform.rotation);
+            // Instantiate(spawnedEnemy, transform.position + new Vector3(randX, 0, randZ), transform.rotation);
+
+            Instantiate(spawnedEnemy, transform.position, transform.rotation);
         }
     }
 }

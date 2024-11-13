@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerWeek5 : HPComponentWeek5
 {
-    public static PlayerWeek5 Instance { get; private set; }
-    public Transform PlayerTransform { get; private set; }
+    public static PlayerWeek5 Instance { get; private set; } // 외부에서 접근 가능한 플레이어 인스턴스
+    public Transform PlayerTransform { get; private set; } // 플레이어의 실시간 Transform을 저장하는 변수
 
     protected override void Awake()
     {
-        base.Awake();
+        base.Awake(); // HPComponent 클래스의 Awake 호출
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -19,17 +19,17 @@ public class PlayerWeek5 : HPComponentWeek5
     }
     void Update()
     {
-        PlayerTransform = transform;
+        PlayerTransform = transform; // 플레이어의 현재위치 저장
     }
 
     protected override void ApplyDamage(int damage)
     {
-        base.ApplyDamage(damage);
-        UIManager.Instance.SetPlayerHPSlider(curHP);
+        base.ApplyDamage(damage); // HPComponent 클래스의 ApplyDamage를 호출
+        
     }
 
-    protected override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other) 
     {
-        base.OnTriggerEnter(other);
+        base.OnTriggerEnter(other); // HPComponent 클래스의 OnTriggerEnter를 호출
     }
 }
