@@ -487,7 +487,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slimeBullet: {fileID: 8641637574131557690, guid: d903d1adba8bb524fa8978b4fb52a75a,
     type: 3}
-  slimeAttackPoint: {fileID: 0}
 --- !u!136 &6553578955870426762
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -548,7 +547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7518112930107267347}
   m_Layer: 0
-  m_Name: ShootingPoint
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

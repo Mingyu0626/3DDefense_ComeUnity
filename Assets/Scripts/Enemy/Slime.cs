@@ -12,14 +12,14 @@ public class Slime : Enemy
 
     [SerializeField]
     private GameObject slimeBullet;
-    private GameObject slimeAttackPoint;
+    private GameObject attackPoint;
 
     void Awake()
     {
         maxHp = slimeMaxHp;
         damage = slimeDamage;
         speed = slimeSpeed;
-        slimeAttackPoint = transform.Find("ShootingPoint").gameObject;
+        attackPoint = transform.Find("AttackPoint").gameObject;
     }
     void Start()
     {
@@ -49,10 +49,10 @@ public class Slime : Enemy
         // Instantiate(slimeBullet, transform.position + transform.forward * 2f, transform.rotation);
 
         GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
-        if (enemyBulletGO != null && slimeAttackPoint != null)
+        if (enemyBulletGO != null && attackPoint != null)
         {
-            enemyBulletGO.transform.position = slimeAttackPoint.transform.position;
-            enemyBulletGO.transform.rotation = slimeAttackPoint.transform.rotation;
+            enemyBulletGO.transform.position = attackPoint.transform.position;
+            enemyBulletGO.transform.rotation = attackPoint.transform.rotation;
         }
     }
 
