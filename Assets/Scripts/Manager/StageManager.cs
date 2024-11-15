@@ -32,7 +32,7 @@ public class StageManager : MonoBehaviour
         goalEnemyCount = new int[numOfStages + 1];
         for (int i = 1; i <= numOfStages; i++)
         {
-            goalEnemyCount[i] = i * 3;
+            goalEnemyCount[i] = i;
         }
         UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
         Init();
@@ -74,6 +74,7 @@ public class StageManager : MonoBehaviour
             currentStage++;
             ObjectPoolManager.Instance.ReturnAllActiveObjectsToPool();
             Init();
+            // 여기서 일시정지를 하지말고 UI를 띄워주자.
             Time.timeScale = 0f;
             yield return new WaitForSecondsRealtime(delayBeforeNextStage);
             Time.timeScale = 1f;
