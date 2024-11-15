@@ -9,7 +9,7 @@ public class BulletExercise : MonoBehaviour
     public int Damage { get; private set; }
     void Start()
     {
-        Invoke("DestroyBullet", duration);
+        Invoke(nameof(DestroyBullet), duration);
     }
 
     void Update()
@@ -19,7 +19,7 @@ public class BulletExercise : MonoBehaviour
 
     void OnDestroy()
     {
-        CancelInvoke("DestroyBullet");
+        CancelInvoke(nameof(DestroyBullet));
     }
 
     private void DestroyBullet()

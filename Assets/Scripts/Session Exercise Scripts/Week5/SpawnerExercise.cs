@@ -16,7 +16,7 @@ public class SpawnerExercise : MonoBehaviour
         if (spawnedEnemy != null)
         {
             // Spawner의 위치에 소환
-            Instantiate(spawnedEnemy, transform.position, transform.rotation);
+            // Instantiate(spawnedEnemy, transform.position, transform.rotation);
 
             // 일정 범위 내 랜덤 위치에 소환
             float randX = Random.Range(-5f, 5f);
