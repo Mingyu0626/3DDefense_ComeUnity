@@ -29,7 +29,7 @@ public class HPComponent : MonoBehaviour
     {
         if (other.CompareTag("EnemyAttack"))
         {
-            Bullet EnemyAttack = other.GetComponent<Bullet>();
+            EnemyBullet EnemyAttack = other.GetComponent<EnemyBullet>();
             if (EnemyAttack != null)
             {
                 ApplyDamage(EnemyAttack.GetDamage());
