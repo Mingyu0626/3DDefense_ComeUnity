@@ -18,7 +18,7 @@ public class Enemy : PoolAble
         TracePlayer();
     }
 
-    void OnDisable()
+    protected virtual void OnDisable()
     {
         // 뭔가 디자인 패턴 사용해서 개선될거같은데..
         // 여기보다 더 Fit한 처리 부분이 있을거 같다
