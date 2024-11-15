@@ -6,9 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    private bool isWin = false;
-
-
+    public bool IsWin { get; private set; } = false;
 
     void Awake()
     {
@@ -39,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame(bool isWin)
     {
-        this.isWin = isWin;
+        this.IsWin = isWin;
         Debug.Log("Game is Over");
         LoadSceneWithName("GameEndScene");
     }
