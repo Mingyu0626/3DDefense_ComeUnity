@@ -15,6 +15,7 @@ public class PlayerAction : MonoBehaviour
     private void Awake()
     {
         action = new PlayerInputAction();
+        action.Player.Enable();
         moveAction = action.Player.Move;
         playerAnimation = GetComponent<PlayerAnimation>();
         moveAction.Enable();
@@ -28,15 +29,16 @@ public class PlayerAction : MonoBehaviour
 
         shootingPoint = transform.Find("ShootingPoint").gameObject;
     }
-    void Start()
-    {
-
-    }
 
     void Update()
     {
         Vector3 keyboardVector = moveAction.ReadValue<Vector3>();
         Move(keyboardVector.x, keyboardVector.z);
+    }
+
+    void OnDestroy()
+    {
+        action.Player.Disable();
     }
 
     void Move(float x, float z)

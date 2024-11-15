@@ -47,6 +47,10 @@ public class CameraAction : MonoBehaviour
         UpdatePlayerRotation();
         UpdateShootingPointRotation();
     }
+    void OnDestroy()
+    {
+        action.Player.Disable();
+    }
 
     void Turn(Vector2 delta)
     {
