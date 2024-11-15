@@ -10,7 +10,6 @@ public class PlayerAction : MonoBehaviour
     PlayerAnimation playerAnimation;
     private float movementSpeed = 20f;
     private Transform cameraTransform;
-    [SerializeField]
     private GameObject shootingPoint;
 
     private void Awake()
@@ -26,6 +25,8 @@ public class PlayerAction : MonoBehaviour
         fireAction.Enable();
         fireAction.performed += OnFirePerformed;
         cameraTransform = Camera.main.transform;
+
+        shootingPoint = transform.Find("ShootingPoint").gameObject;
     }
     void Start()
     {
