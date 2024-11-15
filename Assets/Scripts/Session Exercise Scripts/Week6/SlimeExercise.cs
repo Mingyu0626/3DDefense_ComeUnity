@@ -20,7 +20,7 @@ public class SlimeExcersie : EnemyExercise
         maxHp = slimeMaxHp;
         damage = slimeDamage;
         speed = slimeSpeed;
-        attackPoint = transform.Find("ShootingPoint").gameObject;
+        attackPoint = transform.Find("AttackPoint").gameObject;
     }
     void Start()
     {
