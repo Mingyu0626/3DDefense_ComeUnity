@@ -9,6 +9,7 @@ public class Slime : Enemy
     private float slimeSpeed = 5f;
     private float attackInterval = 3f;
     private float attackableDistance = 20f;
+    private bool isCoolDown = false;
 
     [SerializeField]
     private GameObject slimeBullet;
@@ -28,6 +29,10 @@ public class Slime : Enemy
     protected override void Update()
     {
         base.Update();
+        if (!isCoolDown)
+        {
+            StartCoroutine(Attack());
+        }
     }
 
     protected override void OnDisable()
@@ -36,29 +41,28 @@ public class Slime : Enemy
         CancelInvoke();
     }
 
-    void CheckDistanceFromPlayer()
+    bool CheckDistanceFromPlayer()
     {
-        if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) < attackableDistance)
-        {
-            Attack();
-        }
+        return Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) < attackableDistance;
     }
-
-    void Attack()
+    IEnumerator Attack()
     {
-        // ¼¼¼Ç¿ë
-        // Instantiate(slimeBullet, transform.position + transform.forward * 2f, transform.rotation);
-
-        GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
-        if (enemyBulletGO != null && attackPoint != null)
+        if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) > attackableDistance)
         {
-            enemyBulletGO.transform.position = attackPoint.transform.position;
-            enemyBulletGO.transform.rotation = attackPoint.transform.rotation;
+            yield return null;
         }
+        else
+        {
+            GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
+            if (enemyBulletGO != null && attackPoint != null)
+            {
+                enemyBulletGO.transform.position = attackPoint.transform.position;
+                enemyBulletGO.transform.rotation = attackPoint.transform.rotation;
+            }
+            isCoolDown = true;
+            yield return new WaitForSeconds(attackInterval);
+            isCoolDown = false;
+        }
+        yield return null;
     }
-
-    //IEnumerator Attack()
-    //{
-    //    yield return null;
-    //}
 }
