@@ -24,6 +24,7 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnEnemyCoroutine()
     {
+        yield return new WaitForSeconds(2f);
         while (true)
         {
             SpawnEnemy();
