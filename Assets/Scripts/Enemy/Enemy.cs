@@ -20,7 +20,12 @@ public class Enemy : PoolAble
 
     void OnDisable()
     {
-        
+        // 뭔가 디자인 패턴 사용해서 개선될거같은데..
+        // 여기보다 더 Fit한 처리 부분이 있을거 같다
+        StageManager.Instance.CurrentKilledEnemyCount++;
+        StageManager.Instance.CurrentEnemyCount--;
+        UIManager.Instance.SetKilledEnemyCountTMP(StageManager.Instance.CurrentKilledEnemyCount);
+        UIManager.Instance.SetCurrentEnemyCountTMP(StageManager.Instance.CurrentEnemyCount);
     }
 
     public void SetHP(int val) { hp = val; }
@@ -30,12 +35,6 @@ public class Enemy : PoolAble
         hp -= damage;
         if (hp <= 0)
         {
-            // 뭔가 디자인 패턴 사용해서 개선될거같은데..
-            // 여기보다 더 Fit한 처리 부분이 있을거 같다
-            StageManager.Instance.CurrentKilledEnemyCount++;
-            StageManager.Instance.CurrentEnemyCount--;
-            UIManager.Instance.SetKilledEnemyCountTMP(StageManager.Instance.CurrentKilledEnemyCount);
-            UIManager.Instance.SetCurrentEnemyCountTMP(StageManager.Instance.CurrentEnemyCount);
             ReleaseObject();
         }
     }
