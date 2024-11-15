@@ -57,11 +57,8 @@ public class StageManager : MonoBehaviour
         UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
-    IEnumerator ClearStageWithDelay()
+    IEnumerator ClearStage()
     {
-        // 현재 스테이지가 마지막 스테이지라면,
-        // GameManager의 isWin 변수를 true로 변경
-        // GameManager의 EndGame을 호출
         Debug.Log("ClearStageWithDelay() 호출");
         if (currentStage == numOfStages)
         {
@@ -75,6 +72,7 @@ public class StageManager : MonoBehaviour
             ObjectPoolManager.Instance.ReturnAllActiveObjectsToPool();
             Init();
             // 여기서 일시정지를 하지말고 UI를 띄워주자.
+            // 일시정지를 할꺼면 PlayerInputAction도 일시적으로 비활성화 시켜줘야 한다.
             Time.timeScale = 0f;
             yield return new WaitForSecondsRealtime(delayBeforeNextStage);
             Time.timeScale = 1f;
@@ -93,7 +91,7 @@ public class StageManager : MonoBehaviour
     {
         if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
         {
-            StartCoroutine(ClearStageWithDelay());
+            StartCoroutine(ClearStage());
         }
     }
 }
