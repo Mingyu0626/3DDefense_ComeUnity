@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageManagerWeek5 : MonoBehaviour
+public class StageManagerExercise : MonoBehaviour
 {
-    public static StageManagerWeek5 Instance { get; private set; } // 외부에서 StageManager에 접근하기 위한 인스턴스
+    public static StageManagerExercise Instance { get; private set; } // 외부에서 StageManager에 접근하기 위한 인스턴스
     private int[] goalEnemyCount; // 스테이지 별 목표 적 처치수를 저장하는 배열 
     private int numOfStages = 4; // 전체 스테이지 수 
     private int currentStage = 1; // 현재 스테이지  

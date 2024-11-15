@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: -750525692997797814}
   - component: {fileID: -3204433573059462922}
   m_Layer: 0
-  m_Name: TurtleShellWeek5
+  m_Name: TurtleShellExercise
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

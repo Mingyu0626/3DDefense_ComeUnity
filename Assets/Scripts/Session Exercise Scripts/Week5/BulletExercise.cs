@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletWeek5 : MonoBehaviour
+public class BulletExercise : MonoBehaviour
 {
     private float speed = 40f;
     private float duration = 3f;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeek5 : MonoBehaviour
+public class EnemyExercise : MonoBehaviour
 {
     protected int maxHp;
     protected int hp;

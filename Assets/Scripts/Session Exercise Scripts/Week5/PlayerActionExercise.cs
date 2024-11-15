@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerActionWeek5 : MonoBehaviour
+public class PlayerActionExercise : MonoBehaviour
 {
     InputActions action;
     InputAction moveAction, fireAction;

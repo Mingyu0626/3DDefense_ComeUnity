@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class SpawnerWeek5 : MonoBehaviour
+public class SpawnerExercise : MonoBehaviour
 {
     [SerializeField]
     private GameObject spawnedEnemy; // 해당 스포너에서 소환할 Enemy, 해당 스크립트가 들어있는 게임 오브젝트의 inspector 창에 적 GameObject를 드래그 & 드랍. 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeWeek5 : EnemyWeek5
+public class SlimeExercise : EnemyExercise
 {
     private int slimeMaxHp = 1;
     private int slimeDamage = 1;

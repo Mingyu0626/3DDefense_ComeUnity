@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeek5 : HPComponentWeek5
+public class PlayerExercise : HPComponentExercise
 {
-    public static PlayerWeek5 Instance { get; private set; } // 외부에서 접근 가능한 플레이어 인스턴스
+    public static PlayerExercise Instance { get; private set; } // 외부에서 접근 가능한 플레이어 인스턴스
     public Transform PlayerTransform { get; private set; } // 플레이어의 실시간 Transform을 저장하는 변수
 
     protected override void Awake()

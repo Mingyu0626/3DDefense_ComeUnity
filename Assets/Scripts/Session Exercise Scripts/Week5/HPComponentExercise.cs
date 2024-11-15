@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HPComponentWeek5 : MonoBehaviour // Player, Basement의 부모 클래스
+public class HPComponentExercise : MonoBehaviour // Player, Basement의 부모 클래스
 {
     [SerializeField]
     public int MaxHP { get; private set; } = 100; // 최대 체력
