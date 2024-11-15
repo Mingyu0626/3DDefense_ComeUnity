@@ -34,7 +34,7 @@ public class SlimeExcersie : EnemyExercise
 
     void OnDestroy()
     {
-        
+
     }
 
     void Attack()
