@@ -16627,6 +16627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9183913443229823750, guid: f432554f564e69242897607d34218939,
         type: 3}
+      propertyPath: shootingPoint
+      value: 
+      objectReference: {fileID: 361365929}
+    - target: {fileID: 9183913443229823750, guid: f432554f564e69242897607d34218939,
+        type: 3}
       propertyPath: shootingPointGameObject
       value: 
       objectReference: {fileID: 361365929}
@@ -27580,6 +27585,10 @@ MonoBehaviour:
   - objectName: TurtleShell
     prefab: {fileID: 1524411113276028, guid: e2aafa8770d34a9591b41bedf4e318ba, type: 3}
     count: 20
+  - objectName: EnemyBullet
+    prefab: {fileID: 8641637574131557690, guid: d903d1adba8bb524fa8978b4fb52a75a,
+      type: 3}
+    count: 50
 --- !u!4 &1681564223
 Transform:
   m_ObjectHideFlags: 0
