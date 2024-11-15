@@ -15,11 +15,13 @@ public class SpawnerWeek5 : MonoBehaviour
     {
         if (spawnedEnemy != null)
         {
+            // Spawner의 위치에 소환
+            Instantiate(spawnedEnemy, transform.position, transform.rotation);
+
+            // 일정 범위 내 랜덤 위치에 소환
             float randX = Random.Range(-5f, 5f);
             float randZ = Random.Range(-5f, 5f);
-            // Instantiate(spawnedEnemy, transform.position + new Vector3(randX, 0, randZ), transform.rotation);
-
-            Instantiate(spawnedEnemy, transform.position, transform.rotation);
+            Instantiate(spawnedEnemy, transform.position + new Vector3(randX, 0, randZ), transform.rotation);
         }
     }
 }

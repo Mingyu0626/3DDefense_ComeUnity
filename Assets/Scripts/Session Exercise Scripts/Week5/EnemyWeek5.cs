@@ -17,6 +17,8 @@ public class EnemyWeek5 : MonoBehaviour
 
     private void OnDestroy()
     {
+        StageManager.Instance.CurrentKilledEnemyCount++;
+        StageManager.Instance.CurrentEnemyCount--;
     }
 
     public void ApplyDamage(int damage)
