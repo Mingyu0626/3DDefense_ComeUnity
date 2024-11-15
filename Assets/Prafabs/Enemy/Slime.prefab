@@ -485,7 +485,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f1a97fbcd9a784995d88c7d96c2d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slimeBullet: {fileID: 0}
+  slimeBullet: {fileID: 8641637574131557690, guid: d903d1adba8bb524fa8978b4fb52a75a,
+    type: 3}
+  slimeAttackPoint: {fileID: 0}
 --- !u!136 &6553578955870426762
 CapsuleCollider:
   m_ObjectHideFlags: 0

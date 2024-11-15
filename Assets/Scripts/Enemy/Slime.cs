@@ -8,20 +8,22 @@ public class Slime : Enemy
     private int slimeDamage = 1;
     private float slimeSpeed = 5f;
     private float attackInterval = 3f;
-    private float attackableDistance = 10f;
+    private float attackableDistance = 20f;
 
     [SerializeField]
     private GameObject slimeBullet;
+    private GameObject slimeAttackPoint;
 
     void Awake()
     {
         maxHp = slimeMaxHp;
         damage = slimeDamage;
         speed = slimeSpeed;
+        slimeAttackPoint = transform.Find("ShootingPoint").gameObject;
     }
     void Start()
     {
-        InvokeRepeating(nameof(Attack), 2f, attackInterval);
+        InvokeRepeating(nameof(CheckDistanceFromPlayer), 2f, attackInterval);
     }
     protected override void Update()
     {
@@ -33,11 +35,24 @@ public class Slime : Enemy
 
     }
 
-    void Attack()
+    void CheckDistanceFromPlayer()
     {
         if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) < attackableDistance)
         {
-            Instantiate(slimeBullet, transform.position + transform.forward * 2f, transform.rotation);
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        // ¼¼¼Ç¿ë
+        // Instantiate(slimeBullet, transform.position + transform.forward * 2f, transform.rotation);
+
+        GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
+        if (enemyBulletGO != null && slimeAttackPoint != null)
+        {
+            enemyBulletGO.transform.position = slimeAttackPoint.transform.position;
+            enemyBulletGO.transform.rotation = slimeAttackPoint.transform.rotation;
         }
     }
 
