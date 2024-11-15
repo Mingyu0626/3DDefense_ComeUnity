@@ -32,7 +32,7 @@ public class Slime : Enemy
 
     void OnDisable()
     {
-
+        CancelInvoke();
     }
 
     void CheckDistanceFromPlayer()
