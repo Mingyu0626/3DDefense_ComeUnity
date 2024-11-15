@@ -34,6 +34,7 @@ public class StageManager : MonoBehaviour
             goalEnemyCount[i] = (i + 1) * 20;
         }
         UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
+        Init();
     }
 
     void Update()
@@ -44,6 +45,7 @@ public class StageManager : MonoBehaviour
         if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
         {
             ClearStage();
+            Init();
         }
 
 
@@ -52,6 +54,15 @@ public class StageManager : MonoBehaviour
         {
             FailStage();
         }
+    }
+
+    void Init()
+    {
+        CurrentEnemyCount = 0;
+        CurrentKilledEnemyCount = 0;
+        UIManager.Instance.SetCurrentEnemyCountTMP(CurrentEnemyCount);
+        UIManager.Instance.SetKilledEnemyCountTMP(CurrentKilledEnemyCount);
+        UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
     void ClearStage()
@@ -66,11 +77,6 @@ public class StageManager : MonoBehaviour
             GameManager.Instance.EndGame(true);
         }
         currentStage++;
-        CurrentEnemyCount = 0;
-        CurrentKilledEnemyCount = 0;
-        UIManager.Instance.SetCurrentEnemyCountTMP(CurrentEnemyCount);
-        UIManager.Instance.SetKilledEnemyCountTMP(CurrentKilledEnemyCount);
-        UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
     void FailStage()
