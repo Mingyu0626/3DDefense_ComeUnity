@@ -5,16 +5,21 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-
+    public static ButtonManager Instance { get; private set; }
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded Called.");
         AddButtonOnClickEvent();
     }
 
