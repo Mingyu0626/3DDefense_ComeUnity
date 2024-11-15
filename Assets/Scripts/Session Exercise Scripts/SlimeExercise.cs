@@ -9,7 +9,6 @@ public class SlimeExcersie : EnemyExercise
     private float slimeSpeed = 5f;
 
     private float attackInterval = 3f;
-    private float attackableDistance = 20f;
 
     [SerializeField]
     private GameObject slimeBullet;
