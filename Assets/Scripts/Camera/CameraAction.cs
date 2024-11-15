@@ -27,15 +27,13 @@ public class CameraAction : MonoBehaviour
     private Vector3 targetRotation;
     private Vector3 currentVelocity;
 
-    // Start is called before the first frame update
     void Start()
     {
         action = new PlayerInputAction();
         turnAction = action.Player.Turn;
         turnAction.Enable();
         mainCamera = gameObject.GetComponent<Camera>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        GameManager.Instance.SetCursorUseable(false);
     }
     void Update()
     {

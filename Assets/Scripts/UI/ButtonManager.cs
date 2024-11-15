@@ -59,6 +59,4 @@ public class ButtonManager : MonoBehaviour
     void Start()
     {
     }
-
-
 }

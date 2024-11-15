@@ -19,31 +19,35 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
     void Start()
-    {
-        Invoke("StartGame", 2f);
-    }
-
-    void Update()
     {
         
     }
 
-    public void StartGame()
-    {
-        LoadSceneWithName("GameScene");
-    }
-
     public void EndGame(bool isWin)
     {
-        this.IsWin = isWin;
+        IsWin = isWin;
         Debug.Log("Game is Over");
         LoadSceneWithName("GameEndScene");
+        SetCursorUseable(true);
     }
 
     public void LoadSceneWithName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void SetCursorUseable(bool useCursor)
+    {
+        if (useCursor)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }
