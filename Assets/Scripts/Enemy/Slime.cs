@@ -37,8 +37,8 @@ public class Slime : Enemy
 
     protected override void OnDisable()
     {
-        base.OnDisable();
         CancelInvoke();
+        base.OnDisable();
     }
 
     bool CheckDistanceFromPlayer()

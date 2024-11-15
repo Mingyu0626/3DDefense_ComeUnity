@@ -36,6 +36,7 @@ public class Enemy : PoolAble
         if (hp <= 0)
         {
             ReleaseObject();
+            StageManager.Instance.CheckClearCondition();
         }
     }
     

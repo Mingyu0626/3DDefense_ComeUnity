@@ -23,6 +23,8 @@ public class ObjectPoolManager : MonoBehaviour
     private Dictionary<string, IObjectPool<GameObject>> objectPoolDic = new Dictionary<string, IObjectPool<GameObject>>();
     private Dictionary<string, GameObject> goDic = new Dictionary<string, GameObject>();
 
+    // 풀링 오브젝트 일괄 비활성화를 위한 List
+    private List<GameObject> activeObjects = new List<GameObject>(); 
 
     void Awake()
     {
@@ -77,11 +79,13 @@ public class ObjectPoolManager : MonoBehaviour
     private void OnTakeFromPool(GameObject poolGameObject)
     {
         poolGameObject.SetActive(true);
+        activeObjects.Add(poolGameObject);
     }
 
     private void OnReturnedPool(GameObject poolGameObject)
     {
         poolGameObject.SetActive(false);
+        activeObjects.Remove(poolGameObject);
     }
 
     private void OnDestroyPoolObject(GameObject poolGameObject)
@@ -100,4 +104,21 @@ public class ObjectPoolManager : MonoBehaviour
         return objectPoolDic[objectName].Get();
     }
 
+    // 모든 활성화된 오브젝트를 풀에 반환
+    public void ReturnAllActiveObjectsToPool()
+    {
+        foreach (GameObject activeObject in activeObjects.ToArray())
+        {
+            string activeObjectName = activeObject.name.Replace("(Clone)", "");
+            if (objectPoolDic.ContainsKey(activeObjectName))
+            {
+                objectPoolDic[activeObjectName].Release(activeObject);
+            }
+            else
+            {
+                Debug.LogWarning("풀에 해당 오브젝트가 존재하지 않음 : " + activeObjectName);
+            }
+        }
+        activeObjects.Clear();
+    }
 }

@@ -8,6 +8,7 @@ public class StageManager : MonoBehaviour
     private int[] goalEnemyCount; // 스테이지 별 목표 적 처치수를 저장하는 배열 
     private int numOfStages = 4; // 전체 스테이지 수 
     private int currentStage = 1; // 현재 스테이지  
+    private float delayBeforeNextStage = 3f;
     public int CurrentEnemyCount { get; set; } = 0; // 현재 소환되어 있는 적의 수
     public int CurrentKilledEnemyCount { get; set; } = 0; // 현재 스테이지에서의 적 처치수
 
@@ -31,7 +32,7 @@ public class StageManager : MonoBehaviour
         goalEnemyCount = new int[numOfStages + 1];
         for (int i = 1; i <= numOfStages; i++)
         {
-            goalEnemyCount[i] = (i + 1) * 20;
+            goalEnemyCount[i] = i * 3;
         }
         UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
         Init();
@@ -39,15 +40,6 @@ public class StageManager : MonoBehaviour
 
     void Update()
     {
-        // 현재 스테이지의 목표 처치수와 현재 적 처치수를 비교
-        // 목표에 도달하면, ClearStage 호출
-        // 추후 Coroutine 학습후 효율적인 로직으로 개선 예정
-        if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
-        {
-            ClearStage();
-            Init();
-        }
-
 
         // 현재 살아있는 몬스터 수가 50마리를 넘으면, FailStage 호출
         if (50 < CurrentEnemyCount)
@@ -65,23 +57,42 @@ public class StageManager : MonoBehaviour
         UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
-    void ClearStage()
+    IEnumerator ClearStageWithDelay()
     {
         // 현재 스테이지가 마지막 스테이지라면,
         // GameManager의 isWin 변수를 true로 변경
         // GameManager의 EndGame을 호출
-        Debug.Log("Clearstage() 호출");
+        Debug.Log("ClearStageWithDelay() 호출");
         if (currentStage == numOfStages)
         {
             Debug.Log("게임 클리어");
             GameManager.Instance.EndGame(true);
+            yield return null;
         }
-        currentStage++;
+        else
+        {
+            currentStage++;
+            ObjectPoolManager.Instance.ReturnAllActiveObjectsToPool();
+            Init();
+            Time.timeScale = 0f;
+            yield return new WaitForSecondsRealtime(delayBeforeNextStage);
+            Time.timeScale = 1f;
+        }
+        Debug.Log("현재 스테이지 : " + currentStage);
+        yield return null;
     }
 
     void FailStage()
     {
         // GameManager의 EndGame을 호출
         GameManager.Instance.EndGame(false);
+    }
+
+    public void CheckClearCondition()
+    {
+        if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
+        {
+            StartCoroutine(ClearStageWithDelay());
+        }
     }
 }
