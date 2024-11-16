@@ -40,7 +40,6 @@ public class StageManager : MonoBehaviour
 
     void Update()
     {
-
         // 현재 살아있는 몬스터 수가 50마리를 넘으면, FailStage 호출
         if (50 < CurrentEnemyCount)
         {
@@ -78,7 +77,7 @@ public class StageManager : MonoBehaviour
             Time.timeScale = 1f;
         }
         Debug.Log("현재 스테이지 : " + currentStage);
-        yield return null;
+        yield break;
     }
 
     void FailStage()
