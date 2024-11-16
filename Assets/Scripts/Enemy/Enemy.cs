@@ -28,8 +28,6 @@ public class Enemy : PoolAble
         UIManager.Instance.SetCurrentEnemyCountTMP(StageManager.Instance.CurrentEnemyCount);
     }
 
-    public void SetHP(int val) { hp = val; }
-    public int GetHP() { return hp; }
     public void ApplyDamage(int damage) 
     {
         hp -= damage;

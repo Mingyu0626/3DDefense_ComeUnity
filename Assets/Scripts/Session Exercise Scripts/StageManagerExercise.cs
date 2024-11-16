@@ -37,9 +37,6 @@ public class StageManagerExercise : MonoBehaviour
 
     void Update()
     {
-        // 현재 스테이지의 목표 처치수와 현재 적 처치수를 비교
-        // 목표에 도달하면, ClearStage 호출
-        // 추후 Coroutine 학습후 효율적인 로직으로 개선 예정
         if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
         {
             ClearStage();
