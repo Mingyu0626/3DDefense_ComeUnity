@@ -9,7 +9,6 @@ public class Slime : Enemy
     private float slimeSpeed = 5f;
     private float attackInterval = 3f;
     private float attackableDistance = 20f;
-    private bool isCoolDown = false;
 
     [SerializeField]
     private GameObject slimeBullet;
@@ -45,7 +44,7 @@ public class Slime : Enemy
     {
         while (true)
         {
-            if (!isCoolDown && Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) < attackableDistance)
+            if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) < attackableDistance)
             {
                 Debug.Log("사정거리 들어옴");
                 GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
@@ -54,9 +53,7 @@ public class Slime : Enemy
                     enemyBulletGO.transform.position = attackPoint.transform.position;
                     enemyBulletGO.transform.rotation = attackPoint.transform.rotation;
                 }
-                isCoolDown = true;
                 yield return new WaitForSeconds(attackInterval);
-                isCoolDown = false;
             }
             yield return null;
         }
