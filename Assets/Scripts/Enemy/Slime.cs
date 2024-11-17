@@ -44,7 +44,7 @@ public class Slime : Enemy
     {
         while (true)
         {
-            if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) < attackableDistance)
+            if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) <= attackableDistance)
             {
                 Debug.Log("사정거리 들어옴");
                 GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
