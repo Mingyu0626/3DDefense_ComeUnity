@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7384134057150568773}
   - component: {fileID: 2004288874512390164}
   - component: {fileID: 4573307352623203059}
-  - component: {fileID: 185618177140800678}
+  - component: {fileID: 485413568133881861}
   m_Layer: 0
-  m_Name: BulletWeek5
+  m_Name: BulletExercise
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7134b71b42e348544afe872fe278569f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &185618177140800678
+--- !u!114 &485413568133881861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
