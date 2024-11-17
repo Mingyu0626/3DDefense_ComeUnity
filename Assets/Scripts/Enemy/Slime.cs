@@ -24,15 +24,11 @@ public class Slime : Enemy
     }
     void Start()
     {
-        InvokeRepeating(nameof(CheckDistanceFromPlayer), 2f, attackInterval);
+        StartCoroutine(Attack());
     }
     protected override void Update()
     {
         base.Update();
-        if (!isCoolDown)
-        {
-            StartCoroutine(Attack());
-        }
     }
 
     protected override void OnDisable()
@@ -47,22 +43,22 @@ public class Slime : Enemy
     }
     IEnumerator Attack()
     {
-        if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) > attackableDistance)
+        while (true)
         {
+            if (!isCoolDown && Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) < attackableDistance)
+            {
+                Debug.Log("사정거리 들어옴");
+                GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
+                if (enemyBulletGO != null && attackPoint != null)
+                {
+                    enemyBulletGO.transform.position = attackPoint.transform.position;
+                    enemyBulletGO.transform.rotation = attackPoint.transform.rotation;
+                }
+                isCoolDown = true;
+                yield return new WaitForSeconds(attackInterval);
+                isCoolDown = false;
+            }
             yield return null;
         }
-        else
-        {
-            GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
-            if (enemyBulletGO != null && attackPoint != null)
-            {
-                enemyBulletGO.transform.position = attackPoint.transform.position;
-                enemyBulletGO.transform.rotation = attackPoint.transform.rotation;
-            }
-            isCoolDown = true;
-            yield return new WaitForSeconds(attackInterval);
-            isCoolDown = false;
-        }
-        yield return null;
     }
 }
