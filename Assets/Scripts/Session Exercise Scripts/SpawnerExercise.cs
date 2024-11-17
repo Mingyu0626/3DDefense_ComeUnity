@@ -24,4 +24,20 @@ public class SpawnerExercise : MonoBehaviour
             Instantiate(spawnedEnemy, transform.position + new Vector3(randX, 0, randZ), transform.rotation);
         }
     }
+
+    private IEnumerator SpawnEnemy2()
+    {
+        yield return new WaitForSeconds(2f);
+        while (true)
+        {
+            if (spawnedEnemy != null)
+            {
+                float randX = Random.Range(-5f, 5f);
+                float randZ = Random.Range(-5f, 5f);
+                Instantiate(spawnedEnemy, transform.position + new Vector3(randX, 0, randZ), transform.rotation);
+                StageManager.Instance.CurrentEnemyCount++;
+                yield return new WaitForSeconds(spawnIntervalTime);
+            }
+        }
+    }
 }
