@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlimeExcersie : EnemyExercise
@@ -9,6 +10,7 @@ public class SlimeExcersie : EnemyExercise
     private float slimeSpeed = 5f;
 
     private float attackInterval = 3f;
+    private float attackableDistance = 20f;
 
     [SerializeField]
     private GameObject slimeBullet;
@@ -23,7 +25,7 @@ public class SlimeExcersie : EnemyExercise
     }
     void Start()
     {
-        InvokeRepeating(nameof(Attack), 2f, attackInterval);
+        StartCoroutine(Attack());
     }
 
     protected override void Update()
@@ -36,8 +38,16 @@ public class SlimeExcersie : EnemyExercise
 
     }
 
-    void Attack()
+    IEnumerator Attack()
     {
-        Instantiate(slimeBullet, attackPoint.transform);
+        while (true)
+        {
+            if (Vector3.Distance(PlayerExercise.Instance.PlayerTransform.position, transform.position) <= attackableDistance)
+            {
+                Instantiate(slimeBullet, attackPoint.transform);
+                yield return new WaitForSeconds(attackInterval);
+            }
+            yield return null;
+        }
     }
 }
