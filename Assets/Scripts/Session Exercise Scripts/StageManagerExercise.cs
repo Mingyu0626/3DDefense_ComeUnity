@@ -8,6 +8,7 @@ public class StageManagerExercise : MonoBehaviour
     private int[] goalEnemyCount; // 스테이지 별 목표 적 처치수를 저장하는 배열 
     private int numOfStages = 4; // 전체 스테이지 수 
     private int currentStage = 1; // 현재 스테이지  
+    private float delayBeforeNextStage = 3f; // 스테이지 클리어 후 다음 스테이지 시작 전까지의 딜레이
     public int CurrentEnemyCount { get; set; } = 0; // 현재 소환되어 있는 적의 수
     public int CurrentKilledEnemyCount { get; set; } = 0; // 현재 스테이지에서의 적 처치수
 
@@ -43,6 +44,12 @@ public class StageManagerExercise : MonoBehaviour
         }
     }
 
+    void InitCount()
+    {
+        CurrentEnemyCount = 0;
+        CurrentKilledEnemyCount = 0;
+    }
+
     void ClearStage()
     {
         // 현재 스테이지가 마지막 스테이지라면,
@@ -61,5 +68,32 @@ public class StageManagerExercise : MonoBehaviour
     {
         // GameManager의 EndGame을 호출
         GameManager.Instance.EndGame(false);
+    }
+
+    public void CheckClearCondition()
+    {
+        if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
+        {
+            StartCoroutine(ClearStage2());
+        }
+    }
+
+    IEnumerator ClearStage2()
+    {
+        if (currentStage == numOfStages)
+        {
+            GameManager.Instance.EndGame(true);
+            yield return null;
+        }
+        else
+        {
+            currentStage++;
+            InitCount();
+            Time.timeScale = 0f;
+            yield return new WaitForSecondsRealtime(delayBeforeNextStage);
+            Time.timeScale = 1f;
+        }
+        Debug.Log("현재 스테이지 : " + currentStage);
+        yield break;
     }
 }

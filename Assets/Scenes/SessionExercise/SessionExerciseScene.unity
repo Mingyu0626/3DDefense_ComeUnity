@@ -15839,7 +15839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 361365929}
-  bullet: {fileID: 8641637574131557690, guid: 72741f083eb2f3844b878e3d1d630c94, type: 3}
+  bullet: {fileID: 8641637574131557690, guid: 59036096e6281c549aeba3c69d5fa580, type: 3}
 --- !u!114 &1051334042
 MonoBehaviour:
   m_ObjectHideFlags: 0
