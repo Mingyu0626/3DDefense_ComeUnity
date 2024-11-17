@@ -58,10 +58,8 @@ public class StageManager : MonoBehaviour
 
     IEnumerator ClearStage()
     {
-        Debug.Log("ClearStageWithDelay() 호출");
         if (currentStage == numOfStages)
         {
-            Debug.Log("게임 클리어");
             GameManager.Instance.EndGame(true);
             yield return null;
         }
