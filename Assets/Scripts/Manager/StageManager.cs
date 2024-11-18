@@ -34,23 +34,18 @@ public class StageManager : MonoBehaviour
         {
             goalEnemyCount[i] = i;
         }
-        UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
-        Init();
+        InitCount();
+        InitCountUI();
     }
 
-    void Update()
-    {
-        // 현재 살아있는 몬스터 수가 50마리를 넘으면, FailStage 호출
-        if (50 < CurrentEnemyCount)
-        {
-            FailStage();
-        }
-    }
-
-    void Init()
+    void InitCount()
     {
         CurrentEnemyCount = 0;
         CurrentKilledEnemyCount = 0;
+    }
+
+    void InitCountUI()
+    {
         UIManager.Instance.SetCurrentEnemyCountTMP(CurrentEnemyCount);
         UIManager.Instance.SetKilledEnemyCountTMP(CurrentKilledEnemyCount);
         UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
@@ -67,7 +62,7 @@ public class StageManager : MonoBehaviour
         {
             currentStage++;
             ObjectPoolManager.Instance.ReturnAllActiveObjectsToPool();
-            Init();
+            InitCount();
             // 여기서 일시정지를 하지말고 UI를 띄워주자.
             // 일시정지를 할꺼면 PlayerInputAction도 일시적으로 비활성화 시켜줘야 한다.
             Time.timeScale = 0f;
@@ -89,6 +84,14 @@ public class StageManager : MonoBehaviour
         if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
         {
             StartCoroutine(ClearStage());
+        }
+    }
+
+    public void CheckFailCondition()
+    {
+        if (50 < CurrentEnemyCount)
+        {
+            FailStage();
         }
     }
 }
