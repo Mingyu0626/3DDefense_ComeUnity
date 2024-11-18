@@ -8,7 +8,8 @@ public class StageManager : MonoBehaviour
     private int[] goalEnemyCount; // 스테이지 별 목표 적 처치수를 저장하는 배열 
     private int numOfStages = 4; // 전체 스테이지 수 
     private int currentStage = 1; // 현재 스테이지  
-    private float delayBeforeNextStage = 3f;
+    private float delayBeforeNextStage = 3f; // 스테이지 클리어 후 다음 스테이지 시작 전까지의 딜레이
+    private int enemyCountToFail = 50; // 게임 오버가 되는 최소 적의 수
     public int CurrentEnemyCount { get; set; } = 0; // 현재 소환되어 있는 적의 수
     public int CurrentKilledEnemyCount { get; set; } = 0; // 현재 스테이지에서의 적 처치수
 
@@ -89,7 +90,7 @@ public class StageManager : MonoBehaviour
 
     public void CheckFailCondition()
     {
-        if (50 < CurrentEnemyCount)
+        if (enemyCountToFail <= CurrentEnemyCount)
         {
             FailStage();
         }

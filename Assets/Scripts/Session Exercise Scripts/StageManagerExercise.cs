@@ -9,6 +9,7 @@ public class StageManagerExercise : MonoBehaviour
     private int numOfStages = 4; // 전체 스테이지 수 
     private int currentStage = 1; // 현재 스테이지  
     private float delayBeforeNextStage = 3f; // 스테이지 클리어 후 다음 스테이지 시작 전까지의 딜레이
+    private int enemyCountToFail = 5; // 게임 오버가 되는 최소 적의 수
     public int CurrentEnemyCount { get; set; } = 0; // 현재 소환되어 있는 적의 수
     public int CurrentKilledEnemyCount { get; set; } = 0; // 현재 스테이지에서의 적 처치수
     public bool IsCleared { get; private set; } = false;
@@ -35,6 +36,7 @@ public class StageManagerExercise : MonoBehaviour
         {
             goalEnemyCount[i] = i * 1;
         }
+        InitCount();
     }
 
     void Update()
@@ -76,12 +78,20 @@ public class StageManagerExercise : MonoBehaviour
         if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
         {
             StartCoroutine(ClearStage2());
-            Debug.Log("ClearStage 코루틴 호출");
+        }
+    }
+
+    public void CheckFailCondition()
+    {
+        if (enemyCountToFail <= CurrentEnemyCount)
+        {
+            FailStage();
         }
     }
 
     IEnumerator ClearStage2()
     {
+        Debug.Log("스테이지 클리어");
         if (currentStage == numOfStages)
         {
             GameManager.Instance.EndGame(true);
