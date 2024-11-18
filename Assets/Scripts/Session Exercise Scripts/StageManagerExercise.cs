@@ -91,7 +91,7 @@ public class StageManagerExercise : MonoBehaviour
 
     IEnumerator ClearStage2()
     {
-        Debug.Log("스테이지 클리어");
+        IsCleared = true;
         if (currentStage == numOfStages)
         {
             GameManager.Instance.EndGame(true);
@@ -100,14 +100,12 @@ public class StageManagerExercise : MonoBehaviour
         else
         {
             currentStage++;
-            IsCleared = true;
             InitCount();
             Time.timeScale = 0f;
             yield return new WaitForSecondsRealtime(delayBeforeNextStage);
             IsCleared = false;
             Time.timeScale = 1f;
         }
-        Debug.Log("현재 스테이지 : " + currentStage);
         yield break;
     }
 }
