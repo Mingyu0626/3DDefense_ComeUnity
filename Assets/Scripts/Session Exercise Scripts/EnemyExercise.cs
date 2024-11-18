@@ -13,12 +13,17 @@ public class EnemyExercise : MonoBehaviour
     protected virtual void Update()
     {
         TracePlayer();
+        if (StageManagerExercise.Instance.IsCleared)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
-        StageManager.Instance.CurrentKilledEnemyCount++;
-        StageManager.Instance.CurrentEnemyCount--;
+        StageManagerExercise.Instance.CurrentKilledEnemyCount++;
+        StageManagerExercise.Instance.CurrentEnemyCount--;
+        StageManagerExercise.Instance.CheckClearCondition();
     }
 
     public void ApplyDamage(int damage)

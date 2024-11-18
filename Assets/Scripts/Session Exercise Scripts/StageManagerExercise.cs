@@ -11,6 +11,7 @@ public class StageManagerExercise : MonoBehaviour
     private float delayBeforeNextStage = 3f; // 스테이지 클리어 후 다음 스테이지 시작 전까지의 딜레이
     public int CurrentEnemyCount { get; set; } = 0; // 현재 소환되어 있는 적의 수
     public int CurrentKilledEnemyCount { get; set; } = 0; // 현재 스테이지에서의 적 처치수
+    public bool IsCleared { get; private set; } = false;
 
 
     void Awake()
@@ -32,16 +33,16 @@ public class StageManagerExercise : MonoBehaviour
         goalEnemyCount = new int[numOfStages + 1];
         for (int i = 1; i <= numOfStages; i++)
         {
-            goalEnemyCount[i] = (i + 1) * 20;
+            goalEnemyCount[i] = i * 1;
         }
     }
 
     void Update()
     {
-        if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
-        {
-            ClearStage();
-        }
+        //if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
+        //{
+        //    ClearStage();
+        //}
     }
 
     void InitCount()
@@ -75,6 +76,7 @@ public class StageManagerExercise : MonoBehaviour
         if (goalEnemyCount[currentStage] <= CurrentKilledEnemyCount)
         {
             StartCoroutine(ClearStage2());
+            Debug.Log("ClearStage 코루틴 호출");
         }
     }
 
@@ -83,14 +85,15 @@ public class StageManagerExercise : MonoBehaviour
         if (currentStage == numOfStages)
         {
             GameManager.Instance.EndGame(true);
-            yield return null;
         }
         else
         {
             currentStage++;
+            IsCleared = true;
             InitCount();
             Time.timeScale = 0f;
             yield return new WaitForSecondsRealtime(delayBeforeNextStage);
+            IsCleared = false;
             Time.timeScale = 1f;
         }
         Debug.Log("현재 스테이지 : " + currentStage);

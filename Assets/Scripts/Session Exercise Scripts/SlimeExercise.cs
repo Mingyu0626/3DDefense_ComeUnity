@@ -33,9 +33,9 @@ public class SlimeExcersie : EnemyExercise
         base.Update();
     }
 
-    void OnDestroy()
+    protected override void OnDestroy()
     {
-
+        base.OnDestroy();
     }
 
     IEnumerator Attack()

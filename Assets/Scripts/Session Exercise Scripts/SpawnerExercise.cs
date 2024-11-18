@@ -8,7 +8,8 @@ public class SpawnerExercise : MonoBehaviour
     private float spawnIntervalTime = 3f; // 스폰 간격
     void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 5f, spawnIntervalTime);
+        // InvokeRepeating(nameof(SpawnEnemy), 5f, spawnIntervalTime);
+        StartCoroutine(SpawnEnemy2());
     }
 
     private void SpawnEnemy()
@@ -35,7 +36,7 @@ public class SpawnerExercise : MonoBehaviour
                 float randX = Random.Range(-5f, 5f);
                 float randZ = Random.Range(-5f, 5f);
                 Instantiate(spawnedEnemy, transform.position + new Vector3(randX, 0, randZ), transform.rotation);
-                StageManager.Instance.CurrentEnemyCount++;
+                StageManagerExercise.Instance.CurrentEnemyCount++;
                 yield return new WaitForSeconds(spawnIntervalTime);
             }
         }
