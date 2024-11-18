@@ -32,7 +32,6 @@ public class Slime : Enemy
 
     protected override void OnDisable()
     {
-        CancelInvoke();
         base.OnDisable();
     }
 
