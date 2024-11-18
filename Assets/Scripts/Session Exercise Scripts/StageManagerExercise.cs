@@ -85,6 +85,7 @@ public class StageManagerExercise : MonoBehaviour
         if (currentStage == numOfStages)
         {
             GameManager.Instance.EndGame(true);
+            yield break;
         }
         else
         {
