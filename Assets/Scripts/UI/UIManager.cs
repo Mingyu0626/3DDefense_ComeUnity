@@ -38,26 +38,41 @@ public class UIManager : MonoBehaviour
 
     public void SetCurrentEnemyCountTMP(int val)
     {
-        currentEnemyCountTMP.SetText(val.ToString());
+        if (currentEnemyCountTMP != null)
+        {
+            currentEnemyCountTMP.SetText(val.ToString());
+        }
     }
 
     public void SetKilledEnemyCountTMP(int val)
     {
-        killedEnemyCountTMP.SetText(val.ToString());
+        if (killedEnemyCountTMP != null)
+        {
+            killedEnemyCountTMP.SetText(val.ToString());
+        }
     }
 
     public void SetGoalEnemyCountTMP(int val)
     {
+        if (goalEnemyCountTMP != null)
+        { 
         goalEnemyCountTMP.SetText(val.ToString());
+        }
     }
 
     public void SetPlayerHPSlider(int val)
     {
-        playerHpBar.value = val;
+        if (playerHpBar != null)
+        {
+            playerHpBar.value = val;
+        }
     }
 
     public void SetBasementHPSlider(int val)
     {
+        if(basementHpBar != null)
+        {
         basementHpBar.value = val;
+        }
     }
 }
