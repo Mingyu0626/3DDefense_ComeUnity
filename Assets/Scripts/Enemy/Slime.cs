@@ -44,7 +44,7 @@ public class Slime : Enemy
         {
             if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) <= attackableDistance)
             {
-                Instantiate(slimeBullet, attackPoint.transform);
+                Instantiate(slimeBullet, attackPoint.transform.position, attackPoint.transform.rotation);
                 yield return new WaitForSeconds(attackInterval);
             }
             yield return null;

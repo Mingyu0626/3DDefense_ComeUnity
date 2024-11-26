@@ -21,9 +21,15 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        StageManager.Instance.CurrentKilledEnemyCount++;
-        StageManager.Instance.CurrentEnemyCount--;
-        StageManager.Instance.CheckClearCondition();
+        if (StageManager.Instance != null)
+        {
+            StageManager.Instance.CurrentKilledEnemyCount++;
+            StageManager.Instance.CurrentEnemyCount--;
+            if (!StageManager.Instance.IsCleared)
+            {
+                StageManager.Instance.CheckClearCondition();
+            }
+        }
     }
 
     public void ApplyDamage(int damage)

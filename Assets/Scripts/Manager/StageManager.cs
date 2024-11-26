@@ -51,7 +51,6 @@ public class StageManager : MonoBehaviour
 
     void FailStage()
     {
-        // GameManager의 EndGame을 호출
         GameManager.Instance.EndGame(false);
     }
 
@@ -81,7 +80,6 @@ public class StageManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("스테이지 " + currentStage + " 클리어! ");
             currentStage++;
             InitCount();
             Time.timeScale = 0f;

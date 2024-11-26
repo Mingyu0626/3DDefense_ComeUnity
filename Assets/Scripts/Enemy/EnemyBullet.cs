@@ -6,8 +6,8 @@ public class EnemyBullet : MonoBehaviour
 {
     private float speed = 10f;
     private float duration = 3f;
-    public int Damage { get; private set; }
-    void OnEnable()
+    public int Damage { get; private set; } = 1;
+    void Start()
     {
         Invoke(nameof(DestroyBullet), duration);
     }
@@ -21,6 +21,7 @@ public class EnemyBullet : MonoBehaviour
     {
         CancelInvoke(nameof(DestroyBullet));
     }
+
     private void DestroyBullet()
     {
         Destroy(gameObject);
