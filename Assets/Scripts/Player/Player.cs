@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Player : HPComponent
 {
-    // 오로지 Enemy의 TracePlayer만을 위한 코드인데, 개선 방안이 분명 존재할것임
-    // Enemy에서 다른 방식으로 공격 대상의 Transform을 실시간으로 변경할 수 있으면
-    // 싱글톤으로 할 필요도 없어짐
-    public static Player Instance { get; private set; }
-    public Transform PlayerTransform { get; private set; }
+    public static Player Instance { get; private set; } // 외부에서 접근 가능한 플레이어 인스턴스
+    public Transform PlayerTransform { get; private set; } // 플레이어의 실시간 Transform을 저장하는 변수
 
     protected override void Awake()
     {
-        base.Awake();
+        base.Awake(); // HPComponent 클래스의 Awake 호출
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -22,17 +19,17 @@ public class Player : HPComponent
     }
     void Update()
     {
-        PlayerTransform = transform;
+        PlayerTransform = transform; // 플레이어의 현재위치 저장
     }
 
     protected override void ApplyDamage(int damage)
     {
-        base.ApplyDamage(damage);
-        UIManager.Instance.SetPlayerHPSlider(curHP);
+        base.ApplyDamage(damage); // HPComponent 클래스의 ApplyDamage를 호출
+        
     }
 
-    protected override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other) 
     {
-        base.OnTriggerEnter(other);
+        base.OnTriggerEnter(other); // HPComponent 클래스의 OnTriggerEnter를 호출
     }
 }

@@ -2687,9 +2687,8 @@ GameObject:
   - component: {fileID: 2836004473841745626}
   - component: {fileID: 6567001480162786776}
   - component: {fileID: 4397292526535987037}
-  - component: {fileID: 4532988951217681242}
-  - component: {fileID: 9183913443229823750}
-  - component: {fileID: 4548960993976049357}
+  - component: {fileID: 4339605050806788492}
+  - component: {fileID: 6790140991412473487}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2788,7 +2787,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &4532988951217681242
+--- !u!114 &4339605050806788492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2797,10 +2796,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2836004475591695743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587b53c9e64e1144eae4b72840c73ae4, type: 3}
+  m_Script: {fileID: 11500000, guid: 85af8a90aa674024fbd0d32fe529d312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9183913443229823750
+--- !u!114 &6790140991412473487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2809,19 +2808,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2836004475591695743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3929d2cdc16e63745b2e2093395eddd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 690205a07b0880547b256898587c72fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingPointGameObject: {fileID: 0}
---- !u!114 &4548960993976049357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2836004475591695743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb30a8156c06bc42a979964fb4acfaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  shootingPoint: {fileID: 0}
+  bullet: {fileID: 8641637574131557690, guid: 59036096e6281c549aeba3c69d5fa580, type: 3}

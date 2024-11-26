@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : PoolAble
+public class Bullet : MonoBehaviour
 {
-    private int damage = 1;
     private float speed = 40f;
-    private float durationTime = 3f;
-    void OnEnable()
+    private float duration = 3f;
+    public int Damage { get; private set; }
+    void Start()
     {
-        Invoke("ReturnToPool", durationTime);
+        Invoke(nameof(DestroyBullet), duration);
     }
 
     void Update()
@@ -17,20 +17,18 @@ public class Bullet : PoolAble
         transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
-        CancelInvoke("ReturnToPool");
+        CancelInvoke(nameof(DestroyBullet));
     }
 
-    private void ReturnToPool()
+    private void DestroyBullet()
     {
-        ReleaseObject();
+        Destroy(gameObject);
     }
-
-    public int GetDamage() { return damage; }
 
     private void OnTriggerEnter(Collider other)
     {
-        ReturnToPool();
+        DestroyBullet();
     }
 }

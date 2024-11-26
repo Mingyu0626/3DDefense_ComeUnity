@@ -2,55 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : PoolAble
+public class Enemy : MonoBehaviour
 {
-    protected int maxHp = 1;
-    private int hp;
+    protected int maxHp;
+    protected int hp;
     protected int damage;
-    protected float speed = 5f;
-    void OnEnable()
-    {
-        hp = maxHp;
-    }
+    protected float speed;
+
 
     protected virtual void Update()
     {
         TracePlayer();
+        if (StageManager.Instance.IsCleared)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    protected virtual void OnDisable()
+    protected virtual void OnDestroy()
     {
-        // 뭔가 디자인 패턴 사용해서 개선될거같은데..
-        // 여기보다 더 Fit한 처리 부분이 있을거 같다
         StageManager.Instance.CurrentKilledEnemyCount++;
         StageManager.Instance.CurrentEnemyCount--;
-        UIManager.Instance.SetKilledEnemyCountTMP(StageManager.Instance.CurrentKilledEnemyCount);
-        UIManager.Instance.SetCurrentEnemyCountTMP(StageManager.Instance.CurrentEnemyCount);
+        StageManager.Instance.CheckClearCondition();
     }
 
-    public void ApplyDamage(int damage) 
+    public void ApplyDamage(int damage)
     {
         hp -= damage;
         if (hp <= 0)
         {
-            ReleaseObject();
-            StageManager.Instance.CheckClearCondition();
+            Destroy(gameObject);
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerBullet"))
         {
             Bullet playerBullet = other.GetComponent<Bullet>();
-            ApplyDamage(playerBullet.GetDamage());
+            ApplyDamage(playerBullet.Damage);
         }
     }
 
     private void TracePlayer()
     {
-        Transform playerTransform = Player.Instance.PlayerTransform;
-        transform.LookAt(playerTransform);
+        Transform playerTransform = Player.Instance.PlayerTransform; // 플레이어의 실시간 Transform를 가져온다.
+        transform.LookAt(playerTransform); // Enemy가 플레이어의 위치를 바라보게 만든다.
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+        // 현재 위치(transform.position, 적 위치)에서, 목표 위치(playerTransform.position, 플레이어의 위치)로 (speed * Time.deltaTime)만큼의 속도로 이동한다.
     }
 }

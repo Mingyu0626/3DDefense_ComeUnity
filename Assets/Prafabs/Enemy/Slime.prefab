@@ -424,9 +424,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4047972025199878}
   - component: {fileID: 95457531584545886}
-  - component: {fileID: -1271716717403557199}
   - component: {fileID: 6553578955870426762}
   - component: {fileID: -1506309932372760090}
+  - component: {fileID: 4280978646788979845}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -447,7 +447,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7518112930107267347}
+  - {fileID: 4433182679881516612}
   - {fileID: 4065624273618060}
   - {fileID: 4358697761044548}
   m_Father: {fileID: 0}
@@ -473,20 +473,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-1271716717403557199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931298151966786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11f1a97fbcd9a784995d88c7d96c2d16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slimeBullet: {fileID: 8641637574131557690, guid: d903d1adba8bb524fa8978b4fb52a75a,
-    type: 3}
 --- !u!136 &6553578955870426762
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -537,7 +523,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!1 &107300779346588615
+--- !u!114 &4280978646788979845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931298151966786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878821422a2177540ab9cbeca5dab3ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slimeBullet: {fileID: 8641637574131557690, guid: f79123f4c4b21794fbd2a71640d249b2,
+    type: 3}
+--- !u!1 &7091865421967029494
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7518112930107267347}
+  - component: {fileID: 4433182679881516612}
   m_Layer: 0
   m_Name: AttackPoint
   m_TagString: Untagged
@@ -553,15 +553,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7518112930107267347
+--- !u!4 &4433182679881516612
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107300779346588615}
+  m_GameObject: {fileID: 7091865421967029494}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.6, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
