@@ -14,6 +14,7 @@ public class HPComponent : MonoBehaviour // Player, Basement의 부모 클래스
     }
     protected virtual void ApplyDamage(int damage) // 데미지를 적용하는 함수
     {
+        Debug.Log("부모 클래스의 ApplyDamage 호출");
         curHP -= damage;
         curHP = Mathf.Clamp(curHP, 0, MaxHP); 
         // 현재 curHP의 값을 0 ~ MaxHP의 값으로 보간
@@ -29,7 +30,7 @@ public class HPComponent : MonoBehaviour // Player, Basement의 부모 클래스
     {
         if (other.CompareTag("EnemyAttack")) // 충돌 감지된 대상이 "EnemyAttack"이라는 태그를 가진 게임 오브젝트일 때
         {
-            Bullet EnemyAttack = other.GetComponent<Bullet>(); 
+            EnemyBullet EnemyAttack = other.GetComponent<EnemyBullet>(); 
             if (EnemyAttack != null)
             {
                 ApplyDamage(EnemyAttack.Damage); // 적의 공격 오브젝트(Bullet)

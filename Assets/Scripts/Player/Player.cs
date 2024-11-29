@@ -25,7 +25,7 @@ public class Player : HPComponent
     protected override void ApplyDamage(int damage)
     {
         base.ApplyDamage(damage); // HPComponent 클래스의 ApplyDamage를 호출
-        
+        UIManager.Instance.SetPlayerHPSlider(curHP);
     }
 
     protected override void OnTriggerEnter(Collider other) 
