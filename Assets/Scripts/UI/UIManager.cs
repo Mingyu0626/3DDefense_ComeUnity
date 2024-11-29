@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
     {
         if (goalEnemyCountTMP != null)
         { 
-        goalEnemyCountTMP.SetText(val.ToString());
+            goalEnemyCountTMP.SetText(val.ToString());
         }
     }
 
@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
     {
         if(basementHpBar != null)
         {
-        basementHpBar.value = val;
+            basementHpBar.value = val;
         }
     }
 }
