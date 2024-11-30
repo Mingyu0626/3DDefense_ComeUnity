@@ -12421,7 +12421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentEnemyCountTMP: {fileID: 2136083085}
   killedEnemyCountTMP: {fileID: 1874526865}
-  goalEnemyCountTMP: {fileID: 1874526865}
+  goalEnemyCountTMP: {fileID: 1643920134}
   playerHpBar: {fileID: 837583490}
   basementHpBar: {fileID: 103993602}
 --- !u!1001 &802382107

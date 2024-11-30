@@ -10,8 +10,26 @@ public class StageManager : MonoBehaviour
     private int currentStage = 1; // 현재 스테이지  
     private float delayBeforeNextStage = 3f; // 스테이지 클리어 후 다음 스테이지 시작 전까지의 딜레이
     private int enemyCountToFail = 5; // 게임 오버가 되는 최소 적의 수
-    public int CurrentEnemyCount { get; set; } = 0; // 현재 소환되어 있는 적의 수
-    public int CurrentKilledEnemyCount { get; set; } = 0; // 현재 스테이지에서의 적 처치수
+    private int currentEnemyCount = 0;
+    private int currentKilledEnemyCount = 0;
+    public int CurrentEnemyCount 
+    {
+        get { return currentEnemyCount; }
+        set
+        {
+            currentEnemyCount = value;
+            UIManager.Instance.SetCurrentEnemyCountTMP(currentEnemyCount);
+        }
+    } // 현재 소환되어 있는 적의 수
+    public int CurrentKilledEnemyCount 
+    {
+        get { return currentKilledEnemyCount; }
+        set
+        {
+            currentKilledEnemyCount = value;
+            UIManager.Instance.SetKilledEnemyCountTMP(currentKilledEnemyCount);
+        }
+    } // 현재 스테이지에서의 적 처치수
     public bool IsCleared { get; private set; } = false;
 
 
@@ -47,6 +65,7 @@ public class StageManager : MonoBehaviour
     {
         CurrentEnemyCount = 0;
         CurrentKilledEnemyCount = 0;
+        UIManager.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
 
     void FailStage()
