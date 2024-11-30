@@ -8,24 +8,9 @@ public class Spawner : MonoBehaviour
     private float spawnIntervalTime = 3f; // 스폰 간격
     void Start()
     {
-        StartCoroutine(SpawnEnemy2());
+        StartCoroutine(SpawnEnemy());
     }
-
-    private void SpawnEnemy()
-    {
-        if (spawnedEnemy != null)
-        {
-            // Spawner의 위치에 소환
-            Instantiate(spawnedEnemy, transform.position, transform.rotation);
-
-            // 일정 범위 내 랜덤 위치에 소환
-            // float randX = Random.Range(-5f, 5f);
-            // float randZ = Random.Range(-5f, 5f);
-            // Instantiate(spawnedEnemy, transform.position + new Vector3(randX, 0, randZ), transform.rotation);
-        }
-    }
-
-    private IEnumerator SpawnEnemy2()
+    private IEnumerator SpawnEnemy()
     {
         yield return new WaitForSeconds(spawnIntervalTime);
         while (true)
