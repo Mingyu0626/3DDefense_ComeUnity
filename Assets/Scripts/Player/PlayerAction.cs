@@ -12,6 +12,8 @@ public class PlayerAction : MonoBehaviour
     private GameObject shootingPoint;
     [SerializeField]
     private GameObject bullet;
+    [SerializeField]
+    private ParticleSystem fireEffect;
 
     private void Awake()
     {
@@ -45,6 +47,10 @@ public class PlayerAction : MonoBehaviour
         if (bullet != null && shootingPoint != null)
         {
             Instantiate(bullet, shootingPoint.transform.position, shootingPoint.transform.rotation);
+            if (fireEffect != null)
+            {
+                fireEffect.Play();
+            }
         }
     }
 }

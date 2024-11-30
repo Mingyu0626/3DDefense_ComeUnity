@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     protected int damage;
     protected float speed;
 
+    [SerializeField]
+    private GameObject destroyEffect;
 
     protected virtual void Update()
     {
@@ -21,6 +23,12 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
+        if (destroyEffect != null)
+        {
+            GameObject generatedGO = Instantiate(destroyEffect, transform.position, transform.rotation);
+            Destroy(generatedGO, 1f);
+        }
+
         if (StageManager.Instance != null)
         {
             StageManager.Instance.CurrentKilledEnemyCount++;

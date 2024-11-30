@@ -535,6 +535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878821422a2177540ab9cbeca5dab3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyEffect: {fileID: 5238538877814813142, guid: 47096eff328e11a418ace7db2d72aa97,
+    type: 3}
   slimeBullet: {fileID: 8641637574131557690, guid: f79123f4c4b21794fbd2a71640d249b2,
     type: 3}
 --- !u!1 &7091865421967029494

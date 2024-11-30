@@ -34,7 +34,7 @@ public class StageManager : MonoBehaviour
         goalEnemyCount = new int[numOfStages + 1];
         for (int i = 1; i <= numOfStages; i++)
         {
-            goalEnemyCount[i] = i * 1;
+            goalEnemyCount[i] = i * 10;
         }
         InitCount();
     }
