@@ -23,12 +23,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        if (destroyEffect != null)
-        {
-            GameObject generatedGO = Instantiate(destroyEffect, transform.position, transform.rotation);
-            Destroy(generatedGO, 1f);
-        }
-
         if (StageManager.Instance != null)
         {
             StageManager.Instance.CurrentKilledEnemyCount++;
@@ -45,6 +39,10 @@ public class Enemy : MonoBehaviour
         hp -= damage;
         if (hp <= 0)
         {
+            if (destroyEffect != null)
+            {
+                GameObject effectGO = Instantiate(destroyEffect, transform.position, transform.rotation);
+            }
             Destroy(gameObject);
         }
     }
