@@ -10,7 +10,10 @@ public class PlayerAction : MonoBehaviour
     PlayerAnimation playerAnimation;
     private float movementSpeed = 20f;
     private Transform cameraTransform;
-    private GameObject shootingPoint;
+    [SerializeField]
+    private Transform shootingPoint;
+    [SerializeField]
+    private ParticleSystem fireEffect;
 
     private void Awake()
     {
@@ -26,8 +29,6 @@ public class PlayerAction : MonoBehaviour
         fireAction.Enable();
         fireAction.performed += OnFirePerformed;
         cameraTransform = Camera.main.transform;
-
-        shootingPoint = transform.Find("ShootingPoint").gameObject;
     }
 
     void Update()
@@ -71,8 +72,12 @@ public class PlayerAction : MonoBehaviour
         GameObject bulletGameObject = ObjectPoolManager.Instance.GetGameObject("Bullet");
         if (bulletGameObject != null && shootingPoint != null)
         {
-            bulletGameObject.transform.position = shootingPoint.transform.position;
-            bulletGameObject.transform.rotation = shootingPoint.transform.rotation;
+            bulletGameObject.transform.position = shootingPoint.position;
+            bulletGameObject.transform.rotation = shootingPoint.rotation;
+        }
+        if (fireEffect != null)
+        {
+            fireEffect.Play();
         }
     }
 
