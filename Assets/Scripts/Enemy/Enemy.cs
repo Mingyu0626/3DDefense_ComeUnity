@@ -24,8 +24,6 @@ public class Enemy : PoolAble
         // 여기보다 더 Fit한 처리 부분이 있을거 같다
         StageManager.Instance.CurrentKilledEnemyCount++;
         StageManager.Instance.CurrentEnemyCount--;
-        UIManager.Instance.SetKilledEnemyCountTMP(StageManager.Instance.CurrentKilledEnemyCount);
-        UIManager.Instance.SetCurrentEnemyCountTMP(StageManager.Instance.CurrentEnemyCount);
     }
 
     public void ApplyDamage(int damage) 

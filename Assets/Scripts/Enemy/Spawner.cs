@@ -30,7 +30,6 @@ public class Spawner : MonoBehaviour
             SpawnEnemy();
             StageManager.Instance.CurrentEnemyCount++;
             StageManager.Instance.CheckFailCondition();
-            UIManager.Instance.SetCurrentEnemyCountTMP(StageManager.Instance.CurrentEnemyCount);
             yield return new WaitForSeconds(spawnIntervalTime);
         }
     }
