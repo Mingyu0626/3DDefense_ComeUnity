@@ -52,7 +52,7 @@ public class StageManager : MonoBehaviour
         goalEnemyCount = new int[numOfStages + 1];
         for (int i = 1; i <= numOfStages; i++)
         {
-            goalEnemyCount[i] = i * 10;
+            goalEnemyCount[i] = i * 3;
         }
         InitCount();
     }
@@ -100,10 +100,10 @@ public class StageManager : MonoBehaviour
         else
         {
             currentStage++;
-            InitCount();
             Time.timeScale = 0f;
             yield return new WaitForSecondsRealtime(delayBeforeNextStage);
             IsCleared = false;
+            InitCount();
             Time.timeScale = 1f;
         }
         yield break;
