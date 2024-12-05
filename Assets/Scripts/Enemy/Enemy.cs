@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
         {
             if (destroyEffect != null)
             {
-                GameObject effectGO = Instantiate(destroyEffect, transform.position, transform.rotation);
+                Instantiate(destroyEffect, transform.position, transform.rotation);
             }
             Destroy(gameObject);
         }
