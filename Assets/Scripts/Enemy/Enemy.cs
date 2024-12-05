@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     protected float speed;
 
     [SerializeField]
-    private GameObject destroyEffect;
+    private GameObject enemyDeathReactionGO;
 
     protected virtual void Update()
     {
@@ -39,9 +39,9 @@ public class Enemy : MonoBehaviour
         hp -= damage;
         if (hp <= 0)
         {
-            if (destroyEffect != null)
+            if (enemyDeathReactionGO != null)
             {
-                Instantiate(destroyEffect, transform.position, transform.rotation);
+                Instantiate(enemyDeathReactionGO, transform.position, transform.rotation);
             }
             Destroy(gameObject);
         }
