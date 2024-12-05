@@ -4117,7 +4117,7 @@ PrefabInstance:
     - target: {fileID: 162584487599433031, guid: 39f852c28f9c3fd45a427c24f3564ba7,
         type: 3}
       propertyPath: m_Name
-      value: 'Fire Hit '
+      value: PlayerFireReaction
       objectReference: {fileID: 0}
     - target: {fileID: 1163100820633013457, guid: 39f852c28f9c3fd45a427c24f3564ba7,
         type: 3}
@@ -4184,6 +4184,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4123797711010594208, guid: 39f852c28f9c3fd45a427c24f3564ba7,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8984914868575819726, guid: 39f852c28f9c3fd45a427c24f3564ba7,
         type: 3}
       propertyPath: playOnAwake
@@ -4203,6 +4208,12 @@ Transform:
 --- !u!198 &289336960 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1301697207402410478, guid: 39f852c28f9c3fd45a427c24f3564ba7,
+    type: 3}
+  m_PrefabInstance: {fileID: 289336958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &289336961 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4123797711010594208, guid: 39f852c28f9c3fd45a427c24f3564ba7,
     type: 3}
   m_PrefabInstance: {fileID: 289336958}
   m_PrefabAsset: {fileID: 0}
@@ -15906,6 +15917,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6790140991412473487, guid: f432554f564e69242897607d34218939,
+        type: 3}
+      propertyPath: fireAudio
+      value: 
+      objectReference: {fileID: 289336961}
     - target: {fileID: 6790140991412473487, guid: f432554f564e69242897607d34218939,
         type: 3}
       propertyPath: fireEffect

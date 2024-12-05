@@ -4901,7 +4901,7 @@ GameObject:
   - component: {fileID: 6336844183546462238}
   - component: {fileID: 4238684871373837040}
   m_Layer: 0
-  m_Name: 'Basic Hit '
+  m_Name: EnemyDeathReaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
