@@ -27,10 +27,6 @@ public class PlayerAction : MonoBehaviour
         fireAction.Enable();
         fireAction.performed += OnFirePerformed;
     }
-    void Start()
-    {
-
-    }
 
     void Update()
     {

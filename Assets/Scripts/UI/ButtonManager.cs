@@ -67,8 +67,4 @@ public class ButtonManager : MonoBehaviour
     {
         btn.onClick.AddListener(() => GameManager.Instance.LoadSceneWithName(sceneName));
     }
-
-    void Start()
-    {
-    }
 }
