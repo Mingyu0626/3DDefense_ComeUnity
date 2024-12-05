@@ -49,8 +49,7 @@ public class PlayerAction : MonoBehaviour
             {
                 fireEffect.Play();
             }
-
-            if (fireAudio != null)
+            if (fireAudio != null && fireAudio.clip != null)
             {
                 fireAudio.Play();
             }
