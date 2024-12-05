@@ -14,6 +14,8 @@ public class PlayerAction : MonoBehaviour
     private GameObject bullet;
     [SerializeField]
     private ParticleSystem fireEffect;
+    [SerializeField]
+    private AudioSource fireAudio;
 
     private void Awake()
     {
@@ -44,12 +46,17 @@ public class PlayerAction : MonoBehaviour
 
     void OnFirePerformed(InputAction.CallbackContext context)
     {
-        if (bullet != null && shootingPoint != null)
+        if (bullet != null && shootingPoint != null && !StageManager.Instance.IsCleared)
         {
             Instantiate(bullet, shootingPoint.transform.position, shootingPoint.transform.rotation);
             if (fireEffect != null)
             {
                 fireEffect.Play();
+            }
+
+            if (fireAudio != null)
+            {
+                fireAudio.Play();
             }
         }
     }
