@@ -6,7 +6,7 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; } // 외부에서 StageManager에 접근하기 위한 인스턴스
     private int[] goalEnemyCount; // 스테이지 별 목표 적 처치수를 저장하는 배열 
-    private int numOfStages = 4; // 전체 스테이지 수 
+    private int numOfStages = 3; // 전체 스테이지 수 
     private int currentStage = 1; // 현재 스테이지  
     private float delayBeforeNextStage = 3f; // 스테이지 클리어 후 다음 스테이지 시작 전까지의 딜레이
     private int enemyCountToFail = 5; // 게임 오버가 되는 최소 적의 수
@@ -101,9 +101,11 @@ public class StageManager : MonoBehaviour
         {
             currentStage++;
             Time.timeScale = 0f;
+            UIManager.Instance.SetActiveClearStageTextGO(true);
             yield return new WaitForSecondsRealtime(delayBeforeNextStage);
             IsCleared = false;
             InitCount();
+            UIManager.Instance.SetActiveClearStageTextGO(false);
             Time.timeScale = 1f;
         }
         yield break;

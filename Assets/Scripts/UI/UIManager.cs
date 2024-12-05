@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     private Slider playerHpBar;
     [SerializeField]
     private Slider basementHpBar;
+    [SerializeField]
+    private GameObject clearStageTextGO;
 
     void Awake()
     {
@@ -73,6 +75,14 @@ public class UIManager : MonoBehaviour
         if(basementHpBar != null)
         {
         basementHpBar.value = val;
+        }
+    }
+
+    public void SetActiveClearStageTextGO(bool val)
+    {
+        if (clearStageTextGO != null)
+        {
+            clearStageTextGO.SetActive(val);
         }
     }
 }
