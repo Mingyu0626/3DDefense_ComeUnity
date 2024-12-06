@@ -24,13 +24,15 @@ public class EnemyDeathReaction : MonoBehaviour
         if (destroyEffect != null)
         {
             destroyEffect.Play();
+            yield return new WaitForSeconds(destroyEffect.main.duration);
+            destroyEffectEnd = true;
+
+            if (checkDestroyCondition())
+            {
+                Destroy(gameObject);
+            }
         }
-        yield return new WaitForSeconds(destroyEffect.main.duration);
-        destroyEffectEnd = true;
-        if (checkDestroyCondition())
-        {
-            Destroy(gameObject);
-        }
+ 
     }
 
     IEnumerator PlayDestroySound()
@@ -39,12 +41,13 @@ public class EnemyDeathReaction : MonoBehaviour
         if (destroySound != null && destroySound.clip != null)
         {
             destroySound.Play();
-        }
-        yield return new WaitForSeconds(destroySound.clip.length);
-        destroySoundEnd = true;
-        if (checkDestroyCondition())
-        {
-            Destroy(gameObject);
+            yield return new WaitForSeconds(destroySound.clip.length);
+            destroySoundEnd = true;
+
+            if (checkDestroyCondition())
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
