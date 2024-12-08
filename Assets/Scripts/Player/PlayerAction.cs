@@ -14,6 +14,8 @@ public class PlayerAction : MonoBehaviour
     private Transform shootingPoint;
     [SerializeField]
     private ParticleSystem fireEffect;
+    [SerializeField]
+    private AudioSource fireAudio;
 
     private void Awake()
     {
@@ -75,9 +77,15 @@ public class PlayerAction : MonoBehaviour
             bulletGameObject.transform.position = shootingPoint.position;
             bulletGameObject.transform.rotation = shootingPoint.rotation;
         }
+
         if (fireEffect != null)
         {
             fireEffect.Play();
+        }
+
+        if (fireAudio != null)
+        {
+            fireAudio.Play();
         }
     }
 

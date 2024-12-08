@@ -81,14 +81,13 @@ public class StageManager : MonoBehaviour
         {
             currentStage++;
             ObjectPoolManager.Instance.ReturnAllActiveObjectsToPool();
-            // 여기서 일시정지를 하지말고 UI를 띄워주자.
-            // 일시정지를 할꺼면 PlayerInputAction도 일시적으로 비활성화 시켜줘야 한다.
             Time.timeScale = 0f;
+            UIManager.Instance.SetActiveClearStageTextGO(true);
             yield return new WaitForSecondsRealtime(delayBeforeNextStage);
+            UIManager.Instance.SetActiveClearStageTextGO(false);
             InitCountAndGoalEnemyCountUI();
             Time.timeScale = 1f;
         }
-        Debug.Log("현재 스테이지 : " + currentStage);
         yield break;
     }
 

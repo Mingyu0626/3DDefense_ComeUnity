@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909191422c877d141b1659021256a429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 0}
-  loseText: {fileID: 0}
+  winText: {fileID: 2628987439967430235, guid: a3c4fce0de2a795428fd95457c844443, type: 3}
+  loseText: {fileID: 981620668321633942, guid: 369e780d922209346b1d97ffa09617eb, type: 3}
