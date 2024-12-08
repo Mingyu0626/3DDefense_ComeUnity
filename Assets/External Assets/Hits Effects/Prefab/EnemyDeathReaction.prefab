@@ -4900,7 +4900,7 @@ GameObject:
   - component: {fileID: 970440554703164915}
   - component: {fileID: 6336844183546462238}
   - component: {fileID: -2338266013017218471}
-  - component: {fileID: 4238684871373837040}
+  - component: {fileID: 8615975127200804698}
   m_Layer: 0
   m_Name: EnemyDeathReaction
   m_TagString: Untagged
@@ -9876,7 +9876,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4238684871373837040
+--- !u!114 &8615975127200804698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9885,7 +9885,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5238538877814813142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b9c22f623f7f6488dab81ceb898d33, type: 3}
+  m_Script: {fileID: 11500000, guid: 2da4182ddce6f5d4891cf9b488d0806f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5591956570360517138

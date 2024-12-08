@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDeathReaction : MonoBehaviour
+public class EnemyDeathReaction : PoolAble
 {
     private bool destroyEffectEnd = false;
     private bool destroySoundEnd = false;
 
-    void Start()
+    private void OnEnable()
     {
         StartCoroutine(PlayDestroySound());
         StartCoroutine(PlayDestroyEffect());
@@ -29,7 +29,7 @@ public class EnemyDeathReaction : MonoBehaviour
 
             if (checkDestroyCondition())
             {
-                Destroy(gameObject);
+                ReleaseObject();
             }
         }
  
@@ -46,7 +46,7 @@ public class EnemyDeathReaction : MonoBehaviour
 
             if (checkDestroyCondition())
             {
-                Destroy(gameObject);
+                ReleaseObject();
             }
         }
     }

@@ -26,12 +26,17 @@ public class Enemy : PoolAble
         StageManager.Instance.CurrentEnemyCount--;
     }
 
-    public void ApplyDamage(int damage) 
+    private void ApplyDamage(int damage) 
     {
         hp -= damage;
         if (hp <= 0)
         {
             ReleaseObject();
+            GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetGameObject("EnemyDeathReaction");
+            if (enemyDeathReactionGO != null )
+            {
+
+            }
             StageManager.Instance.CheckClearCondition();
         }
     }
@@ -50,5 +55,14 @@ public class Enemy : PoolAble
         Transform playerTransform = Player.Instance.PlayerTransform;
         transform.LookAt(playerTransform);
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+    }
+
+    private void CreateDeathReactionGO()
+    {
+        GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetGameObject("EnemyDeathReaction");
+        if (enemyDeathReactionGO != null)
+        {
+            enemyDeathReactionGO.transform.position = transform.position;
+        }
     }
 }

@@ -71,11 +71,11 @@ public class PlayerAction : MonoBehaviour
 
     void OnFirePerformed(InputAction.CallbackContext context)
     {
-        GameObject bulletGameObject = ObjectPoolManager.Instance.GetGameObject("Bullet");
-        if (bulletGameObject != null && shootingPoint != null)
+        GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
+        if (playerBulletGO != null && shootingPoint != null)
         {
-            bulletGameObject.transform.position = shootingPoint.position;
-            bulletGameObject.transform.rotation = shootingPoint.rotation;
+            playerBulletGO.transform.position = shootingPoint.position;
+            playerBulletGO.transform.rotation = shootingPoint.rotation;
         }
 
         if (fireEffect != null)
