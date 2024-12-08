@@ -19,15 +19,9 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
-    {
-        
-    }
-
     public void EndGame(bool isWin)
     {
         IsWin = isWin;
-        Debug.Log("Game is Over");
         LoadSceneWithName("GameEndScene");
         SetCursorUseable(true);
     }

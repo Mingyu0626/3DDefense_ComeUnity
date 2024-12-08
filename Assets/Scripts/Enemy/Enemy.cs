@@ -32,11 +32,7 @@ public class Enemy : PoolAble
         if (hp <= 0)
         {
             ReleaseObject();
-            GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetGameObject("EnemyDeathReaction");
-            if (enemyDeathReactionGO != null )
-            {
-
-            }
+            CreateDeathReactionGO();
             StageManager.Instance.CheckClearCondition();
         }
     }

@@ -104,7 +104,6 @@ public class ObjectPoolManager : MonoBehaviour
         return objectPoolDic[objectName].Get();
     }
 
-    // 모든 활성화된 오브젝트를 풀에 반환
     public void ReturnAllActiveObjectsToPool()
     {
         foreach (GameObject activeObject in activeObjects.ToArray())
