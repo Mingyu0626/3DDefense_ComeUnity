@@ -15,7 +15,7 @@ namespace EnemyControlState
             {
                 enemyController = controller;
             }
-            Debug.Log("EnemyAttackPlayerState 진입");
+            // Debug.Log("EnemyAttackPlayerState 진입");
             enemyController.StartStateCoroutine(AttackBasement());
         }
 

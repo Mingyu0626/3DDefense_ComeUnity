@@ -14,7 +14,7 @@ namespace EnemyControlState
             {
                 enemyController = controller;
             }
-            Debug.Log("EnemyTracePlayerState 진입");
+            // Debug.Log("EnemyTracePlayerState 진입");
         }
 
         public void Update()
@@ -25,7 +25,7 @@ namespace EnemyControlState
                 enemyController.enemyStateContext.ChangeState(enemyController.goBasementState);
             }
 
-            if (enemyController.CanAttackPlayer())
+            else if (enemyController.CanAttackPlayer())
             {
                 enemyController.enemyStateContext.ChangeState(enemyController.attackPlayerState);
             }

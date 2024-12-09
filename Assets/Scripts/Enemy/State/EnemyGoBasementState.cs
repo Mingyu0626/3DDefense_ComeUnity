@@ -7,14 +7,14 @@ namespace EnemyControlState
     public class EnemyGoBasementState : EnemyState
     {
         private EnemyController enemyController;
-        private float basementAttackableDistance = 10f;
+
         public void Enter(EnemyController controller)
         {
             if (!enemyController)
             {
                 enemyController = controller;
             }
-            Debug.Log("EnemyGoBasementState 진입");
+            // Debug.Log("EnemyGoBasementState 진입");
         }
 
         public void Update()
@@ -25,7 +25,7 @@ namespace EnemyControlState
                 enemyController.enemyStateContext.ChangeState(enemyController.tracePlayerState);
             }
 
-            if (enemyController.CanAttackBasement())
+            else if (enemyController.CanAttackBasement())
             {
                 enemyController.enemyStateContext.ChangeState(enemyController.attackBasementState);
             }
