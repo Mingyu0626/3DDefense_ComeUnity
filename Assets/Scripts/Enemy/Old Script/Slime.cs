@@ -10,8 +10,6 @@ public class Slime : Enemy
     private float attackInterval = 3f;
     private float attackableDistance = 20f;
 
-    [SerializeField]
-    private GameObject slimeBullet;
     private GameObject attackPoint;
 
     void Awake()
@@ -37,13 +35,13 @@ public class Slime : Enemy
 
     bool CheckDistanceFromPlayer()
     {
-        return Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) < attackableDistance;
+        return Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) <= attackableDistance;
     }
     IEnumerator Attack()
     {
         while (true)
         {
-            if (Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position) <= attackableDistance)
+            if (CheckDistanceFromPlayer())
             {
                 
                 GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
