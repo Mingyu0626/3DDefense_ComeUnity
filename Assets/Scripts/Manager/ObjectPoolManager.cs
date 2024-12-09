@@ -72,8 +72,16 @@ public class ObjectPoolManager : MonoBehaviour
     private GameObject CreatePooledItem()
     {
         GameObject poolGameObject = Instantiate(goDic[objectName]);
-        poolGameObject.GetComponent<PoolAble>().Pool = objectPoolDic[objectName];
-        return poolGameObject;
+        if (poolGameObject != null)
+        {
+            poolGameObject.GetComponent<PoolAble>().Pool = objectPoolDic[objectName];
+            return poolGameObject;
+        }
+        else
+        {
+            Debug.LogWarning("poolGameObject를 가져오는데 실패했습니다.");
+            return null;
+        }
     }
 
     private void OnTakeFromPool(GameObject poolGameObject)
