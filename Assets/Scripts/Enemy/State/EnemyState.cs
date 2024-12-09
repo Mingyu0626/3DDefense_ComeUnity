@@ -23,7 +23,7 @@ namespace EnemyControlState
 
         public void ChangeState()
         {
-            currentState = new EnemyTracePlayerState();
+            currentState = new EnemyGoBasementState();
             currentState.Enter(enemyController);
         }
 
@@ -34,9 +34,12 @@ namespace EnemyControlState
                 currentState = nextState;
                 currentState.Enter(enemyController);
             }
-            currentState.Exit();
-            currentState = nextState;
-            currentState.Enter(enemyController);
+            else
+            {
+                currentState.Exit();
+                currentState = nextState;
+                currentState.Enter(enemyController);
+            }
         }
     }
 }
