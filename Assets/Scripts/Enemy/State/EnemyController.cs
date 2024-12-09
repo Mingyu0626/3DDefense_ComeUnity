@@ -9,31 +9,31 @@ namespace EnemyControlState
         public EnemyState tracePlayerState, attackPlayerState, goBasementState, attackBasementState;
         public EnemyStateContext enemyStateContext;
 
-        private int maxHp = 1;
-        private int hp;
-        private int damage;
-        public float Speed { get; private set; } = 5f;
+        public int MaxHP { get; protected set; }
+        public int HP { get; protected set; }
+        public int Damage { get; protected set; }
+        public float Speed { get; protected set; }
 
-        private float playerDetectableDistance = 40f;
+        private float playerDetectableDistance = 50f;
         private float playerAttackableDistance = 20f;
-        private float basementAttackableDistance = 10f;
+        private float basementAttackableDistance = 20f;
 
         [SerializeField]
         public GameObject attackPoint;
 
-        void OnEnable()
+        protected virtual void OnEnable()
         {
-            hp = maxHp;
-            enemyStateContext.ChangeState(tracePlayerState);
+            HP = MaxHP;
         }
 
         void Start()
         {
             enemyStateContext = new EnemyStateContext(this);
             tracePlayerState = new EnemyTracePlayerState();
-            attackPlayerState = new EnemyAttackBasementState();
+            attackPlayerState = new EnemyAttackPlayerState();
             goBasementState = new EnemyGoBasementState();
             attackBasementState = new EnemyAttackBasementState();
+            enemyStateContext.ChangeState(goBasementState);
         }
 
         protected virtual void OnDisable()
@@ -53,6 +53,14 @@ namespace EnemyControlState
             }
         }
 
+        protected virtual void Update()
+        {
+            if (enemyStateContext.currentState != null)
+            {
+                enemyStateContext.currentState.Update();
+            }
+        }
+
         private void CreateDeathReactionGO()
         {
             GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetGameObject("EnemyDeathReaction");
@@ -64,8 +72,8 @@ namespace EnemyControlState
 
         private void ApplyDamage(int damage)
         {
-            hp -= damage;
-            if (hp <= 0)
+            HP -= damage;
+            if (HP <= 0)
             {
                 ReleaseObject();
                 CreateDeathReactionGO();
