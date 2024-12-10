@@ -7,6 +7,7 @@ using UnityEngine.Pool;
 
 public class ObjectPoolManager : MonoBehaviour
 {
+
     [System.Serializable]
     private class ObjectInfo
     {
@@ -19,10 +20,21 @@ public class ObjectPoolManager : MonoBehaviour
 
     public static ObjectPoolManager Instance { get; private set; } // 싱글톤 인스턴스
     private string objectName;
-    private Dictionary<string, IObjectPool<GameObject>> objectPoolDic 
-        = new Dictionary<string, IObjectPool<GameObject>>(); // 생성된 오브젝트를 풀링하기 위한 Dictionary
-    private Dictionary<string, GameObject> goDic 
-        = new Dictionary<string, GameObject>(); // 풀링할 오브젝트를 처음 생성하기 위한 Dictionary
+
+    private class ObjectPoolData
+    {
+        public GameObject prefab;
+        public IObjectPool<GameObject> pool;
+
+        public ObjectPoolData(GameObject prefab, IObjectPool<GameObject> pool)
+        {
+            this.prefab = prefab;
+            this.pool = pool;
+        }
+    };
+
+    private Dictionary<string, ObjectPoolData> objectPoolDic 
+        = new Dictionary<string, ObjectPoolData>(); // 오브젝트를 최초로 생성하고, 생성 후 풀링을 위한 Dictionary
 
     // 풀링 오브젝트 일괄 비활성화를 위한 List
     private List<GameObject> activeObjects = new List<GameObject>(); 
@@ -51,13 +63,12 @@ public class ObjectPoolManager : MonoBehaviour
                 objectInfos[i].count, 
                 objectInfos[i].count);
 
-            if (goDic.ContainsKey(objectInfos[i].objectName))
+            if (objectPoolDic.ContainsKey(objectInfos[i].objectName))
             {
                 Debug.LogFormat("{0}은 이미 등록된 오브젝트입니다.",  objectInfos[i].objectName);
                 return;
             }
-            goDic.Add(objectInfos[i].objectName, objectInfos[i].prefab);
-            objectPoolDic.Add(objectInfos[i].objectName, pool);
+            objectPoolDic.Add(objectInfos[i].objectName, new ObjectPoolData(objectInfos[i].prefab, pool));
 
             for (int j = 0; j < objectInfos[i].count; j++)
             {
@@ -74,16 +85,16 @@ public class ObjectPoolManager : MonoBehaviour
 
     private GameObject CreatePooledItem()
     {
-        if (!goDic.ContainsKey(objectName))
+        if (!objectPoolDic.ContainsKey(objectName))
         {
             Debug.LogFormat("{0}은 오브젝트풀에 등록되지 않은 오브젝트입니다.", objectName);
             return null;
         }
-        GameObject poolGameObject = Instantiate(goDic[objectName]);
+        GameObject poolGameObject = Instantiate(objectPoolDic[objectName].prefab);
 
         if (poolGameObject != null && poolGameObject.GetComponent<PoolAble>() != null)
         {
-            poolGameObject.GetComponent<PoolAble>().Pool = objectPoolDic[objectName];
+            poolGameObject.GetComponent<PoolAble>().Pool = objectPoolDic[objectName].pool;
             return poolGameObject;
         }
         else
@@ -113,12 +124,12 @@ public class ObjectPoolManager : MonoBehaviour
     public GameObject GetGameObject(string gameObjectName)
     {
         objectName = gameObjectName;
-        if (!goDic.ContainsKey(objectName))
+        if (!objectPoolDic.ContainsKey(objectName))
         {
             Debug.LogFormat("{0}은 오브젝트풀에 등록되지 않은 오브젝트입니다.", objectName);
             return null;
         }
-        return objectPoolDic[objectName].Get();
+        return objectPoolDic[objectName].pool.Get();
     }
 
     public void ReturnAllActiveObjectsToPool()
@@ -128,7 +139,7 @@ public class ObjectPoolManager : MonoBehaviour
             string activeObjectName = activeObject.name.Replace("(Clone)", "");
             if (objectPoolDic.ContainsKey(activeObjectName))
             {
-                objectPoolDic[activeObjectName].Release(activeObject);
+                objectPoolDic[activeObjectName].pool.Release(activeObject);
             }
             else
             {
