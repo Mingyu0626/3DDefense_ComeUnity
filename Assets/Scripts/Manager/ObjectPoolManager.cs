@@ -10,18 +10,19 @@ public class ObjectPoolManager : MonoBehaviour
     [System.Serializable]
     private class ObjectInfo
     {
-        public string objectName;
-        public GameObject prefab;
+        public string objectName; // 생성할 오브젝트의 이름
+        public GameObject prefab; // 생성할 GO 
         public int count; // 미리 생성해놓을 오브젝트 수
     }
     [SerializeField]
     private ObjectInfo[] objectInfos = null;
 
-    public static ObjectPoolManager Instance { get; private set; }
-    public bool isReady { get; private set; }
+    public static ObjectPoolManager Instance { get; private set; } // 싱글톤 인스턴스
     private string objectName;
-    private Dictionary<string, IObjectPool<GameObject>> objectPoolDic = new Dictionary<string, IObjectPool<GameObject>>();
-    private Dictionary<string, GameObject> goDic = new Dictionary<string, GameObject>();
+    private Dictionary<string, IObjectPool<GameObject>> objectPoolDic 
+        = new Dictionary<string, IObjectPool<GameObject>>(); // 생성된 오브젝트를 풀링하기 위한 Dictionary
+    private Dictionary<string, GameObject> goDic 
+        = new Dictionary<string, GameObject>(); // 풀링할 오브젝트를 처음 생성하기 위한 Dictionary
 
     // 풀링 오브젝트 일괄 비활성화를 위한 List
     private List<GameObject> activeObjects = new List<GameObject>(); 
@@ -62,17 +63,25 @@ public class ObjectPoolManager : MonoBehaviour
             {
                 objectName = objectInfos[i].objectName;
                 PoolAble poolAbleGo = CreatePooledItem().GetComponent<PoolAble>();
-                poolAbleGo.Pool.Release(poolAbleGo.gameObject);
+                if (poolAbleGo != null)
+                {
+                    poolAbleGo.Pool.Release(poolAbleGo.gameObject);
+                }
             }
         }
         Debug.Log("오브젝트 풀링 준비 완료");
-        isReady = true;
     }
 
     private GameObject CreatePooledItem()
     {
+        if (!goDic.ContainsKey(objectName))
+        {
+            Debug.LogFormat("{0}은 오브젝트풀에 등록되지 않은 오브젝트입니다.", objectName);
+            return null;
+        }
         GameObject poolGameObject = Instantiate(goDic[objectName]);
-        if (poolGameObject != null)
+
+        if (poolGameObject != null && poolGameObject.GetComponent<PoolAble>() != null)
         {
             poolGameObject.GetComponent<PoolAble>().Pool = objectPoolDic[objectName];
             return poolGameObject;
