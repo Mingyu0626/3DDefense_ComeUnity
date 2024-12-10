@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -16,7 +14,7 @@ public class ObjectPoolManager : MonoBehaviour
         public int count; // 미리 생성해놓을 오브젝트 수
     }
     [SerializeField]
-    private ObjectInfo[] objectInfos = null;
+    private ObjectInfo[] objectInfoArray = null;
 
     public static ObjectPoolManager Instance { get; private set; } // 싱글톤 인스턴스
     private string objectName;
@@ -52,7 +50,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     void Init()
     {
-        for (int i = 0; i < objectInfos.Length; i++)
+        for (int i = 0; i < objectInfoArray.Length; i++)
         {
             IObjectPool<GameObject> pool = new ObjectPool<GameObject>(
                 CreatePooledItem, 
@@ -60,19 +58,19 @@ public class ObjectPoolManager : MonoBehaviour
                 OnReturnedPool,
                 OnDestroyPoolObject, 
                 true, 
-                objectInfos[i].count, 
-                objectInfos[i].count);
+                objectInfoArray[i].count, 
+                objectInfoArray[i].count);
 
-            if (objectPoolDic.ContainsKey(objectInfos[i].objectName))
+            if (objectPoolDic.ContainsKey(objectInfoArray[i].objectName))
             {
-                Debug.LogFormat("{0}은 이미 등록된 오브젝트입니다.",  objectInfos[i].objectName);
+                Debug.LogFormat("{0}은 이미 등록된 오브젝트입니다.",  objectInfoArray[i].objectName);
                 return;
             }
-            objectPoolDic.Add(objectInfos[i].objectName, new ObjectPoolData(objectInfos[i].prefab, pool));
+            objectPoolDic.Add(objectInfoArray[i].objectName, new ObjectPoolData(objectInfoArray[i].prefab, pool));
 
-            for (int j = 0; j < objectInfos[i].count; j++)
+            for (int j = 0; j < objectInfoArray[i].count; j++)
             {
-                objectName = objectInfos[i].objectName;
+                objectName = objectInfoArray[i].objectName;
                 PoolAble poolAbleGo = CreatePooledItem().GetComponent<PoolAble>();
                 if (poolAbleGo != null)
                 {
