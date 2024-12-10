@@ -26978,21 +26978,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1214db4033e330f48b97fa6517621e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectInfos:
+  objectInfoArray:
   - objectName: Bullet
     prefab: {fileID: 8641637574131557690, guid: dd3b4d20089eb20438909b5a41779ec7,
       type: 3}
-    count: 20
+    count: 50
   - objectName: Slime
     prefab: {fileID: 1931298151966786, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
-    count: 20
+    count: 100
   - objectName: TurtleShell
     prefab: {fileID: 1524411113276028, guid: e2aafa8770d34a9591b41bedf4e318ba, type: 3}
-    count: 20
+    count: 100
   - objectName: EnemyBullet
     prefab: {fileID: 8641637574131557690, guid: d903d1adba8bb524fa8978b4fb52a75a,
       type: 3}
-    count: 50
+    count: 100
   - objectName: EnemyDeathReaction
     prefab: {fileID: 5238538877814813142, guid: ad1e241d775831d49aa4d8d2d5b6e1af,
       type: 3}
