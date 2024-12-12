@@ -150,7 +150,7 @@ namespace Settings
         static SavedSettingData()
         {
             resolutionWidth = PlayerPrefs.GetInt(GetMemberName(() => resolutionWidth), 1920);
-            resolutionWidth = PlayerPrefs.GetInt(GetMemberName(() => resolutionHeight), 1080);
+            resolutionHeight = PlayerPrefs.GetInt(GetMemberName(() => resolutionHeight), 1080);
             fullScreenMode = PlayerPrefs.GetInt(GetMemberName(() => fullScreenMode), 0);
 
             textureQuality = PlayerPrefs.GetInt(GetMemberName(() => textureQuality), 0);
@@ -165,7 +165,7 @@ namespace Settings
             bgmVolume = PlayerPrefs.GetInt(GetMemberName(() => bgmVolume), 100);
         }
 
-        private static string GetMemberName<T>(Expression<Func<T>> memberExpression)    //변수명을 string으로 리턴해주는 함수. 변수명을 그대로 key로 쓰기 위함. 
+        private static string GetMemberName<T>(Expression<Func<T>> memberExpression)    // 변수명을 string으로 리턴해주는 함수. 변수명을 그대로 key로 쓰기 위함. 
         {
             MemberExpression expressionBody = (MemberExpression)memberExpression.Body;
             return expressionBody.Member.Name;
