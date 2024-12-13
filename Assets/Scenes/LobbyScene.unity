@@ -549,6 +549,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4153897646977204709, guid: bb613f86fb3d03a4f98224944a021f03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5554129389383931959, guid: bb613f86fb3d03a4f98224944a021f03,
         type: 3}
       propertyPath: m_AnchorMax.y
