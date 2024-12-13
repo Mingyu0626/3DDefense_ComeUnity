@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Settings
@@ -34,9 +35,21 @@ namespace Settings
         private Button antiAliasingButtonRight;
         private Button vSyncButtonRight;
 
+        private SettingsPanel settingsPanel;
+
         private void Awake()
         {
-            
+            InitOptionItem(textureGO, out textureQualityText, out textureQualityButtonLeft, out textureQualityButtonRight,
+                OnClickTextureQualityLeft, OnClickTextureQualityRight);
+            InitOptionItem(shadowGO, out shadowQualityText, out shadowQualityButtonLeft, out shadowQualityButtonRight,
+                OnClickShadowQualityLeft, OnClickShadowQualityRight);
+            InitOptionItem(antiAliasingGO, out antiAliasingText, out antiAliasingButtonLeft, out antiAliasingButtonRight,
+                OnClickAntiAliasingLeft, OnClickAntiAliasingRight);
+            InitOptionItem(vSyncGO, out vSyncText, out vSyncButtonLeft, out vSyncButtonRight,
+                OnClickVSyncLeft, OnClickVSyncRight);
+
+            settingsPanel = GetComponentInParent<SettingsPanel>();
+
         }
         private void OnEnable()
         {
@@ -44,41 +57,78 @@ namespace Settings
             shadowQuality = SavedSettingData.ShadowQuality;
             antiAliasing = SavedSettingData.AntiAliasing;
             vSync = SavedSettingData.VSync;
+
+            UpdateTextureQuality();
+            UpdateShadowQuality();
+            UpdateAntiAliasing();
+            UpdateVSync();
+
+            if (settingsPanel is not null)
+            {
+                settingsPanel.SetApplyOnClickListener(true, OnClickApplyBtn);
+                settingsPanel.SetCloseOnClickListener(true, OnClickCloseBtn);
+            }
+            else
+            {
+                Debug.Log("settingsPanel이 null입니다.");
+            }
+        }
+
+        public void OnClickApplyBtn()
+        {
+            // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
+            SavedSettingData.TextureQuality = textureQuality;
+            SavedSettingData.ShadowQuality = shadowQuality;
+            SavedSettingData.AntiAliasing = antiAliasing;
+            SavedSettingData.VSync = vSync;
+        }
+
+        private void OnClickCloseBtn()
+        {
+            GameManager.Instance.SetSettingsPanelEnable(false);
         }
 
         private void OnClickTextureQualityLeft()
         {
             textureQuality++;
+            UpdateTextureQuality();
         }
         private void OnClickTextureQualityRight()
         {
             textureQuality--;
+            UpdateTextureQuality();
         }
         private void OnClickShadowQualityLeft()
         {
             shadowQuality--;
+            UpdateShadowQuality();
         }
         private void OnClickShadowQualityRight()
         {
             shadowQuality++;
+            UpdateShadowQuality();
         }
         private void OnClickAntiAliasingLeft()
         {
             if (antiAliasing == 2) antiAliasing = 0;
             else if (antiAliasing != 0) antiAliasing /= 2;
+            UpdateAntiAliasing();
         }
         private void OnClickAntiAliasingRight()
         {
             if (antiAliasing == 0) antiAliasing = 2;
             else if (antiAliasing != 8) antiAliasing *= 2;
+            UpdateAntiAliasing();
         }
         private void OnClickVSyncLeft()
         {
             vSync = 0;
+            UpdateVSync();
         }
         private void OnClickVSyncRight()
         {
             vSync = 1;
+            UpdateVSync();
         }
 
         private void UpdateTextureQuality()
@@ -100,6 +150,7 @@ namespace Settings
             }
             textureQualityButtonLeft.interactable = textureQuality != 2;
             textureQualityButtonRight.interactable = textureQuality != 0;
+            QualitySettings.globalTextureMipmapLimit = textureQuality;
         }
 
         private void UpdateShadowQuality()
@@ -127,6 +178,16 @@ namespace Settings
             }
             shadowQualityButtonLeft.interactable = shadowQuality != -1;
             shadowQualityButtonRight.interactable = shadowQuality != 3;
+            if (shadowQuality == -1)
+            {
+                QualitySettings.shadows = UnityEngine.ShadowQuality.Disable;
+                QualitySettings.shadowResolution = ShadowResolution.Low;
+            }
+            else
+            {
+                QualitySettings.shadows = UnityEngine.ShadowQuality.All;
+                QualitySettings.shadowResolution = (ShadowResolution)shadowQuality;
+            }
         }
 
         private void UpdateAntiAliasing()
@@ -151,6 +212,7 @@ namespace Settings
             }
             antiAliasingButtonLeft.interactable = antiAliasing != 0;
             antiAliasingButtonRight.interactable = antiAliasing != 8;
+            QualitySettings.antiAliasing = antiAliasing;
         }
 
         private void UpdateVSync()
@@ -169,6 +231,23 @@ namespace Settings
             }
             vSyncButtonLeft.interactable = vSync != 0;
             vSyncButtonRight.interactable = vSync != 1;
+            QualitySettings.vSyncCount = vSync;
+        }
+
+        private void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Button leftBtn, out Button rightBtn, UnityAction OnClickLeftListener, UnityAction OnClickRightListener)
+        {
+            valueText = itemObj.Find("OptionStateText").GetComponent<TMP_Text>();
+            leftBtn = itemObj.Find("ButtonLeft").GetComponent<Button>();
+            rightBtn = itemObj.Find("ButtonRight").GetComponent<Button>();
+
+            if (valueText is null || leftBtn is null || rightBtn is null)
+            {
+                Debug.LogWarning("OptionItem이 모두 할당되지 않았습니다.");
+                return;
+            }
+
+            leftBtn.onClick.AddListener(OnClickLeftListener);
+            rightBtn.onClick.AddListener(OnClickRightListener);
         }
     }
 }
