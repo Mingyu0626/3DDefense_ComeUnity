@@ -28,6 +28,8 @@ namespace Settings
         private Button resolutionButtonRight;
         private Button fullScreenModeButtonRight;
 
+        private SettingsPanel settingsPanel;
+
         private void Awake()
         {
             for (int i = resolutionList.Count - 1; i >= 0; i--)
@@ -43,18 +45,41 @@ namespace Settings
                 OnClickResolutionLeft, OnClickResolutionRight);
             InitOptionItem(fullScreenModeGO, out fullScreenModeText, out fullScreenModeButtonLeft, out fullScreenModeButtonRight,
                 OnClickFullScreenModeLeft, OnClickFullScreenModeRight);
+
+            settingsPanel = GetComponentInParent<SettingsPanel>();
         }
 
         private void OnEnable()
         {
-            Debug.Log(SavedSettingData.ResolutionWidth);
-            Debug.Log(SavedSettingData.ResolutionHeight);
             resolution.Item1 = SavedSettingData.ResolutionWidth;
             resolution.Item2 = SavedSettingData.ResolutionHeight;
             fullScreenMode = SavedSettingData.FullScreenMode;
+            UpdateResolution();
+            UpdateFullScreenMode();
+            if (settingsPanel is not null)
+            {
+                settingsPanel.SetApplyOnClickListener(true, OnClickApplyBtn);
+                settingsPanel.SetCloseOnClickListener(true, OnClickCloseBtn);
+            }
+            else
+            {
+                Debug.Log("settingsPanel이 null입니다.");
+            }
+        }
 
-            UpdateResolutionText();
-            UpdateFullScreenModeText();
+
+        public void OnClickApplyBtn()
+        {
+            // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
+            SavedSettingData.ResolutionWidth = resolution.Item1;
+            SavedSettingData.ResolutionHeight = resolution.Item2;
+            SavedSettingData.FullScreenMode = fullScreenMode;
+        }
+
+        private void OnClickCloseBtn()
+        {
+
+            GameManager.Instance.SetSettingsPanelEnable(false);
         }
 
         private void OnClickResolutionLeft()
@@ -68,7 +93,7 @@ namespace Settings
                     break;
                 }
             }
-            UpdateResolutionText();
+            UpdateResolution();
         }
 
         private void OnClickResolutionRight()
@@ -82,7 +107,7 @@ namespace Settings
                     break;
                 }
             }
-            UpdateResolutionText();
+            UpdateResolution();
         }
 
 
@@ -90,28 +115,25 @@ namespace Settings
         {
             if (fullScreenMode > 0) fullScreenMode--;
             if (fullScreenMode == 2) fullScreenMode = 1;
-            UpdateFullScreenModeText();
+            UpdateFullScreenMode();
         }
 
         private void OnClickFullScreenModeRight()
         {
             if (fullScreenMode < 3) fullScreenMode++;
             if (fullScreenMode == 2) fullScreenMode = 3;
-            UpdateFullScreenModeText();
+            UpdateFullScreenMode();
         }
 
-
-
-
-
-        private void UpdateResolutionText()
+        private void UpdateResolution()
         {
             resolutionText.text = resolution.Item1.ToString() + " x " + resolution.Item2.ToString();
             resolutionButtonLeft.interactable = resolution != resolutionList[0]; 
             resolutionButtonRight.interactable = resolution != resolutionList[resolutionList.Count - 1];
+            Screen.SetResolution(resolution.Item1, resolution.Item2, (FullScreenMode)fullScreenMode);
         }
 
-        private void UpdateFullScreenModeText()
+        private void UpdateFullScreenMode()
         {
             switch (fullScreenMode)
             {
@@ -131,6 +153,7 @@ namespace Settings
             }
             fullScreenModeButtonLeft.interactable = 0 < fullScreenMode;
             fullScreenModeButtonRight.interactable = fullScreenMode < 3;
+            Screen.SetResolution(resolution.Item1, resolution.Item2, (FullScreenMode)fullScreenMode);
         }
 
         private void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Button leftBtn, out Button rightBtn, UnityAction OnClickLeftListener, UnityAction OnClickRightListener)
@@ -147,6 +170,13 @@ namespace Settings
 
             leftBtn.onClick.AddListener(OnClickLeftListener);
             rightBtn.onClick.AddListener(OnClickRightListener);
+        }
+
+        private bool CheckDisplaySettingsChange()
+        {
+            return SavedSettingData.ResolutionWidth != resolution.Item1 ||
+                SavedSettingData.ResolutionHeight != resolution.Item2 ||
+                SavedSettingData.FullScreenMode != fullScreenMode;
         }
     }
 }
