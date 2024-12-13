@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -44,7 +45,7 @@ public class ButtonManager : MonoBehaviour
             Button settingsBtn = GameObject.Find("ButtonSettings").GetComponent<Button>();
             if (settingsBtn != null)
             {
-
+                AddListenerOnButton(settingsBtn, GameManager.Instance.SetSettingsPanelEnable, true);
             }
         }
 
@@ -67,8 +68,8 @@ public class ButtonManager : MonoBehaviour
     {
         btn.onClick.AddListener(() => GameManager.Instance.LoadSceneWithName(sceneName));
     }
-
-    void Start()
+    private void AddListenerOnButton<T>(Button btn, UnityAction<T> listener, T param)
     {
+        btn.onClick.AddListener(() => listener(param));
     }
 }
