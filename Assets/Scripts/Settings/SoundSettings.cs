@@ -54,7 +54,7 @@ namespace Settings
         }
         protected override void OnClickApplyBtn()
         {
-            // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
+            // Origin 변수에 변경값을 저장
             masterVolumeOrigin = SavedSettingData.MasterVolume;
             sfxVolumeOrigin = SavedSettingData.SfxVolume;
             bgmVolumeOrigin = SavedSettingData.BgmVolume;
@@ -62,9 +62,12 @@ namespace Settings
         protected override void OnClickCloseBtn()
         {
             base.OnClickCloseBtn();
-            masterVolume = SavedSettingData.MasterVolume = masterVolumeOrigin;
-            sfxVolume = SavedSettingData.SfxVolume = sfxVolumeOrigin;
-            bgmVolume = SavedSettingData.BgmVolume = bgmVolumeOrigin;
+            if (CheckSoundSettingsChange())
+            {
+                masterVolume = SavedSettingData.MasterVolume = masterVolumeOrigin;
+                sfxVolume = SavedSettingData.SfxVolume = sfxVolumeOrigin;
+                bgmVolume = SavedSettingData.BgmVolume = bgmVolumeOrigin;
+            }
         }
         private void OnMasterVolumeChanged(float volume)
         {
@@ -92,6 +95,12 @@ namespace Settings
         private void UpdateBgmVolume()
         {
             bgmVolumeText.text = bgmVolume.ToString();
+        }
+        private bool CheckSoundSettingsChange()
+        {
+            return SavedSettingData.MasterVolume != masterVolumeOrigin ||
+                SavedSettingData.SfxVolume != sfxVolumeOrigin ||
+                SavedSettingData.BgmVolume != bgmVolumeOrigin;
         }
     }
 }

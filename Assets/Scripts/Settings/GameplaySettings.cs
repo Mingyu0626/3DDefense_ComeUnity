@@ -12,6 +12,9 @@ public class GameplaySettings : BaseSettings
 
     private int mouseSensitivity;
 
+    // Apply 버튼을 누르기 전 변수
+    private int mouseSensitivityOrigin;
+
     private TMP_Text mouseSensitivityText;
 
     private Slider mouseSensitivitySlider;
@@ -26,26 +29,34 @@ public class GameplaySettings : BaseSettings
     protected override void OnEnable()
     {
         base.OnEnable();
-        mouseSensitivitySlider.value = mouseSensitivity = SavedSettingData.MouseSensitivity;
+        mouseSensitivitySlider.value = mouseSensitivity = mouseSensitivityOrigin = SavedSettingData.MouseSensitivity;
 
         UpdateMouseSensitivity();
     }
     protected override void OnClickApplyBtn()
     {
-        // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
-        SavedSettingData.MouseSensitivity = mouseSensitivity;
+        // Origin 변수에 변경값을 저장
+        mouseSensitivityOrigin = SavedSettingData.MouseSensitivity;
     }
-    private void OnClickCloseBtn()
+    protected override void OnClickCloseBtn()
     {
-        GameManager.Instance.SetSettingsPanelEnable(false);
+        base.OnClickCloseBtn();
+        if (CheckGameplaySettingsChange())
+        {
+            mouseSensitivity = SavedSettingData.MouseSensitivity = mouseSensitivityOrigin;
+        }
     }
     private void OnMouseSensitivityChanged(float value)
     {
-        mouseSensitivity = Mathf.RoundToInt(value);
+        SavedSettingData.MouseSensitivity = mouseSensitivity = Mathf.RoundToInt(value);
         UpdateMouseSensitivity();
     }
     private void UpdateMouseSensitivity()
     {
         mouseSensitivityText.text = mouseSensitivity.ToString();
+    }
+    private bool CheckGameplaySettingsChange()
+    {
+        return SavedSettingData.MouseSensitivity != mouseSensitivityOrigin;
     }
 }

@@ -210,5 +210,12 @@ namespace Settings
             vSyncButtonRight.interactable = vSync != 1;
             QualitySettings.vSyncCount = vSync;
         }
+        private bool CheckGraphicSettingsChange()
+        {
+            return SavedSettingData.TextureQuality != textureQuality ||
+                SavedSettingData.ShadowQuality != shadowQuality ||
+                SavedSettingData.AntiAliasing != antiAliasing ||
+                SavedSettingData.VSync != vSync;
+        }
     }
 }
