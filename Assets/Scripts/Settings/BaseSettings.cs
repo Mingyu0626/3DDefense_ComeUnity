@@ -19,7 +19,7 @@ public class BaseSettings : MonoBehaviour
         if (settingsPanel is not null)
         {
             settingsPanel.SetApplyOnClickListener(true, () => OnClickApplyBtn());
-            settingsPanel.SetCloseOnClickListener(true, OnClickCloseBtn);
+            settingsPanel.SetCloseOnClickListener(true, () => OnClickCloseBtn());
         }
         else
         {
@@ -32,7 +32,7 @@ public class BaseSettings : MonoBehaviour
         Debug.Log("BaseSettings¿« OnClickApplyBtn");
     }
 
-    private void OnClickCloseBtn()
+    protected virtual void OnClickCloseBtn()
     {
         GameManager.Instance.SetSettingsPanelEnable(false);
     }
