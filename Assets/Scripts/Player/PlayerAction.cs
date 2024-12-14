@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSFX))]
 public class PlayerAction : MonoBehaviour
 {
     PlayerInputAction action;
@@ -14,7 +15,7 @@ public class PlayerAction : MonoBehaviour
     private Transform shootingPoint;
     [SerializeField]
     private ParticleSystem fireEffect;
-    [SerializeField]
+    private AudioSFX audioSfx;
     private AudioSource fireAudio;
 
     private void Awake()
@@ -31,6 +32,9 @@ public class PlayerAction : MonoBehaviour
         fireAction.Enable();
         fireAction.performed += OnFirePerformed;
         cameraTransform = Camera.main.transform;
+
+        audioSfx = GetComponent<AudioSFX>();
+        fireAudio = audioSfx.AudioSourceSfx;
     }
 
     void Update()
@@ -53,7 +57,7 @@ public class PlayerAction : MonoBehaviour
 
     void OnMoveStarted(InputAction.CallbackContext context)
     {
-        if (playerAnimation != null)
+        if (playerAnimation is not null)
         {
             // Debug.Log("Play WalkAnimation");
             playerAnimation.PlayWalkAnimation();
@@ -62,7 +66,7 @@ public class PlayerAction : MonoBehaviour
 
     void OnMoveCanceled(InputAction.CallbackContext context)
     {
-        if (playerAnimation != null)
+        if (playerAnimation is not null)
         {
             // Debug.Log("Play IdleAnimation");
             playerAnimation.PlayIdleAnimation();
@@ -72,18 +76,18 @@ public class PlayerAction : MonoBehaviour
     void OnFirePerformed(InputAction.CallbackContext context)
     {
         GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
-        if (playerBulletGO != null && shootingPoint != null)
+        if (playerBulletGO is not null && shootingPoint is not null)
         {
             playerBulletGO.transform.position = shootingPoint.position;
             playerBulletGO.transform.rotation = shootingPoint.rotation;
         }
 
-        if (fireEffect != null)
+        if (fireEffect is not null)
         {
             fireEffect.Play();
         }
 
-        if (fireAudio != null)
+        if (fireAudio is not null)
         {
             fireAudio.Play();
         }

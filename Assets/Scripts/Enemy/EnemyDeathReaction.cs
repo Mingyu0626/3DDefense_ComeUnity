@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSFX))]
 public class EnemyDeathReaction : PoolAble
 {
+    private AudioSFX audioSfx;
     private bool destroyEffectEnd = false;
     private bool destroySoundEnd = false;
+
+    private void Awake()
+    {
+        audioSfx = GetComponent<AudioSFX>();
+    }
 
     private void OnEnable()
     {
@@ -21,7 +28,7 @@ public class EnemyDeathReaction : PoolAble
     IEnumerator PlayDestroyEffect()
     {
         ParticleSystem destroyEffect = GetComponent<ParticleSystem>();
-        if (destroyEffect != null)
+        if (destroyEffect is not null)
         {
             destroyEffect.Play();
             yield return new WaitForSeconds(destroyEffect.main.duration);
@@ -37,8 +44,8 @@ public class EnemyDeathReaction : PoolAble
 
     IEnumerator PlayDestroySound()
     {
-        AudioSource destroySound = GetComponent<AudioSource>();
-        if (destroySound != null && destroySound.clip != null)
+        AudioSource destroySound = audioSfx.AudioSourceSfx;
+        if (destroySound is not null && destroySound.clip is not null)
         {
             destroySound.Play();
             yield return new WaitForSeconds(destroySound.clip.length);
