@@ -28,12 +28,12 @@ public class SettingsPanel : MonoBehaviour
         gameplaySettingButton.onClick.AddListener(OnClickGameplaySettings);
         soundSettingsButton.onClick.AddListener(OnClickSoundSettings);
     }
-
     private void OnEnable()
     {
         SavedSettingData.ApplySetting();
+        OnClickDisplaySettings();
+        // 설정 창이 활성화될때, 최초로 보이는 카테고리는 항상 디스플레이 설정이 됨.
     }
-
     private void OnClickDisplaySettings()
     {
         displaySettingsGO.SetActive(true);
@@ -41,7 +41,6 @@ public class SettingsPanel : MonoBehaviour
         gameplaySettingGO.SetActive(false);
         soundSettingsGO.SetActive(false);
     }
-
     private void OnClickGraphicSettings()
     {
         displaySettingsGO.SetActive(false);
@@ -49,7 +48,6 @@ public class SettingsPanel : MonoBehaviour
         gameplaySettingGO.SetActive(false);
         soundSettingsGO.SetActive(false);
     }
-
     private void OnClickGameplaySettings()
     {
         displaySettingsGO.SetActive(false);
@@ -57,7 +55,6 @@ public class SettingsPanel : MonoBehaviour
         gameplaySettingGO.SetActive(true);
         soundSettingsGO.SetActive(false);
     }
-
     private void OnClickSoundSettings()
     {
         displaySettingsGO.SetActive(false);
@@ -65,7 +62,6 @@ public class SettingsPanel : MonoBehaviour
         gameplaySettingGO.SetActive(false);
         soundSettingsGO.SetActive(true);
     }
-
     public void SetApplyOnClickListener(bool isActive, UnityAction listener = null)
     {
         applyButton.gameObject.SetActive(isActive);
