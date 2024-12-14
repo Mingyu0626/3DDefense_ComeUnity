@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Settings
 {
-    public class DisplaySettings : MonoBehaviour
+    public class DisplaySettings : BaseSettings
     {
         List<(int, int)> resolutionList = new List<(int, int)>() 
         { (960, 540), (1280, 720), (1366, 768), (1600, 900), 
@@ -28,10 +28,9 @@ namespace Settings
         private Button resolutionButtonRight;
         private Button fullScreenModeButtonRight;
 
-        private SettingsPanel settingsPanel;
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             for (int i = resolutionList.Count - 1; i >= 0; i--)
             {
                 if (Screen.currentResolution.width < resolutionList[i].Item1 || Screen.currentResolution.height < resolutionList[i].Item2)
@@ -45,43 +44,23 @@ namespace Settings
                 OnClickResolutionLeft, OnClickResolutionRight);
             InitOptionItem(fullScreenModeGO, out fullScreenModeText, out fullScreenModeButtonLeft, out fullScreenModeButtonRight,
                 OnClickFullScreenModeLeft, OnClickFullScreenModeRight);
-
-            settingsPanel = GetComponentInParent<SettingsPanel>();
         }
-
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             resolution.Item1 = SavedSettingData.ResolutionWidth;
             resolution.Item2 = SavedSettingData.ResolutionHeight;
             fullScreenMode = SavedSettingData.FullScreenMode;
             UpdateResolution();
             UpdateFullScreenMode();
-            if (settingsPanel is not null)
-            {
-                settingsPanel.SetApplyOnClickListener(true, OnClickApplyBtn);
-                settingsPanel.SetCloseOnClickListener(true, OnClickCloseBtn);
-            }
-            else
-            {
-                Debug.Log("settingsPanel이 null입니다.");
-            }
         }
-
-
-        public void OnClickApplyBtn()
+        protected override void OnClickApplyBtn()
         {
             // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
             SavedSettingData.ResolutionWidth = resolution.Item1;
             SavedSettingData.ResolutionHeight = resolution.Item2;
             SavedSettingData.FullScreenMode = fullScreenMode;
         }
-
-        private void OnClickCloseBtn()
-        {
-
-            GameManager.Instance.SetSettingsPanelEnable(false);
-        }
-
         private void OnClickResolutionLeft()
         {
             for (int i = 0; i < resolutionList.Count; i++)
@@ -95,7 +74,6 @@ namespace Settings
             }
             UpdateResolution();
         }
-
         private void OnClickResolutionRight()
         {
             for (int i = 0; i < resolutionList.Count; i++)
@@ -109,22 +87,18 @@ namespace Settings
             }
             UpdateResolution();
         }
-
-
         private void OnClickFullScreenModeLeft()
         {
             if (fullScreenMode > 0) fullScreenMode--;
             if (fullScreenMode == 2) fullScreenMode = 1;
             UpdateFullScreenMode();
         }
-
         private void OnClickFullScreenModeRight()
         {
             if (fullScreenMode < 3) fullScreenMode++;
             if (fullScreenMode == 2) fullScreenMode = 3;
             UpdateFullScreenMode();
         }
-
         private void UpdateResolution()
         {
             resolutionText.text = resolution.Item1.ToString() + " x " + resolution.Item2.ToString();
@@ -132,7 +106,6 @@ namespace Settings
             resolutionButtonRight.interactable = resolution != resolutionList[resolutionList.Count - 1];
             Screen.SetResolution(resolution.Item1, resolution.Item2, (FullScreenMode)fullScreenMode);
         }
-
         private void UpdateFullScreenMode()
         {
             switch (fullScreenMode)
@@ -155,23 +128,6 @@ namespace Settings
             fullScreenModeButtonRight.interactable = fullScreenMode < 3;
             Screen.SetResolution(resolution.Item1, resolution.Item2, (FullScreenMode)fullScreenMode);
         }
-
-        private void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Button leftBtn, out Button rightBtn, UnityAction OnClickLeftListener, UnityAction OnClickRightListener)
-        {
-            valueText = itemObj.Find("OptionStateText").GetComponent<TMP_Text>();
-            leftBtn = itemObj.Find("ButtonLeft").GetComponent<Button>();
-            rightBtn = itemObj.Find("ButtonRight").GetComponent<Button>();
-
-            if (valueText is null || leftBtn is null || rightBtn is null)
-            {
-                Debug.LogWarning("OptionItem이 모두 할당되지 않았습니다.");
-                return;
-            }
-
-            leftBtn.onClick.AddListener(OnClickLeftListener);
-            rightBtn.onClick.AddListener(OnClickRightListener);
-        }
-
         private bool CheckDisplaySettingsChange()
         {
             return SavedSettingData.ResolutionWidth != resolution.Item1 ||

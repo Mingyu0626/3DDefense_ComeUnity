@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Settings
 { 
-    public class GraphicSettings : MonoBehaviour
+    public class GraphicSettings : BaseSettings
     {
         [SerializeField] private Transform textureGO;
         [SerializeField] private Transform shadowGO;
@@ -35,10 +35,9 @@ namespace Settings
         private Button antiAliasingButtonRight;
         private Button vSyncButtonRight;
 
-        private SettingsPanel settingsPanel;
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             InitOptionItem(textureGO, out textureQualityText, out textureQualityButtonLeft, out textureQualityButtonRight,
                 OnClickTextureQualityLeft, OnClickTextureQualityRight);
             InitOptionItem(shadowGO, out shadowQualityText, out shadowQualityButtonLeft, out shadowQualityButtonRight,
@@ -48,11 +47,10 @@ namespace Settings
             InitOptionItem(vSyncGO, out vSyncText, out vSyncButtonLeft, out vSyncButtonRight,
                 OnClickVSyncLeft, OnClickVSyncRight);
 
-            settingsPanel = GetComponentInParent<SettingsPanel>();
-
         }
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             textureQuality = SavedSettingData.TextureQuality;
             shadowQuality = SavedSettingData.ShadowQuality;
             antiAliasing = SavedSettingData.AntiAliasing;
@@ -62,19 +60,8 @@ namespace Settings
             UpdateShadowQuality();
             UpdateAntiAliasing();
             UpdateVSync();
-
-            if (settingsPanel is not null)
-            {
-                settingsPanel.SetApplyOnClickListener(true, OnClickApplyBtn);
-                settingsPanel.SetCloseOnClickListener(true, OnClickCloseBtn);
-            }
-            else
-            {
-                Debug.Log("settingsPanel이 null입니다.");
-            }
         }
-
-        public void OnClickApplyBtn()
+        protected override void OnClickApplyBtn()
         {
             // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
             SavedSettingData.TextureQuality = textureQuality;
@@ -82,12 +69,6 @@ namespace Settings
             SavedSettingData.AntiAliasing = antiAliasing;
             SavedSettingData.VSync = vSync;
         }
-
-        private void OnClickCloseBtn()
-        {
-            GameManager.Instance.SetSettingsPanelEnable(false);
-        }
-
         private void OnClickTextureQualityLeft()
         {
             textureQuality++;
@@ -130,7 +111,6 @@ namespace Settings
             vSync = 1;
             UpdateVSync();
         }
-
         private void UpdateTextureQuality()
         {
             switch (textureQuality)
@@ -152,7 +132,6 @@ namespace Settings
             textureQualityButtonRight.interactable = textureQuality != 0;
             QualitySettings.globalTextureMipmapLimit = textureQuality;
         }
-
         private void UpdateShadowQuality()
         {
             switch (shadowQuality)
@@ -189,7 +168,6 @@ namespace Settings
                 QualitySettings.shadowResolution = (ShadowResolution)shadowQuality;
             }
         }
-
         private void UpdateAntiAliasing()
         {
             switch (antiAliasing)
@@ -214,7 +192,6 @@ namespace Settings
             antiAliasingButtonRight.interactable = antiAliasing != 8;
             QualitySettings.antiAliasing = antiAliasing;
         }
-
         private void UpdateVSync()
         {
             switch (vSync)
@@ -232,22 +209,6 @@ namespace Settings
             vSyncButtonLeft.interactable = vSync != 0;
             vSyncButtonRight.interactable = vSync != 1;
             QualitySettings.vSyncCount = vSync;
-        }
-
-        private void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Button leftBtn, out Button rightBtn, UnityAction OnClickLeftListener, UnityAction OnClickRightListener)
-        {
-            valueText = itemObj.Find("OptionStateText").GetComponent<TMP_Text>();
-            leftBtn = itemObj.Find("ButtonLeft").GetComponent<Button>();
-            rightBtn = itemObj.Find("ButtonRight").GetComponent<Button>();
-
-            if (valueText is null || leftBtn is null || rightBtn is null)
-            {
-                Debug.LogWarning("OptionItem이 모두 할당되지 않았습니다.");
-                return;
-            }
-
-            leftBtn.onClick.AddListener(OnClickLeftListener);
-            rightBtn.onClick.AddListener(OnClickRightListener);
         }
     }
 }

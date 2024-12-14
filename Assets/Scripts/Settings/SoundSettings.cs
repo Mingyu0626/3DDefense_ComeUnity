@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 namespace Settings
 {
-    public class SoundSettings : MonoBehaviour
+    public class SoundSettings : BaseSettings
     {
         [SerializeField] private Transform masterVolumeGO;
         [SerializeField] private Transform sfxVolumeGO;
@@ -26,22 +26,19 @@ namespace Settings
         private Slider sfxVolumeSlider;
         private Slider bgmVolumeSlider;
 
-        private SettingsPanel settingsPanel;
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             InitOptionItem(masterVolumeGO, out masterVolumeText, out masterVolumeSlider, 
                 OnMasterVolumeChanged);
             InitOptionItem(sfxVolumeGO, out sfxVolumeText, out sfxVolumeSlider,
                 OnSfxVolumeChanged);
             InitOptionItem(bgmVolumeGO, out bgmVolumeText, out bgmVolumeSlider,
                 OnBgmVolumeChanged);
-
-            settingsPanel = GetComponentInParent<SettingsPanel>();
         }
-
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             masterVolumeSlider.value = masterVolume = SavedSettingData.MasterVolume;
             sfxVolumeSlider.value = sfxVolume = SavedSettingData.SfxVolume;
             bgmVolumeSlider.value = bgmVolume = SavedSettingData.BgmVolume;
@@ -49,31 +46,14 @@ namespace Settings
             UpdateMasterVolume();
             UpdateSfxVolume();
             UpdateBgmVolume();
-
-            settingsPanel = GetComponentInParent<SettingsPanel>();
-            if (settingsPanel is not null)
-            {
-                settingsPanel.SetApplyOnClickListener(true, OnClickApplyBtn);
-                settingsPanel.SetCloseOnClickListener(true, OnClickCloseBtn);
-            }
-            else
-            {
-                Debug.Log("settingsPanel이 null입니다.");
-            }
         }
-        public void OnClickApplyBtn()
+        protected override void OnClickApplyBtn()
         {
             // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
             SavedSettingData.MasterVolume = masterVolume;
             SavedSettingData.SfxVolume = sfxVolume;
             SavedSettingData.BgmVolume = bgmVolume;
         }
-
-        private void OnClickCloseBtn()
-        {
-            GameManager.Instance.SetSettingsPanelEnable(false);
-        }
-
         private void OnMasterVolumeChanged(float volume)
         {
             masterVolume = Mathf.RoundToInt(volume);
@@ -89,7 +69,6 @@ namespace Settings
             bgmVolume = Mathf.RoundToInt(volume);
             UpdateBgmVolume();
         }
-
         private void UpdateMasterVolume()
         {
             masterVolumeText.text = masterVolume.ToString();
@@ -101,20 +80,6 @@ namespace Settings
         private void UpdateBgmVolume()
         {
             bgmVolumeText.text = bgmVolume.ToString();
-        }
-
-
-        private void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Slider slider, UnityAction<float> OnValueChangedListener)
-        {
-            valueText = itemObj.Find("OptionStateText").GetComponent<TMP_Text>();
-            slider = itemObj.Find("Slider").GetComponent<Slider>();
-
-            if (valueText is null || slider is null)
-            {
-                Debug.LogWarning("OptionItem이 모두 할당되지 않았습니다.");
-                return;
-            }
-            slider.onValueChanged.AddListener(OnValueChangedListener);
         }
     }
 }
