@@ -180,7 +180,7 @@ namespace Settings
             antiAliasing = PlayerPrefs.GetInt(GetMemberName(() => antiAliasing), 0);
             vSync = PlayerPrefs.GetInt(GetMemberName(() => vSync), 0);
 
-            mouseSensitivity = PlayerPrefs.GetInt(GetMemberName(() => mouseSensitivity), 20);
+            mouseSensitivity = PlayerPrefs.GetInt(GetMemberName(() => mouseSensitivity), 10);
 
             masterVolume = PlayerPrefs.GetInt(GetMemberName(() => masterVolume), 100);
             sfxVolume = PlayerPrefs.GetInt(GetMemberName(() => sfxVolume), 100);
@@ -214,7 +214,10 @@ namespace Settings
             QualitySettings.antiAliasing = AntiAliasing;
             QualitySettings.vSyncCount = VSync;
 
+            // 게임플레이 설정 적용
+            // CameraAction에서 Turn 액션이 작동할때, 이 클래스의 MouseSensitivity을 가져오므로 문제 X
 
+            // 사운드 설정 적용
         }
     }
 }

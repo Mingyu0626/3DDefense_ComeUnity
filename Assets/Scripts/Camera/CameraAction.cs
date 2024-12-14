@@ -1,3 +1,4 @@
+using Settings;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class CameraAction : MonoBehaviour
     [SerializeField]
     private Transform shootingPointTransform;
 
-    private float turnSpeed = 0.1f;
+    private float turnSpeed;
     private float minXRotation = -5f;
     private float maxXRotation = 30f;
     private float xAxis = 0f;
@@ -35,9 +36,6 @@ public class CameraAction : MonoBehaviour
         mainCamera = gameObject.GetComponent<Camera>();
         GameManager.Instance.SetCursorUseable(false);
     }
-    void Update()
-    {
-    }
 
     void LateUpdate()
     {
@@ -54,8 +52,9 @@ public class CameraAction : MonoBehaviour
 
     void Turn(Vector2 delta)
     {
-        yAxis += delta.x * turnSpeed;
-        xAxis -= delta.y * turnSpeed;
+        turnSpeed = SavedSettingData.MouseSensitivity;
+        yAxis += delta.x * turnSpeed * 0.01f;
+        xAxis -= delta.y * SavedSettingData.MouseSensitivity * 0.01f;
         xAxis = Mathf.Clamp(xAxis, minXRotation, maxXRotation);
         targetRotation = Vector3.SmoothDamp(targetRotation, new Vector3(xAxis, yAxis), ref currentVelocity, rotationTime);
         transform.eulerAngles = targetRotation;
