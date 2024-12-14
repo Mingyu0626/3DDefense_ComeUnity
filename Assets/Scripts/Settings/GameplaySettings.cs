@@ -42,6 +42,7 @@ public class GameplaySettings : BaseSettings
     private void OnMouseSensitivityChanged(float value)
     {
         mouseSensitivity = Mathf.RoundToInt(value);
+        UpdateMouseSensitivity();
     }
     private void UpdateMouseSensitivity()
     {
