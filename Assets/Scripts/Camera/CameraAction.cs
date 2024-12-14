@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class CameraAction : MonoBehaviour
 {
-    PlayerInputAction action;
-    InputAction turnAction;
+    InputActions action;
+    UnityEngine.InputSystem.InputAction turnAction;
     Camera mainCamera;
 
     [SerializeField]
@@ -30,7 +30,7 @@ public class CameraAction : MonoBehaviour
 
     void Start()
     {
-        action = new PlayerInputAction();
+        action = new InputActions();
         turnAction = action.Player.Turn;
         turnAction.Enable();
         mainCamera = gameObject.GetComponent<Camera>();

@@ -48,7 +48,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
-                    ""id"": ""5ca33ffe-ab9d-4a47-9432-62415b900986"",
+                    ""id"": ""bcaf7656-43ba-4049-8fd0-2f12fb87b437"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -124,7 +124,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""31cb9bcf-1ab7-40ea-8eff-8c21a2ed82a7"",
+                    ""id"": ""7e06d62a-4d30-469a-bd1c-4a9b8b3f7b42"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",

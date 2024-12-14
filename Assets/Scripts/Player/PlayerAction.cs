@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(AudioSFX))]
 public class PlayerAction : MonoBehaviour
 {
-    PlayerInputAction action;
+    InputActions action;
     InputAction moveAction, fireAction;
     PlayerAnimation playerAnimation;
     private float movementSpeed = 20f;
@@ -20,7 +20,7 @@ public class PlayerAction : MonoBehaviour
 
     private void Awake()
     {
-        action = new PlayerInputAction();
+        action = new InputActions();
         action.Player.Enable();
         moveAction = action.Player.Move;
         playerAnimation = GetComponent<PlayerAnimation>();
@@ -55,7 +55,7 @@ public class PlayerAction : MonoBehaviour
         transform.Translate(moveDirection * movementSpeed * Time.deltaTime, Space.Self);
     }
 
-    void OnMoveStarted(InputAction.CallbackContext context)
+    void OnMoveStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (playerAnimation is not null)
         {
@@ -64,7 +64,7 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    void OnMoveCanceled(InputAction.CallbackContext context)
+    void OnMoveCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (playerAnimation is not null)
         {
@@ -73,7 +73,7 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    void OnFirePerformed(InputAction.CallbackContext context)
+    void OnFirePerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
         if (playerBulletGO is not null && shootingPoint is not null)
