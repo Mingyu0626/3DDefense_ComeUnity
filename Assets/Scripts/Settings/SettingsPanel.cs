@@ -73,7 +73,7 @@ public class SettingsPanel : MonoBehaviour
         {
             applyButton.onClick.RemoveAllListeners();
             applyButton.onClick.AddListener(listener);
-            Debug.Log("Apply 버튼에 리스너 장착 완료");
+            // Debug.Log("Apply 버튼에 리스너 장착 완료");
         }
     }
     public void SetCloseOnClickListener(bool isActive, UnityAction listener = null)
@@ -83,7 +83,7 @@ public class SettingsPanel : MonoBehaviour
         {
             closeButton.onClick.RemoveAllListeners();
             closeButton.onClick.AddListener(listener);
-            Debug.Log("Close 버튼에 리스너 장착 완료");
+            // Debug.Log("Close 버튼에 리스너 장착 완료");
         }
     }
 }

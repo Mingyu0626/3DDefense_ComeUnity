@@ -33,17 +33,33 @@ namespace Settings
 
         static Event SfxVolumeChangeEvent = new Event();
         public static void AddListenerSfxVolumeChangeEvent(UnityAction callback)
-        { SfxVolumeChangeEvent.RemoveListener(callback); SfxVolumeChangeEvent.AddListener(callback); }
+        { 
+            SfxVolumeChangeEvent.RemoveListener(callback); 
+            SfxVolumeChangeEvent.AddListener(callback); 
+        }
         public static void RemoveListenerSfxVolumeChangeEvent(UnityAction callback)
-        { SfxVolumeChangeEvent.RemoveListener(callback); }
-        public static void InvokeSfxVolumeChangeEvent() { SfxVolumeChangeEvent.Invoke(); }
+        { 
+            SfxVolumeChangeEvent.RemoveListener(callback); 
+        }
+        public static void InvokeSfxVolumeChangeEvent() 
+        { 
+            SfxVolumeChangeEvent.Invoke(); 
+        }
 
         static Event BgmVolumeChangeEvent = new Event();
         public static void AddListenerBgmVolumeChangeEvent(UnityAction callback) 
-        { BgmVolumeChangeEvent.RemoveListener(callback); BgmVolumeChangeEvent.AddListener(callback); }
+        { 
+            BgmVolumeChangeEvent.RemoveListener(callback); 
+            BgmVolumeChangeEvent.AddListener(callback); 
+        }
         public static void RemoveListenerBgmVolumeChangeEvent(UnityAction callback) 
-        { BgmVolumeChangeEvent.RemoveListener(callback); }
-        public static void InvokeBgmVolumeChangeEvent() { BgmVolumeChangeEvent.Invoke(); }
+        { 
+            BgmVolumeChangeEvent.RemoveListener(callback); 
+        }
+        public static void InvokeBgmVolumeChangeEvent() 
+        { 
+            BgmVolumeChangeEvent.Invoke(); 
+        }
 
 
         
@@ -197,6 +213,8 @@ namespace Settings
             }
             QualitySettings.antiAliasing = AntiAliasing;
             QualitySettings.vSyncCount = VSync;
+
+
         }
     }
 }
