@@ -79,14 +79,16 @@ public class StageManager : MonoBehaviour
         }
         else
         {
+            // 스테이지 클리어 후 대기중 Pause탭을 켜도,
+            // 코루틴이 안멈춰서 퍼즈탭이 남아있는 상태에서 다음 스테이지가 재개되는 문제
             currentStage++;
             ObjectPoolManager.Instance.ReturnAllActiveObjectsToPool();
-            Time.timeScale = 0f;
+            GameManager.Instance.PauseGame();
             UIManager.Instance.SetActiveClearStageTextGO(true);
             yield return new WaitForSecondsRealtime(delayBeforeNextStage);
             UIManager.Instance.SetActiveClearStageTextGO(false);
+            GameManager.Instance.ResumeGame();
             InitCountAndGoalEnemyCountUI();
-            Time.timeScale = 1f;
         }
         yield break;
     }

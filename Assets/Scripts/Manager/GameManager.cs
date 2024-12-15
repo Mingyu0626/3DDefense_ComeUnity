@@ -9,9 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool IsWin { get; private set; } = false;
+    public InputActions Action { get; private set; }
     private GameObject settingsPanel;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -19,10 +20,37 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        Action = new InputActions();
         SceneManager.sceneLoaded += OnSceneChanged;
         DontDestroyOnLoad(gameObject);
     }
+    private void OnDestroy()
+    {
+        Action.Dispose();
+    }
+    private void OnSceneChanged(Scene scene, LoadSceneMode mode)
+    {
+        GameObject canvasGO = GameObject.Find("Canvas");
+        if (canvasGO is not null)
+        {
+            Transform settingPanelTransform = canvasGO.transform.Find("SettingsPanel");
+            if (settingPanelTransform is not null)
+            {
+                settingsPanel = settingPanelTransform.gameObject;
+            }
+        }
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        Action.Player.Disable();
 
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        Action.Player.Enable();
+    }
     public void EndGame(bool isWin)
     {
         IsWin = isWin;
@@ -46,19 +74,6 @@ public class GameManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
-    }
-
-    private void OnSceneChanged(Scene scene, LoadSceneMode mode)
-    {
-        GameObject canvasGO = GameObject.Find("Canvas");
-        if (canvasGO is not null)
-        {
-            Transform settingPanelTransform = canvasGO.transform.Find("SettingsPanel");
-            if (settingPanelTransform is not null)
-            {
-                settingsPanel = settingPanelTransform.gameObject;
-            }
         }
     }
 
