@@ -13,10 +13,10 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private Button gameplaySettingButton;
     [SerializeField] private Button soundSettingsButton;
 
-    [SerializeField] private GameObject displaySettingsGO;
-    [SerializeField] private GameObject graphicSettingsGO;
-    [SerializeField] private GameObject gameplaySettingGO;
-    [SerializeField] private GameObject soundSettingsGO;
+    [SerializeField] private GameObject displaySettingsTabGO;
+    [SerializeField] private GameObject graphicSettingsTabGO;
+    [SerializeField] private GameObject gameplaySettingTabGO;
+    [SerializeField] private GameObject soundSettingsTabGO;
 
     [SerializeField] private Button applyButton;
     [SerializeField] private Button closeButton;
@@ -36,31 +36,31 @@ public class SettingsPanel : MonoBehaviour
     }
     private void OnClickDisplaySettings()
     {
-        displaySettingsGO.SetActive(true);
-        graphicSettingsGO.SetActive(false);
-        gameplaySettingGO.SetActive(false);
-        soundSettingsGO.SetActive(false);
+        displaySettingsTabGO.SetActive(true);
+        graphicSettingsTabGO.SetActive(false);
+        gameplaySettingTabGO.SetActive(false);
+        soundSettingsTabGO.SetActive(false);
     }
     private void OnClickGraphicSettings()
     {
-        displaySettingsGO.SetActive(false);
-        graphicSettingsGO.SetActive(true);
-        gameplaySettingGO.SetActive(false);
-        soundSettingsGO.SetActive(false);
+        displaySettingsTabGO.SetActive(false);
+        graphicSettingsTabGO.SetActive(true);
+        gameplaySettingTabGO.SetActive(false);
+        soundSettingsTabGO.SetActive(false);
     }
     private void OnClickGameplaySettings()
     {
-        displaySettingsGO.SetActive(false);
-        graphicSettingsGO.SetActive(false);
-        gameplaySettingGO.SetActive(true);
-        soundSettingsGO.SetActive(false);
+        displaySettingsTabGO.SetActive(false);
+        graphicSettingsTabGO.SetActive(false);
+        gameplaySettingTabGO.SetActive(true);
+        soundSettingsTabGO.SetActive(false);
     }
     private void OnClickSoundSettings()
     {
-        displaySettingsGO.SetActive(false);
-        graphicSettingsGO.SetActive(false);
-        gameplaySettingGO.SetActive(false);
-        soundSettingsGO.SetActive(true);
+        displaySettingsTabGO.SetActive(false);
+        graphicSettingsTabGO.SetActive(false);
+        gameplaySettingTabGO.SetActive(false);
+        soundSettingsTabGO.SetActive(true);
     }
     public void SetApplyOnClickListener(bool isActive, UnityAction listener = null)
     {
