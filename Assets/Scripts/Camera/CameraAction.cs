@@ -6,14 +6,12 @@ using UnityEngine.InputSystem;
 
 public class CameraAction : MonoBehaviour
 {
-    InputActions action;
-    UnityEngine.InputSystem.InputAction turnAction;
-    Camera mainCamera;
+    private InputActions action;
+    private InputAction turnAction;
+    private Camera mainCamera;
 
-    [SerializeField]
-    private Transform playerTransform;
-    [SerializeField]
-    private Transform shootingPointTransform;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform shootingPointTransform;
 
     private float turnSpeed;
     private float minXRotation = -5f;
@@ -30,7 +28,7 @@ public class CameraAction : MonoBehaviour
 
     void Start()
     {
-        action = new InputActions();
+        action = GameManager.Instance.Action;
         turnAction = action.Player.Turn;
         turnAction.Enable();
         mainCamera = gameObject.GetComponent<Camera>();

@@ -6,30 +6,29 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(AudioSFX))]
 public class PlayerAction : MonoBehaviour
 {
-    InputActions action;
-    InputAction moveAction, fireAction;
-    PlayerAnimation playerAnimation;
+    private InputActions action;
+    private InputAction moveAction, fireAction;
+    private PlayerAnimation playerAnimation;
     private float movementSpeed = 20f;
     private Transform cameraTransform;
-    [SerializeField]
-    private Transform shootingPoint;
-    [SerializeField]
-    private ParticleSystem fireEffect;
+
+    [SerializeField] private Transform shootingPoint;
+    [SerializeField] private ParticleSystem fireEffect;
+
     private AudioSFX audioSfx;
     private AudioSource fireAudio;
 
     private void Awake()
     {
-        action = new InputActions();
+        action = GameManager.Instance.Action;
         action.Player.Enable();
+
         moveAction = action.Player.Move;
         playerAnimation = GetComponent<PlayerAnimation>();
-        moveAction.Enable();
         moveAction.started += OnMoveStarted;
         moveAction.canceled += OnMoveCanceled;
 
         fireAction = action.Player.Fire;
-        fireAction.Enable();
         fireAction.performed += OnFirePerformed;
         cameraTransform = Camera.main.transform;
 
@@ -37,13 +36,13 @@ public class PlayerAction : MonoBehaviour
         fireAudio = audioSfx.AudioSourceSfx;
     }
 
-    void Update()
+    private void Update()
     {
         Vector3 keyboardVector = moveAction.ReadValue<Vector3>();
         Move(keyboardVector.x, keyboardVector.z);
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         action.Player.Disable();
     }
@@ -55,7 +54,7 @@ public class PlayerAction : MonoBehaviour
         transform.Translate(moveDirection * movementSpeed * Time.deltaTime, Space.Self);
     }
 
-    void OnMoveStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    void OnMoveStarted(InputAction.CallbackContext context)
     {
         if (playerAnimation is not null)
         {
@@ -64,7 +63,7 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    void OnMoveCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    void OnMoveCanceled(InputAction.CallbackContext context)
     {
         if (playerAnimation is not null)
         {
@@ -73,7 +72,7 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    void OnFirePerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    void OnFirePerformed(InputAction.CallbackContext context)
     {
         GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
         if (playerBulletGO is not null && shootingPoint is not null)
