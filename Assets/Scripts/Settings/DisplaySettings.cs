@@ -56,6 +56,7 @@ namespace Settings
         }
         protected override void OnClickApplyBtn()
         {
+            // TODO : 옵션값 변화가 감지되었을 때만 Apply버튼 활성화
             // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
             SavedSettingData.ResolutionWidth = resolution.Item1;
             SavedSettingData.ResolutionHeight = resolution.Item2;

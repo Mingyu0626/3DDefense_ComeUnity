@@ -35,6 +35,7 @@ public class GameplaySettings : BaseSettings
     }
     protected override void OnClickApplyBtn()
     {
+        // TODO : 옵션값 변화가 감지되었을 때만 Apply버튼 활성화
         // Origin 변수에 변경값을 저장
         mouseSensitivityOrigin = SavedSettingData.MouseSensitivity;
     }
