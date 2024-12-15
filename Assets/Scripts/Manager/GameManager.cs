@@ -44,12 +44,14 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         Action.Player.Disable();
-
     }
     public void ResumeGame()
     {
         Time.timeScale = 1f;
-        Action.Player.Enable();
+        if (!StageManager.Instance.WaitingNextStage)
+        {
+            Action.Player.Enable();
+        }
     }
     public void EndGame(bool isWin)
     {
