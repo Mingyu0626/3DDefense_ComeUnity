@@ -233,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 4082784393814424865, guid: e667c88338467ad4fa950675b1b228f2,
         type: 3}
       propertyPath: m_Name
-      value: ButtonRetry
+      value: Button_Retry
       objectReference: {fileID: 0}
     - target: {fileID: 4452189341301796740, guid: e667c88338467ad4fa950675b1b228f2,
         type: 3}
@@ -557,7 +557,7 @@ PrefabInstance:
     - target: {fileID: 2628987439967430235, guid: a3c4fce0de2a795428fd95457c844443,
         type: 3}
       propertyPath: m_Name
-      value: GameWinText
+      value: TMP_GameWin
       objectReference: {fileID: 0}
     - target: {fileID: 3742419630789842893, guid: a3c4fce0de2a795428fd95457c844443,
         type: 3}
@@ -870,7 +870,7 @@ PrefabInstance:
     - target: {fileID: 981620668321633942, guid: 369e780d922209346b1d97ffa09617eb,
         type: 3}
       propertyPath: m_Name
-      value: GameLoseText
+      value: TMP_GameLose
       objectReference: {fileID: 0}
     - target: {fileID: 4064917260481649064, guid: 369e780d922209346b1d97ffa09617eb,
         type: 3}
@@ -1190,7 +1190,7 @@ PrefabInstance:
     - target: {fileID: 4082784393814424865, guid: e667c88338467ad4fa950675b1b228f2,
         type: 3}
       propertyPath: m_Name
-      value: ButtonGoToLobby
+      value: Button_GoToLobby
       objectReference: {fileID: 0}
     - target: {fileID: 4452189341301796740, guid: e667c88338467ad4fa950675b1b228f2,
         type: 3}
