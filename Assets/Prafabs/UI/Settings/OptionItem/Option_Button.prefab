@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3946083127925339745}
   m_Layer: 5
-  m_Name: OptionButton
+  m_Name: Option_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

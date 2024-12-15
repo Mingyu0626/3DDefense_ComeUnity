@@ -701,7 +701,7 @@ PrefabInstance:
     - target: {fileID: 4082784393814424865, guid: e667c88338467ad4fa950675b1b228f2,
         type: 3}
       propertyPath: m_Name
-      value: ButtonSettings
+      value: Button_Settings
       objectReference: {fileID: 0}
     - target: {fileID: 4452189341301796740, guid: e667c88338467ad4fa950675b1b228f2,
         type: 3}
@@ -1203,7 +1203,7 @@ PrefabInstance:
     - target: {fileID: 4082784393814424865, guid: e667c88338467ad4fa950675b1b228f2,
         type: 3}
       propertyPath: m_Name
-      value: ButtonStart
+      value: Button_Start
       objectReference: {fileID: 0}
     - target: {fileID: 4452189341301796740, guid: e667c88338467ad4fa950675b1b228f2,
         type: 3}

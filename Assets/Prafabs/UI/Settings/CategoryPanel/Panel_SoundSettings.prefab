@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 687105079212210077}
   - component: {fileID: 1637976127715910809}
   m_Layer: 5
-  m_Name: SoundSettingsPanel
+  m_Name: Panel_SoundSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
