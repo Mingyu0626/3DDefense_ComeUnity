@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -9,28 +8,28 @@ public class Spawner : MonoBehaviour
     private string spawnedEnemyName;
     private float spawnIntervalTime = 3f;
 
-    // 스포너도 PoolAble 상속해가지고 그냥 ClearStage()때 일시 비활성화,
-    // 일정 시간 이후 활성화 이런식으로 해볼까
-
-    void Awake()
+    private void Awake()
     {
-        
-    }
 
-    void Start()
+    }
+    private void OnEnable()
     {
         StartCoroutine(SpawnEnemyCoroutine());
     }
-
+    private void OnDisable()
+    {
+        StopCoroutine(SpawnEnemyCoroutine());
+    }
     private IEnumerator SpawnEnemyCoroutine()
     {
-        yield return new WaitForSeconds(spawnIntervalTime);
+        var wait = new WaitForSeconds(spawnIntervalTime);
+        yield return wait;
         while (true)
         {
             SpawnEnemy();
             StageManager.Instance.CurrentEnemyCount++;
             StageManager.Instance.CheckFailCondition();
-            yield return new WaitForSeconds(spawnIntervalTime);
+            yield return wait;
         }
     }
 
