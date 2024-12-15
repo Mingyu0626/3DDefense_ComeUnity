@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         Action.Player.Disable();
+        SetCursorUseable(true);
     }
     public void ResumeGame()
     {
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         {
             Action.Player.Enable();
         }
+        SetCursorUseable(false);
     }
     public void EndGame(bool isWin)
     {
