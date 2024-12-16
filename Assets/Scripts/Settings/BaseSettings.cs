@@ -18,8 +18,8 @@ public class BaseSettings : MonoBehaviour
         settingsPanel = GetComponentInParent<SettingsPanel>();
         if (settingsPanel is not null)
         {
-            settingsPanel.SetApplyOnClickListener(true, () => OnClickApplyBtn());
-            settingsPanel.SetCloseOnClickListener(true, () => OnClickCloseBtn());
+            settingsPanel.SetButtonOnClickListener(true, () => OnClickApplyBtn());
+            settingsPanel.SetButtonOnClickListener(true, () => OnClickCloseBtn());
         }
         else
         {
