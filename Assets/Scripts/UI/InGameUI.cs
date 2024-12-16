@@ -5,9 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class InGameUI : MonoBehaviour
 {
-    public static UIManager Instance { get; private set; }
+    public static InGameUI Instance { get; private set; }
     [SerializeField]
     private TextMeshProUGUI currentEnemyCountTMP;
     [SerializeField]

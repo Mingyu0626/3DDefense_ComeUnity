@@ -117,7 +117,6 @@ namespace Settings
                 case 1:
                     fullScreenModeText.text = "Full Windowed";
                     break;
-
                 case 3:
                     fullScreenModeText.text = "Windowed";
                     break;

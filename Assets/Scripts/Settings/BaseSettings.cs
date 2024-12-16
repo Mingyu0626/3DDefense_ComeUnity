@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class BaseSettings : MonoBehaviour
 {
     private SettingsPanel settingsPanel;
+    protected bool isSettingsChanged = false;
     protected virtual void Awake()
     {
         settingsPanel = GetComponentInParent<SettingsPanel>();
@@ -26,17 +27,14 @@ public class BaseSettings : MonoBehaviour
             Debug.Log("settingsPanel이 null입니다.");
         }
     }
-
     protected virtual void OnClickApplyBtn() 
     {
         Debug.Log("BaseSettings의 OnClickApplyBtn");
     }
-
     protected virtual void OnClickCloseBtn()
     {
         GameManager.Instance.SetSettingsPanelEnable(false);
     }
-
     protected void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Button leftBtn, out Button rightBtn, 
         UnityAction OnClickLeftListener, UnityAction OnClickRightListener)
     {

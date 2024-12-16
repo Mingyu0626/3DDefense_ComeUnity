@@ -28,7 +28,7 @@ public class Player : HPComponent
     protected override void ApplyDamage(int damage)
     {
         base.ApplyDamage(damage);
-        UIManager.Instance.SetPlayerHPSlider(curHP);
+        InGameUI.Instance.SetPlayerHPSlider(curHP);
     }
 
     protected override void OnTriggerEnter(Collider other)

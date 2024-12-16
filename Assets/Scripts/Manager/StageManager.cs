@@ -18,7 +18,7 @@ public class StageManager : MonoBehaviour
         set
         {
             currentEnemyCount = value;
-            UIManager.Instance.SetCurrentEnemyCountTMP(currentEnemyCount);
+            InGameUI.Instance.SetCurrentEnemyCountTMP(currentEnemyCount);
         }
     }
     private int currentKilledEnemyCount; // 현재 스테이지에서의 적 처치수
@@ -31,7 +31,7 @@ public class StageManager : MonoBehaviour
         set
         {
             currentKilledEnemyCount = value;
-            UIManager.Instance.SetKilledEnemyCountTMP(currentKilledEnemyCount);
+            InGameUI.Instance.SetKilledEnemyCountTMP(currentKilledEnemyCount);
         }
     }
     private int[] goalEnemyCount; // 스테이지 별 목표 적 처치수를 저장하는 배열 
@@ -48,7 +48,7 @@ public class StageManager : MonoBehaviour
         {
             waitingNextStage = value;
             SetActiveAllSpawners(!value);
-            UIManager.Instance.SetActiveClearStageTextGO(value);
+            InGameUI.Instance.SetActiveClearStageTextGO(value);
             if (GameManager.Instance.Action.Player.enabled)
             {
                 GameManager.Instance.Action.Player.Disable();
@@ -89,7 +89,7 @@ public class StageManager : MonoBehaviour
     {
         CurrentEnemyCount = 0;
         CurrentKilledEnemyCount = 0;
-        UIManager.Instance.SetGoalEnemyCountTMP(CurrentEnemyCount);
+        InGameUI.Instance.SetGoalEnemyCountTMP(CurrentEnemyCount);
     }
     public void CheckClearCondition()
     {
