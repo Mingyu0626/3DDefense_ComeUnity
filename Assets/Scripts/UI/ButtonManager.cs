@@ -36,29 +36,45 @@ public class ButtonManager : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
         if (currentSceneName.Equals(SceneName.LobbyScene.ToString()))
         {
-            Button startBtn = GameObject.Find("ButtonStart").GetComponent<Button>();
-            if (startBtn != null)
+            Button startBtn = GameObject.Find("Button_Start").GetComponent<Button>();
+            if (startBtn is not null)
             {
                 AddListenerOnButton(startBtn, SceneName.GameScene.ToString());
             }
-
-            Button settingsBtn = GameObject.Find("ButtonSettings").GetComponent<Button>();
-            if (settingsBtn != null)
+            Button settingsBtn = GameObject.Find("Button_Settings").GetComponent<Button>();
+            if (settingsBtn is not null)
             {
                 AddListenerOnButton(settingsBtn, GameManager.Instance.SetSettingsPanelEnable, true);
             }
         }
 
+        if (currentSceneName.Equals(SceneName.GameScene.ToString()))
+        {
+            Transform settingsBtnTransform = GameObject.Find("Canvas").transform.Find("Panel_Paused/Button_Settings");
+            if (settingsBtnTransform is not null)
+            {
+                Button settingsBtn = settingsBtnTransform.GetComponent<Button>();
+                AddListenerOnButton(settingsBtn, GameManager.Instance.SetSettingsPanelEnable, true);
+            }
+
+            Transform exitBtnTransform = GameObject.Find("Canvas").transform.Find("Panel_Paused/Button_Exit");
+            if (exitBtnTransform is not null)
+            {
+                Button exitBtn = exitBtnTransform.GetComponent<Button>();
+                AddListenerOnButton(exitBtn, SceneName.LobbyScene.ToString());
+            }
+        }
+
         if (currentSceneName.Equals(SceneName.GameEndScene.ToString()))
         {
-            Button retryBtn = GameObject.Find("ButtonRetry").GetComponent<Button>();
-            if (retryBtn != null)
+            Button retryBtn = GameObject.Find("Button_Retry").GetComponent<Button>();
+            if (retryBtn is not null)
             {
                 AddListenerOnButton(retryBtn, SceneName.GameScene.ToString());
             }
 
-            Button goToLobbyBtn = GameObject.Find("ButtonGoToLobby").GetComponent<Button>();
-            if (goToLobbyBtn != null)
+            Button goToLobbyBtn = GameObject.Find("Button_GoToLobby").GetComponent<Button>();
+            if (goToLobbyBtn is not null)
             {
                 AddListenerOnButton(goToLobbyBtn, SceneName.LobbyScene.ToString());
             }
