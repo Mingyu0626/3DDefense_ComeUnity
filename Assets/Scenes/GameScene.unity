@@ -23707,10 +23707,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476699986}
-  - component: {fileID: 1476699987}
   - component: {fileID: 1476699988}
+  - component: {fileID: 1476699989}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: GameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23731,24 +23731,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1476699987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476699985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be0a67272d8d9c44cbbf49c7899d5ad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentEnemyCountTMP: {fileID: 1687338366}
-  killedEnemyCountTMP: {fileID: 1717931973}
-  goalEnemyCountTMP: {fileID: 625073146}
-  playerHpBar: {fileID: 496255038}
-  basementHpBar: {fileID: 1538819188}
-  clearStageTextGO: {fileID: 1091567694}
 --- !u!114 &1476699988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23762,6 +23744,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PausedTabGO: {fileID: 544014991}
+--- !u!114 &1476699989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476699985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47347737a2c26f146a0aa82849511355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEnemyCountTMP: {fileID: 1687338366}
+  killedEnemyCountTMP: {fileID: 1717931973}
+  goalEnemyCountTMP: {fileID: 625073146}
+  playerHpBar: {fileID: 496255038}
+  basementHpBar: {fileID: 1538819188}
+  clearStageTextGO: {fileID: 1091567694}
 --- !u!1001 &1488906640
 PrefabInstance:
   m_ObjectHideFlags: 0
