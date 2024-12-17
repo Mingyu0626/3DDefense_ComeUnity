@@ -1,3 +1,4 @@
+using Settings;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class BaseSettings : MonoBehaviour
+public abstract class BaseSettings : MonoBehaviour
 {
     private SettingsPanel settingsPanel;
     protected bool isSettingsChanged = false;
@@ -17,7 +18,7 @@ public class BaseSettings : MonoBehaviour
     protected virtual void OnEnable()
     {
         settingsPanel = GetComponentInParent<SettingsPanel>();
-        if (settingsPanel is not null)
+        if (settingsPanel != null)
         {
             settingsPanel.SetButtonOnClickListener(true, () => OnClickApplyBtn(), () => OnClickCloseBtn());
         }
@@ -26,12 +27,38 @@ public class BaseSettings : MonoBehaviour
             Debug.Log("settingsPanel이 null입니다.");
         }
     }
-    protected virtual void OnClickApplyBtn() 
-    {
-    }
+    protected abstract void OnClickApplyBtn();
     protected virtual void OnClickCloseBtn()
     {
-        settingsPanel.gameObject.SetActive(false);
+        if (CheckCurrentCategorySettingsChange())
+        {
+            SettingsWarningPopup popup = null;
+            string title = "[Close Settings]";
+            string description = "Changed have not been applied.\n Close Settings?";
+            UIManager.Instance.CreateWarning2BtnPopup(out popup, title, description,
+                () =>
+                {
+                    // 사용자가 왼쪽 버튼을 눌렀을 때
+                    popup.DestroyPopup();
+                    settingsPanel.gameObject.SetActive(false);
+                    RestoreChange();
+                },
+                () =>
+                {
+                    // 사용자가 오른쪽 버튼을 눌렀을 때
+                    popup.DestroyPopup();
+                });
+        }
+        else
+        {
+            settingsPanel.gameObject.SetActive(false);
+        }
+    }
+    protected abstract bool CheckCurrentCategorySettingsChange();
+    protected abstract void RestoreChange();
+    protected void ActivateApplyButton()
+    {
+        settingsPanel.ActivateApplyButton(CheckCurrentCategorySettingsChange());
     }
     protected void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Button leftBtn, out Button rightBtn, 
         UnityAction OnClickLeftListener, UnityAction OnClickRightListener)

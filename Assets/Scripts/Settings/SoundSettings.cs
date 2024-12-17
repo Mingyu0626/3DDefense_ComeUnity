@@ -63,12 +63,6 @@ namespace Settings
         protected override void OnClickCloseBtn()
         {
             base.OnClickCloseBtn();
-            if (CheckSoundSettingsChange())
-            {
-                masterVolume = SavedSettingData.MasterVolume = masterVolumeOrigin;
-                sfxVolume = SavedSettingData.SfxVolume = sfxVolumeOrigin;
-                bgmVolume = SavedSettingData.BgmVolume = bgmVolumeOrigin;
-            }
         }
         private void OnMasterVolumeChanged(float volume)
         {
@@ -88,20 +82,32 @@ namespace Settings
         private void UpdateMasterVolume()
         {
             masterVolumeText.text = masterVolume.ToString();
+            ActivateApplyButton();
         }
         private void UpdateSfxVolume()
         {
             sfxVolumeText.text = sfxVolume.ToString();
+            ActivateApplyButton();
         }
         private void UpdateBgmVolume()
         {
             bgmVolumeText.text = bgmVolume.ToString();
+            ActivateApplyButton();
         }
-        private bool CheckSoundSettingsChange()
+        protected override bool CheckCurrentCategorySettingsChange()
         {
             return SavedSettingData.MasterVolume != masterVolumeOrigin ||
                 SavedSettingData.SfxVolume != sfxVolumeOrigin ||
                 SavedSettingData.BgmVolume != bgmVolumeOrigin;
+        }
+        protected override void RestoreChange()
+        {
+            masterVolume = SavedSettingData.MasterVolume = masterVolumeOrigin;
+            sfxVolume = SavedSettingData.SfxVolume = sfxVolumeOrigin;
+            bgmVolume = SavedSettingData.BgmVolume = bgmVolumeOrigin;
+            UpdateMasterVolume();
+            UpdateSfxVolume();
+            UpdateBgmVolume();
         }
     }
 }

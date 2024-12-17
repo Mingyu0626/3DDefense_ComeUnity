@@ -73,17 +73,6 @@ namespace Settings
         protected override void OnClickCloseBtn()
         {
             base.OnClickCloseBtn();
-            if (CheckGraphicSettingsChange())
-            {
-                textureQuality = SavedSettingData.TextureQuality;
-                shadowQuality = SavedSettingData.ShadowQuality;
-                antiAliasing = SavedSettingData.AntiAliasing;
-                vSync = SavedSettingData.VSync;
-                UpdateTextureQuality();
-                UpdateShadowQuality();
-                UpdateAntiAliasing();
-                UpdateVSync();
-            }
         }
         private void OnClickTextureQualityLeft()
         {
@@ -147,6 +136,7 @@ namespace Settings
             textureQualityButtonLeft.interactable = textureQuality != 2;
             textureQualityButtonRight.interactable = textureQuality != 0;
             QualitySettings.globalTextureMipmapLimit = textureQuality;
+            ActivateApplyButton();
         }
         private void UpdateShadowQuality()
         {
@@ -183,6 +173,7 @@ namespace Settings
                 QualitySettings.shadows = UnityEngine.ShadowQuality.All;
                 QualitySettings.shadowResolution = (ShadowResolution)shadowQuality;
             }
+            ActivateApplyButton();
         }
         private void UpdateAntiAliasing()
         {
@@ -207,6 +198,7 @@ namespace Settings
             antiAliasingButtonLeft.interactable = antiAliasing != 0;
             antiAliasingButtonRight.interactable = antiAliasing != 8;
             QualitySettings.antiAliasing = antiAliasing;
+            ActivateApplyButton();
         }
         private void UpdateVSync()
         {
@@ -225,13 +217,25 @@ namespace Settings
             vSyncButtonLeft.interactable = vSync != 0;
             vSyncButtonRight.interactable = vSync != 1;
             QualitySettings.vSyncCount = vSync;
+            ActivateApplyButton();
         }
-        private bool CheckGraphicSettingsChange()
+        protected override bool CheckCurrentCategorySettingsChange()
         {
             return SavedSettingData.TextureQuality != textureQuality ||
                 SavedSettingData.ShadowQuality != shadowQuality ||
                 SavedSettingData.AntiAliasing != antiAliasing ||
                 SavedSettingData.VSync != vSync;
+        }
+        protected override void RestoreChange()
+        {
+            textureQuality = SavedSettingData.TextureQuality;
+            shadowQuality = SavedSettingData.ShadowQuality;
+            antiAliasing = SavedSettingData.AntiAliasing;
+            vSync = SavedSettingData.VSync;
+            UpdateTextureQuality();
+            UpdateShadowQuality();
+            UpdateAntiAliasing();
+            UpdateVSync();
         }
     }
 }

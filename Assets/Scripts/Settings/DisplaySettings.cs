@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Playables;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace Settings
@@ -56,7 +58,6 @@ namespace Settings
         }
         protected override void OnClickApplyBtn()
         {
-            // TODO : 옵션값 변화가 감지되었을 때만 Apply버튼 활성화
             // 여기에서 SavedSettingData에 저장하는 작업 수행, 이미 설정은 적용되어있는 상태
             SavedSettingData.ResolutionWidth = resolution.Item1;
             SavedSettingData.ResolutionHeight = resolution.Item2;
@@ -65,14 +66,6 @@ namespace Settings
         protected override void OnClickCloseBtn()
         {
             base.OnClickCloseBtn();
-            if (CheckDisplaySettingsChange())
-            {
-                resolution.Item1 = SavedSettingData.ResolutionWidth;
-                resolution.Item2 = SavedSettingData.ResolutionHeight;
-                fullScreenMode = SavedSettingData.FullScreenMode;
-                UpdateResolution();
-                UpdateFullScreenMode();
-            }
         }
         private void OnClickResolutionLeft()
         {
@@ -118,6 +111,7 @@ namespace Settings
             resolutionButtonLeft.interactable = resolution != resolutionList[0]; 
             resolutionButtonRight.interactable = resolution != resolutionList[resolutionList.Count - 1];
             Screen.SetResolution(resolution.Item1, resolution.Item2, (FullScreenMode)fullScreenMode);
+            ActivateApplyButton();
         }
         private void UpdateFullScreenMode()
         {
@@ -139,12 +133,21 @@ namespace Settings
             fullScreenModeButtonLeft.interactable = 0 < fullScreenMode;
             fullScreenModeButtonRight.interactable = fullScreenMode < 3;
             Screen.SetResolution(resolution.Item1, resolution.Item2, (FullScreenMode)fullScreenMode);
+            ActivateApplyButton();
         }
-        private bool CheckDisplaySettingsChange()
+        protected override bool CheckCurrentCategorySettingsChange()
         {
             return SavedSettingData.ResolutionWidth != resolution.Item1 ||
                 SavedSettingData.ResolutionHeight != resolution.Item2 ||
                 SavedSettingData.FullScreenMode != fullScreenMode;
+        }
+        protected override void RestoreChange()
+        {
+            resolution.Item1 = SavedSettingData.ResolutionWidth;
+            resolution.Item2 = SavedSettingData.ResolutionHeight;
+            fullScreenMode = SavedSettingData.FullScreenMode;
+            UpdateResolution();
+            UpdateFullScreenMode();
         }
     }
 }

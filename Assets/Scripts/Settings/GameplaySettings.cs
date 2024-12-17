@@ -2,8 +2,10 @@ using Settings;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class GameplaySettings : BaseSettings
@@ -42,10 +44,6 @@ public class GameplaySettings : BaseSettings
     protected override void OnClickCloseBtn()
     {
         base.OnClickCloseBtn();
-        if (CheckGameplaySettingsChange())
-        {
-            mouseSensitivity = SavedSettingData.MouseSensitivity = mouseSensitivityOrigin;
-        }
     }
     private void OnMouseSensitivityChanged(float value)
     {
@@ -55,9 +53,15 @@ public class GameplaySettings : BaseSettings
     private void UpdateMouseSensitivity()
     {
         mouseSensitivityText.text = mouseSensitivity.ToString();
+        ActivateApplyButton();
     }
-    private bool CheckGameplaySettingsChange()
+    protected override bool CheckCurrentCategorySettingsChange()
     {
         return SavedSettingData.MouseSensitivity != mouseSensitivityOrigin;
+    }
+    protected override void RestoreChange()
+    {
+        mouseSensitivity = SavedSettingData.MouseSensitivity = mouseSensitivityOrigin;
+        UpdateMouseSensitivity();
     }
 }
