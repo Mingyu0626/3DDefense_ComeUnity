@@ -48,23 +48,6 @@ public class ButtonManager : MonoBehaviour
             }
         }
 
-        if (currentSceneName.Equals(SceneName.GameScene.ToString()))
-        {
-            Transform settingsBtnTransform = GameObject.Find("Canvas").transform.Find("Panel_Paused/Button_Settings");
-            if (settingsBtnTransform is not null)
-            {
-                Button settingsBtn = settingsBtnTransform.GetComponent<Button>();
-                AddListenerOnButton(settingsBtn, GameManager.Instance.SetSettingsPanelEnable, true);
-            }
-
-            Transform exitBtnTransform = GameObject.Find("Canvas").transform.Find("Panel_Paused/Button_Exit");
-            if (exitBtnTransform is not null)
-            {
-                Button exitBtn = exitBtnTransform.GetComponent<Button>();
-                AddListenerOnButton(exitBtn, SceneName.LobbyScene.ToString());
-            }
-        }
-
         if (currentSceneName.Equals(SceneName.GameEndScene.ToString()))
         {
             Button retryBtn = GameObject.Find("Button_Retry").GetComponent<Button>();
