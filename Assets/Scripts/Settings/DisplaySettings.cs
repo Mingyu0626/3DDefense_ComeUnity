@@ -62,6 +62,18 @@ namespace Settings
             SavedSettingData.ResolutionHeight = resolution.Item2;
             SavedSettingData.FullScreenMode = fullScreenMode;
         }
+        protected override void OnClickCloseBtn()
+        {
+            base.OnClickCloseBtn();
+            if (CheckDisplaySettingsChange())
+            {
+                resolution.Item1 = SavedSettingData.ResolutionWidth;
+                resolution.Item2 = SavedSettingData.ResolutionHeight;
+                fullScreenMode = SavedSettingData.FullScreenMode;
+                UpdateResolution();
+                UpdateFullScreenMode();
+            }
+        }
         private void OnClickResolutionLeft()
         {
             for (int i = 0; i < resolutionList.Count; i++)

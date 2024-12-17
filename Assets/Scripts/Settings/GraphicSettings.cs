@@ -70,6 +70,21 @@ namespace Settings
             SavedSettingData.AntiAliasing = antiAliasing;
             SavedSettingData.VSync = vSync;
         }
+        protected override void OnClickCloseBtn()
+        {
+            base.OnClickCloseBtn();
+            if (CheckGraphicSettingsChange())
+            {
+                textureQuality = SavedSettingData.TextureQuality;
+                shadowQuality = SavedSettingData.ShadowQuality;
+                antiAliasing = SavedSettingData.AntiAliasing;
+                vSync = SavedSettingData.VSync;
+                UpdateTextureQuality();
+                UpdateShadowQuality();
+                UpdateAntiAliasing();
+                UpdateVSync();
+            }
+        }
         private void OnClickTextureQualityLeft()
         {
             textureQuality++;

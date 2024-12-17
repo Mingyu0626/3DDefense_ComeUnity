@@ -19,8 +19,7 @@ public class BaseSettings : MonoBehaviour
         settingsPanel = GetComponentInParent<SettingsPanel>();
         if (settingsPanel is not null)
         {
-            settingsPanel.SetButtonOnClickListener(true, () => OnClickApplyBtn());
-            settingsPanel.SetButtonOnClickListener(true, () => OnClickCloseBtn());
+            settingsPanel.SetButtonOnClickListener(true, () => OnClickApplyBtn(), () => OnClickCloseBtn());
         }
         else
         {
@@ -29,11 +28,10 @@ public class BaseSettings : MonoBehaviour
     }
     protected virtual void OnClickApplyBtn() 
     {
-        Debug.Log("BaseSettings¿« OnClickApplyBtn");
     }
     protected virtual void OnClickCloseBtn()
     {
-        GameManager.Instance.SetSettingsPanelEnable(false);
+        settingsPanel.gameObject.SetActive(false);
     }
     protected void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Button leftBtn, out Button rightBtn, 
         UnityAction OnClickLeftListener, UnityAction OnClickRightListener)
@@ -51,7 +49,6 @@ public class BaseSettings : MonoBehaviour
         leftBtn.onClick.AddListener(OnClickLeftListener);
         rightBtn.onClick.AddListener(OnClickRightListener);
     }
-
     protected void InitOptionItem(Transform itemObj, out TMP_Text valueText, out Slider slider, 
         UnityAction<float> OnValueChangedListener)
     {

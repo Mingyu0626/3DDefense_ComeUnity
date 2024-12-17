@@ -8,7 +8,7 @@ using TMPro;
 using System.Net;
 
 
-public class SettingsPanel : MonoBehaviour
+public class SettingsPanel : EscapeableUI
 {
     [SerializeField] private Button displaySettingsButton;
     [SerializeField] private Button graphicSettingsButton;
@@ -43,10 +43,19 @@ public class SettingsPanel : MonoBehaviour
         gameplaySettingsButtonText = gameplaySettingButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
         soundSettingsButtonText = soundSettingsButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         SavedSettingData.ApplySetting();
         OnClickDisplaySettings();
+        
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+    }
+    protected override void Close()
+    {
         
     }
     private void OnClickDisplaySettings()
@@ -97,13 +106,20 @@ public class SettingsPanel : MonoBehaviour
         gameplaySettingsButtonText.color = Color.white;
         soundSettingsButtonText.color = Color.yellow;
     }
-    public void SetButtonOnClickListener(bool isActive, UnityAction listener = null)
+    public void SetButtonOnClickListener(bool isActive, 
+        UnityAction applyListener = null, UnityAction closeListener = null)
     {
         applyButton.gameObject.SetActive(isActive);
-        if (isActive && listener != null)
+        if (isActive && applyListener != null)
         {
             applyButton.onClick.RemoveAllListeners();
-            applyButton.onClick.AddListener(listener);
+            applyButton.onClick.AddListener(applyListener);
+        }
+        closeButton.gameObject.SetActive(isActive);
+        if (isActive && closeListener != null)
+        {
+            closeButton.onClick.RemoveAllListeners();
+            closeButton.onClick.AddListener(closeListener);
         }
     }
 }
