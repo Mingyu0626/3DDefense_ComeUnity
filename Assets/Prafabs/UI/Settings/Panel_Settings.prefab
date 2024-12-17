@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6881423661515701578}
   - component: {fileID: 276577371548485921}
   m_Layer: 5
-  m_Name: SettingsPanel
+  m_Name: Panel_Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
