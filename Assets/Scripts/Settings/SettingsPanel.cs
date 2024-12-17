@@ -47,6 +47,7 @@ public class SettingsPanel : EscapeableUI
     {
         base.OnEnable();
         SavedSettingData.ApplySetting();
+        applyButton.interactable = false;
         OnClickDisplaySettings();
         
     }
@@ -121,5 +122,9 @@ public class SettingsPanel : EscapeableUI
             closeButton.onClick.RemoveAllListeners();
             closeButton.onClick.AddListener(closeListener);
         }
+    }
+    public void ActivateApplyButton(bool isActive = true)
+    {
+        applyButton.interactable = isActive;
     }
 }
