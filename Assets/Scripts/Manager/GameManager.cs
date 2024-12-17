@@ -21,24 +21,11 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         Action = new InputActions();
-        SceneManager.sceneLoaded += OnSceneChanged;
         DontDestroyOnLoad(gameObject);
     }
     private void OnDestroy()
     {
-        Action.Dispose();
-    }
-    private void OnSceneChanged(Scene scene, LoadSceneMode mode)
-    {
-        GameObject canvasGO = GameObject.Find("Canvas");
-        if (canvasGO is not null)
-        {
-            Transform settingPanelTransform = canvasGO.transform.Find("SettingsPanel");
-            if (settingPanelTransform is not null)
-            {
-                settingsPanel = settingPanelTransform.gameObject;
-            }
-        }
+        // Action.Dispose();
     }
     public void EndGame(bool isWin)
     {
@@ -50,13 +37,5 @@ public class GameManager : MonoBehaviour
     public void LoadSceneWithName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
-
-    public void SetSettingsPanelEnable(bool val)
-    {
-        if (settingsPanel is not null)
-        {
-            settingsPanel.SetActive(val);
-        }
     }
 }
