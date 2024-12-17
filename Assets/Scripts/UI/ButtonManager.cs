@@ -22,8 +22,8 @@ public class ButtonManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -37,21 +37,22 @@ public class ButtonManager : MonoBehaviour
         if (currentSceneName.Equals(SceneName.LobbyScene.ToString()))
         {
             Button startBtn = GameObject.Find("Button_Start").GetComponent<Button>();
-            if (startBtn is not null)
+            if (startBtn != null)
             {
                 AddListenerOnButton(startBtn, SceneName.GameScene.ToString());
             }
             Button settingsBtn = GameObject.Find("Button_Settings").GetComponent<Button>();
-            if (settingsBtn is not null)
+            if (settingsBtn != null)
             {
-                AddListenerOnButton(settingsBtn, GameManager.Instance.SetSettingsPanelEnable, true);
+                AddListenerOnButton(settingsBtn, UIManager.Instance.OpenSettingsPanel, true);
+                Debug.Log("세팅버튼 리스너 등록 완료");
             }
         }
 
         if (currentSceneName.Equals(SceneName.GameEndScene.ToString()))
         {
             Button retryBtn = GameObject.Find("Button_Retry").GetComponent<Button>();
-            if (retryBtn is not null)
+            if (retryBtn != null)
             {
                 AddListenerOnButton(retryBtn, SceneName.GameScene.ToString());
             }
@@ -66,6 +67,10 @@ public class ButtonManager : MonoBehaviour
     private void AddListenerOnButton(Button btn, string sceneName)
     {
         btn.onClick.AddListener(() => GameManager.Instance.LoadSceneWithName(sceneName));
+    }
+    private void AddListenerOnButton(Button btn, UnityAction listener)
+    {
+        btn.onClick.AddListener(() => listener());
     }
     private void AddListenerOnButton<T>(Button btn, UnityAction<T> listener, T param)
     {
