@@ -15,7 +15,6 @@ public class PauseAction : MonoBehaviour
     {
         action = GameManager.Instance.Action;
         action.UI.Enable();
-
         pauseAction = action.UI.Pause;
         pauseAction.performed += OnPaused;
     }
@@ -32,11 +31,11 @@ public class PauseAction : MonoBehaviour
             PausedTabGO.SetActive(!PausedTabGO.activeSelf);
             if (PausedTabGO.activeSelf)
             {
-                GameManager.Instance.PauseGame();
+                
             }
             else
             {
-                GameManager.Instance.ResumeGame();
+                
             }
         }
     }
