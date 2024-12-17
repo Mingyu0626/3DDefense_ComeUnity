@@ -40,45 +40,16 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void PauseGame()
-    {
-        Time.timeScale = 0f;
-        Action.Player.Disable();
-        SetCursorUseable(true);
-    }
-    public void ResumeGame()
-    {
-        Time.timeScale = 1f;
-        if (!StageManager.Instance.WaitingNextStage)
-        {
-            Action.Player.Enable();
-        }
-        SetCursorUseable(false);
-    }
     public void EndGame(bool isWin)
     {
         IsWin = isWin;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         LoadSceneWithName("GameEndScene");
-        SetCursorUseable(true);
     }
-
     public void LoadSceneWithName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
-
-    public void SetCursorUseable(bool useCursor)
-    {
-        if (useCursor)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
     }
 
     public void SetSettingsPanelEnable(bool val)
