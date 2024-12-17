@@ -45,7 +45,6 @@ public class ButtonManager : MonoBehaviour
             if (settingsBtn != null)
             {
                 AddListenerOnButton(settingsBtn, UIManager.Instance.OpenSettingsPanel, true);
-                Debug.Log("세팅버튼 리스너 등록 완료");
             }
         }
 
