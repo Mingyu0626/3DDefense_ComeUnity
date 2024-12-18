@@ -55,11 +55,11 @@ public class GameplaySettings : BaseSettings
         mouseSensitivityText.text = mouseSensitivity.ToString();
         ActivateApplyButton();
     }
-    protected override bool CheckCurrentCategorySettingsChange()
+    public override bool CheckCurrentCategorySettingsChange()
     {
         return SavedSettingData.MouseSensitivity != mouseSensitivityOrigin;
     }
-    protected override void RestoreChange()
+    public override void RestoreChange()
     {
         mouseSensitivity = SavedSettingData.MouseSensitivity = mouseSensitivityOrigin;
         UpdateMouseSensitivity();

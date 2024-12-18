@@ -27,6 +27,10 @@ public abstract class BaseSettings : MonoBehaviour
             Debug.Log("settingsPanel이 null입니다.");
         }
     }
+    protected virtual void OnDisable()
+    {
+
+    }
     protected abstract void OnClickApplyBtn();
     protected virtual void OnClickCloseBtn()
     {
@@ -54,8 +58,8 @@ public abstract class BaseSettings : MonoBehaviour
             settingsPanel.gameObject.SetActive(false);
         }
     }
-    protected abstract bool CheckCurrentCategorySettingsChange();
-    protected abstract void RestoreChange();
+    public abstract bool CheckCurrentCategorySettingsChange();
+    public abstract void RestoreChange();
     protected void ActivateApplyButton()
     {
         settingsPanel.ActivateApplyButton(CheckCurrentCategorySettingsChange());

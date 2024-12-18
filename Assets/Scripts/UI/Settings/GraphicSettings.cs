@@ -219,14 +219,14 @@ namespace Settings
             QualitySettings.vSyncCount = vSync;
             ActivateApplyButton();
         }
-        protected override bool CheckCurrentCategorySettingsChange()
+        public override bool CheckCurrentCategorySettingsChange()
         {
             return SavedSettingData.TextureQuality != textureQuality ||
                 SavedSettingData.ShadowQuality != shadowQuality ||
                 SavedSettingData.AntiAliasing != antiAliasing ||
                 SavedSettingData.VSync != vSync;
         }
-        protected override void RestoreChange()
+        public override void RestoreChange()
         {
             textureQuality = SavedSettingData.TextureQuality;
             shadowQuality = SavedSettingData.ShadowQuality;

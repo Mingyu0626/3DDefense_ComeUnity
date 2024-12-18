@@ -135,13 +135,13 @@ namespace Settings
             Screen.SetResolution(resolution.Item1, resolution.Item2, (FullScreenMode)fullScreenMode);
             ActivateApplyButton();
         }
-        protected override bool CheckCurrentCategorySettingsChange()
+        public override bool CheckCurrentCategorySettingsChange()
         {
             return SavedSettingData.ResolutionWidth != resolution.Item1 ||
                 SavedSettingData.ResolutionHeight != resolution.Item2 ||
                 SavedSettingData.FullScreenMode != fullScreenMode;
         }
-        protected override void RestoreChange()
+        public override void RestoreChange()
         {
             resolution.Item1 = SavedSettingData.ResolutionWidth;
             resolution.Item2 = SavedSettingData.ResolutionHeight;

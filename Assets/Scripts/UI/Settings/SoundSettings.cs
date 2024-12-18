@@ -94,13 +94,13 @@ namespace Settings
             bgmVolumeText.text = bgmVolume.ToString();
             ActivateApplyButton();
         }
-        protected override bool CheckCurrentCategorySettingsChange()
+        public override bool CheckCurrentCategorySettingsChange()
         {
             return SavedSettingData.MasterVolume != masterVolumeOrigin ||
                 SavedSettingData.SfxVolume != sfxVolumeOrigin ||
                 SavedSettingData.BgmVolume != bgmVolumeOrigin;
         }
-        protected override void RestoreChange()
+        public override void RestoreChange()
         {
             masterVolume = SavedSettingData.MasterVolume = masterVolumeOrigin;
             sfxVolume = SavedSettingData.SfxVolume = sfxVolumeOrigin;

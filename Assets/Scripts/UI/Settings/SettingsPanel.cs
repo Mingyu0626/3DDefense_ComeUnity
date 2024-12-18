@@ -28,8 +28,9 @@ public class SettingsPanel : EscapeableUI
     [SerializeField] private Button applyButton;
     [SerializeField] private Button closeButton;
 
-    // private int currentActivatedTab = 0; // 0 : 디스플레이, 1 : 그래픽, 2 : 게임플레이, 3 : 사운드
-    // private int previousActivatedTab = 0; // 0 : 디스플레이, 1 : 그래픽, 2 : 게임플레이, 3 : 사운드
+    private int currentActivatedTab = 0; // 0 : 디스플레이, 1 : 그래픽, 2 : 게임플레이, 3 : 사운드
+    private int clickedSettingsBtnCategory; // 0 : 디스플레이, 1 : 그래픽, 2 : 게임플레이, 3 : 사운드
+    private List<GameObject> tabByCategoryGOList;
 
     private void Awake()
     {
@@ -42,6 +43,12 @@ public class SettingsPanel : EscapeableUI
         graphicSettingsButtonText = graphicSettingsButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
         gameplaySettingsButtonText = gameplaySettingButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
         soundSettingsButtonText = soundSettingsButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+
+        tabByCategoryGOList = new List<GameObject>();
+        tabByCategoryGOList.Add(displaySettingsTabGO);
+        tabByCategoryGOList.Add(graphicSettingsTabGO);
+        tabByCategoryGOList.Add(gameplaySettingTabGO);
+        tabByCategoryGOList.Add(soundSettingsTabGO);
     }
     protected override void OnEnable()
     {
@@ -59,53 +66,97 @@ public class SettingsPanel : EscapeableUI
     {
         
     }
+    public void OnClickAnotherCategoryBtn(int clickedCategoryIndex)
+    {
+        if (currentActivatedTab == clickedCategoryIndex) return;
+
+        BaseSettings bs = tabByCategoryGOList[currentActivatedTab].GetComponent<BaseSettings>();
+        if (bs != null)
+        {
+            if (bs.CheckCurrentCategorySettingsChange())
+            {
+                SettingsWarningPopup popup = null;
+                string title = "[Close Settings]";
+                string description = "Changed have not been applied.\n Change Tab?";
+                UIManager.Instance.CreateWarning2BtnPopup(out popup, title, description,
+                    () =>
+                    {
+                        // 사용자가 왼쪽 버튼을 눌렀을 때
+                        popup.DestroyPopup();
+                        bs.RestoreChange();
+                        ChangeSettingsCategory(clickedCategoryIndex);
+                        currentActivatedTab = clickedCategoryIndex;
+                    },
+                    () =>
+                    {
+                        // 사용자가 오른쪽 버튼을 눌렀을 때
+                        popup.DestroyPopup();
+                    });
+            }
+            else
+            {
+                ChangeSettingsCategory(clickedCategoryIndex);
+                currentActivatedTab = clickedCategoryIndex;
+            }
+        }
+    }
     private void OnClickDisplaySettings()
     {
-        displaySettingsTabGO.SetActive(true);
-        graphicSettingsTabGO.SetActive(false);
-        gameplaySettingTabGO.SetActive(false);
-        soundSettingsTabGO.SetActive(false);
-
-        displaySettingsButtonText.color = Color.yellow;
-        graphicSettingsButtonText.color = Color.white;
-        gameplaySettingsButtonText.color = Color.white;
-        soundSettingsButtonText.color = Color.white;
+        OnClickAnotherCategoryBtn(0);
     }
     private void OnClickGraphicSettings()
     {
-        displaySettingsTabGO.SetActive(false);
-        graphicSettingsTabGO.SetActive(true);
-        gameplaySettingTabGO.SetActive(false);
-        soundSettingsTabGO.SetActive(false);
-
-        displaySettingsButtonText.color = Color.white;
-        graphicSettingsButtonText.color = Color.yellow;
-        gameplaySettingsButtonText.color = Color.white;
-        soundSettingsButtonText.color = Color.white;
+        OnClickAnotherCategoryBtn(1);
     }
     private void OnClickGameplaySettings()
     {
-        displaySettingsTabGO.SetActive(false);
-        graphicSettingsTabGO.SetActive(false);
-        gameplaySettingTabGO.SetActive(true);
-        soundSettingsTabGO.SetActive(false);
-
-        displaySettingsButtonText.color = Color.white;
-        graphicSettingsButtonText.color = Color.white;
-        gameplaySettingsButtonText.color = Color.yellow;
-        soundSettingsButtonText.color = Color.white;
+        OnClickAnotherCategoryBtn(2);
     }
     private void OnClickSoundSettings()
     {
-        displaySettingsTabGO.SetActive(false);
-        graphicSettingsTabGO.SetActive(false);
-        gameplaySettingTabGO.SetActive(false);
-        soundSettingsTabGO.SetActive(true);
+        OnClickAnotherCategoryBtn(3);
+    }
+    private void ChangeSettingsCategory(int categoryIndex)
+    {
+        for (int i = 0; i < tabByCategoryGOList.Count; i++)
+        {
+            if (i == categoryIndex)
+            {
+                tabByCategoryGOList[i].SetActive(true);
+            }
+            else
+            {
+                tabByCategoryGOList[i].SetActive(false);
+            }
+        }
 
-        displaySettingsButtonText.color = Color.white;
-        graphicSettingsButtonText.color = Color.white;
-        gameplaySettingsButtonText.color = Color.white;
-        soundSettingsButtonText.color = Color.yellow;
+        switch (categoryIndex)
+        {
+            case 0:
+                displaySettingsButtonText.color = Color.blue;
+                graphicSettingsButtonText.color = Color.white;
+                gameplaySettingsButtonText.color = Color.white;
+                soundSettingsButtonText.color = Color.white;
+                break;
+            case 1:
+                displaySettingsButtonText.color = Color.white;
+                graphicSettingsButtonText.color = Color.blue;
+                gameplaySettingsButtonText.color = Color.white;
+                soundSettingsButtonText.color = Color.white;
+                break;
+            case 2:
+                displaySettingsButtonText.color = Color.white;
+                graphicSettingsButtonText.color = Color.white;
+                gameplaySettingsButtonText.color = Color.blue;
+                soundSettingsButtonText.color = Color.white;
+                break;
+            case 3:
+                displaySettingsButtonText.color = Color.white;
+                graphicSettingsButtonText.color = Color.white;
+                gameplaySettingsButtonText.color = Color.white;
+                soundSettingsButtonText.color = Color.blue;
+                break;
+        }
     }
     public void SetButtonOnClickListener(bool isActive, 
         UnityAction applyListener = null, UnityAction closeListener = null)
