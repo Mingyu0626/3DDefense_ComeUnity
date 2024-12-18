@@ -34,9 +34,27 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         action = GameManager.Instance.Action;
-        action.UI.Enable();
         pauseAction = action.UI.Pause;
         pauseAction.performed += OnPaused;
+        SceneManager.sceneLoaded += OnSceneChanged;
+        SetCursorUseable(true);
+    }
+    private void OnDestroy()
+    {
+        action.Dispose();
+    }
+    private void OnSceneChanged(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log(scene.name);
+        if (scene.name.Equals("GameScene"))
+        {
+            action.UI.Enable();
+            Debug.Log("UI액션 활성화");
+        }
+        else
+        {
+            action.UI.Disable();
+        }
     }
     private void OnPaused(InputAction.CallbackContext context)
     {
@@ -117,5 +135,9 @@ public class UIManager : MonoBehaviour
         {
             settingsPanelGO.SetActive(isOpen);
         }
+    }
+    public bool CheckPausedPanelOpened()
+    {
+        return pausedPanelGO.activeSelf;
     }
 }

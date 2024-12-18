@@ -44,14 +44,17 @@ public class PausedPanel : EscapeableUI
         if (isPause)
         {
             Time.timeScale = 0f;
-            GameManager.Instance.Action.Player.Disable();
             UIManager.Instance.SetCursorUseable(true);
+            GameManager.Instance.Action.Player.Disable();
         }
         else
         {
             Time.timeScale = 1f;
-            GameManager.Instance.Action.Player.Enable();
             UIManager.Instance.SetCursorUseable(false);
+            if (!StageManager.Instance.WaitingNextStage)
+            {
+                GameManager.Instance.Action.Player.Enable();
+            }
         }
     }
 }
