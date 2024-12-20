@@ -49,7 +49,6 @@ public class UIManager : MonoBehaviour
         if (scene.name.Equals("GameScene"))
         {
             action.UI.Enable();
-            Debug.Log("UI액션 활성화");
         }
         else
         {

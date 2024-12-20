@@ -56,7 +56,6 @@ public class SettingsPanel : EscapeableUI
         SavedSettingData.ApplySetting();
         applyButton.interactable = false;
         OnClickDisplaySettings();
-        
     }
     protected override void OnDisable()
     {
@@ -68,7 +67,12 @@ public class SettingsPanel : EscapeableUI
     }
     public void OnClickAnotherCategoryBtn(int clickedCategoryIndex)
     {
-        if (currentActivatedTab == clickedCategoryIndex) return;
+        if (currentActivatedTab == clickedCategoryIndex)
+        {
+            // 최초 설정 창 오픈시에 필요하지만, 그 이후에는 오버헤드
+            ChangeSettingsCategory(clickedCategoryIndex);
+            return;
+        }
 
         BaseSettings bs = tabByCategoryGOList[currentActivatedTab].GetComponent<BaseSettings>();
         if (bs != null)
