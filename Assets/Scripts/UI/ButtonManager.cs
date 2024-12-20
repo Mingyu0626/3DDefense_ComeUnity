@@ -75,4 +75,8 @@ public class ButtonManager : MonoBehaviour
     {
         btn.onClick.AddListener(() => listener(param));
     }
+    private void AddListenerOnButton<T1, T2>(Button btn, UnityAction<T1, T2> listener, T1 param1, T2 param2)
+    {
+        btn.onClick.AddListener(() => listener(param1, param2));
+    }
 }
