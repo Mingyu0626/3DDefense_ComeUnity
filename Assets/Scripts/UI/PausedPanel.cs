@@ -26,7 +26,8 @@ public class PausedPanel : EscapeableUI
     }
     protected override void Close()
     {
-        SetPause(false);
+        base.Close();
+        gameObject.SetActive(false);
     }
 
     private void onClickSettingsButton()
@@ -37,6 +38,7 @@ public class PausedPanel : EscapeableUI
     private void onClickExitButton()
     {
         GameManager.Instance.LoadSceneWithName("LobbyScene");
+        Close();
     }
 
     private void SetPause(bool isPause)

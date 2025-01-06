@@ -30,6 +30,10 @@ public class UIManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        if (popupCanvas != null)
+        {
+            DontDestroyOnLoad(popupCanvas);
+        }
     }
     private void Start()
     {
@@ -41,7 +45,10 @@ public class UIManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        action.Dispose();
+        if (action != null)
+        {
+            action.Dispose();
+        }
     }
     private void OnSceneChanged(Scene scene, LoadSceneMode mode)
     {
@@ -53,6 +60,7 @@ public class UIManager : MonoBehaviour
         else
         {
             action.UI.Disable();
+            SetCursorUseable(true);
         }
     }
     private void OnPaused(InputAction.CallbackContext context)
@@ -63,11 +71,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            if (pausedPanelGO != null)
-            {
-                pausedPanelGO.SetActive(true);
-                OpenPausedPanel();
-            }
+            OpenPausedPanel();
         }
     }
     public void SetCursorUseable(bool useCursor)

@@ -31,6 +31,7 @@ public class SettingsPanel : EscapeableUI
     private int currentActivatedTab = 0; // 0 : 디스플레이, 1 : 그래픽, 2 : 게임플레이, 3 : 사운드
     private int clickedSettingsBtnCategory; // 0 : 디스플레이, 1 : 그래픽, 2 : 게임플레이, 3 : 사운드
     private List<GameObject> tabByCategoryGOList;
+    private UnityAction onCloseCallback;
 
     private void Awake()
     {
@@ -63,7 +64,10 @@ public class SettingsPanel : EscapeableUI
     }
     protected override void Close()
     {
-        
+        if (onCloseCallback != null)
+        {
+            onCloseCallback.Invoke();
+        }
     }
     public void OnClickAnotherCategoryBtn(int clickedCategoryIndex)
     {
@@ -177,6 +181,8 @@ public class SettingsPanel : EscapeableUI
             closeButton.onClick.RemoveAllListeners();
             closeButton.onClick.AddListener(closeListener);
         }
+
+        onCloseCallback = closeListener;
     }
     public void ActivateApplyButton(bool isActive = true)
     {

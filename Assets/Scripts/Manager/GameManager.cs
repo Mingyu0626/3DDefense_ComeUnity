@@ -23,10 +23,7 @@ public class GameManager : MonoBehaviour
         Action = new InputActions();
         DontDestroyOnLoad(gameObject);
     }
-    private void OnDestroy()
-    {
-        // Action.Dispose();
-    }
+
     public void EndGame(bool isWin)
     {
         IsWin = isWin;
