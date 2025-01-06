@@ -44,16 +44,19 @@ public class EnemyDeathReaction : PoolAble
 
     IEnumerator PlayDestroySound()
     {
-        AudioSource destroySound = audioSfx.AudioSourceSfx;
-        if (destroySound is not null && destroySound.clip is not null)
+        if (audioSfx != null)
         {
-            destroySound.Play();
-            yield return new WaitForSeconds(destroySound.clip.length);
-            destroySoundEnd = true;
-
-            if (checkDestroyCondition())
+            AudioSource destroySound = audioSfx.AudioSourceSfx;
+            if (destroySound != null && destroySound.clip != null)
             {
-                ReleaseObject();
+                destroySound.Play();
+                yield return new WaitForSeconds(destroySound.clip.length);
+                destroySoundEnd = true;
+
+                if (checkDestroyCondition())
+                {
+                    ReleaseObject();
+                }
             }
         }
     }

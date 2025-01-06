@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioSFX : MonoBehaviour
 {
-    [SerializeField] private AudioClip audioClip;
     private AudioSource audioSourceSfx;
 
     public AudioSource AudioSourceSfx
@@ -20,16 +19,14 @@ public class AudioSFX : MonoBehaviour
         audioSourceSfx = GetComponent<AudioSource>();
         audioSourceSfx.playOnAwake = false;
         audioSourceSfx.loop = false;
-        audioSourceSfx.clip = audioClip;
-        ChangeVolume();
-
-        SavedSettingData.AddListenerSfxVolumeChangeEvent(ChangeVolume);
+        UpdateVolume();
+        AudioManager.Instance.AddSfxAudioSource(UpdateVolume);
     }
     private void OnDestroy()
     {
-        SavedSettingData.RemoveListenerSfxVolumeChangeEvent(ChangeVolume);
+        AudioManager.Instance.RemoveSfxAudioSource(UpdateVolume);
     }
-    private void ChangeVolume()
+    private void UpdateVolume()
     {
         audioSourceSfx.volume = 
             SavedSettingData.SfxVolume * SavedSettingData.MasterVolume * 0.0001f;

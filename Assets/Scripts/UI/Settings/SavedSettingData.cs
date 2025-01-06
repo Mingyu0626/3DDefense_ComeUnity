@@ -9,7 +9,6 @@ namespace Settings
 {
     public static class SavedSettingData
     {
-        class Event : UnityEvent { }
 
         // Display Settings
         private static int resolutionWidth;  // ÇØ»óµµ ³Êºñ
@@ -30,40 +29,7 @@ namespace Settings
         private static int masterVolume;     // ¸¶½ºÅÍ º¼·ý
         private static int sfxVolume;        // ÀÌÆåÆ® º¼·ý
         private static int bgmVolume;        // BGM º¼·ý
-
-        static Event SfxVolumeChangeEvent = new Event();
-        public static void AddListenerSfxVolumeChangeEvent(UnityAction callback)
-        { 
-            SfxVolumeChangeEvent.RemoveListener(callback); 
-            SfxVolumeChangeEvent.AddListener(callback); 
-        }
-        public static void RemoveListenerSfxVolumeChangeEvent(UnityAction callback)
-        { 
-            SfxVolumeChangeEvent.RemoveListener(callback); 
-        }
-        public static void InvokeSfxVolumeChangeEvent() 
-        { 
-            SfxVolumeChangeEvent.Invoke(); 
-        }
-
-        static Event BgmVolumeChangeEvent = new Event();
-        public static void AddListenerBgmVolumeChangeEvent(UnityAction callback) 
-        { 
-            BgmVolumeChangeEvent.RemoveListener(callback); 
-            BgmVolumeChangeEvent.AddListener(callback); 
-        }
-        public static void RemoveListenerBgmVolumeChangeEvent(UnityAction callback) 
-        { 
-            BgmVolumeChangeEvent.RemoveListener(callback); 
-        }
-        public static void InvokeBgmVolumeChangeEvent() 
-        { 
-            BgmVolumeChangeEvent.Invoke(); 
-        }
-
-
         
-
         public static int ResolutionWidth
         {
             get { return resolutionWidth; }
@@ -145,7 +111,8 @@ namespace Settings
             {
                 masterVolume = value; 
                 PlayerPrefs.SetInt(GetMemberName(() => masterVolume), value);
-                InvokeBgmVolumeChangeEvent(); InvokeSfxVolumeChangeEvent();
+                AudioManager.Instance.InvokeSfxVolumeChangeEvent();
+                AudioManager.Instance.InvokeBgmVolumeChangeEvent();
             }
         }
         public static int BgmVolume
@@ -155,7 +122,7 @@ namespace Settings
             {
                 bgmVolume = value; 
                 PlayerPrefs.SetInt(GetMemberName(() => bgmVolume), value);
-                InvokeBgmVolumeChangeEvent();
+                AudioManager.Instance.InvokeBgmVolumeChangeEvent();
             }
         }
         public static int SfxVolume
@@ -165,7 +132,7 @@ namespace Settings
             {
                 sfxVolume = value; 
                 PlayerPrefs.SetInt(GetMemberName(() => sfxVolume), value);
-                InvokeSfxVolumeChangeEvent();
+                AudioManager.Instance.InvokeSfxVolumeChangeEvent();
             }
         }
 

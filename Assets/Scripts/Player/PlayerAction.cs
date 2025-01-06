@@ -75,18 +75,18 @@ public class PlayerAction : MonoBehaviour
     void OnFirePerformed(InputAction.CallbackContext context)
     {
         GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
-        if (playerBulletGO is not null && shootingPoint is not null)
+        if (playerBulletGO != null && shootingPoint != null)
         {
             playerBulletGO.transform.position = shootingPoint.position;
             playerBulletGO.transform.rotation = shootingPoint.rotation;
         }
 
-        if (fireEffect is not null)
+        if (fireEffect != null)
         {
             fireEffect.Play();
         }
 
-        if (fireAudio is not null)
+        if (fireAudio != null)
         {
             fireAudio.Play();
         }

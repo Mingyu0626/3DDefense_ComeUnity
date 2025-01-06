@@ -16006,6 +16006,11 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5983219598984706006, guid: f432554f564e69242897607d34218939,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 74d87f992cdadf44394babfad4b57b1c, type: 3}
     - target: {fileID: 6062973425538638583, guid: f432554f564e69242897607d34218939,
         type: 3}
       propertyPath: m_PlayOnAwake
