@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public bool IsWin { get; private set; } = false;
     public InputActions Action { get; private set; }
     private GameObject settingsPanel;
-
     private void Awake()
     {
         if (Instance != null)
@@ -29,10 +28,18 @@ public class GameManager : MonoBehaviour
         IsWin = isWin;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-        LoadSceneWithName("GameEndScene");
+        LoadSceneWithName(SceneNames.GameEndScene);
     }
     public void LoadSceneWithName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 }
+
+public static class SceneNames
+{
+    public const string LobbyScene = "LobbyScene";
+    public const string GameScene = "GameScene";
+    public const string GameEndScene = "GameEndScene";
+}
+

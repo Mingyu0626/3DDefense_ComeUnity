@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
     private void OnSceneChanged(Scene scene, LoadSceneMode mode)
     {
         Debug.Log(scene.name);
-        if (scene.name.Equals("GameScene"))
+        if (scene.name.Equals(SceneNames.GameScene))
         {
             action.UI.Enable();
         }

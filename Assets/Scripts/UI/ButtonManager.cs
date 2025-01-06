@@ -7,12 +7,6 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-    public enum SceneName
-    {
-        LobbyScene,
-        GameScene,
-        GameEndScene
-    }
     public static ButtonManager Instance { get; private set; }
     private void Awake()
     {
@@ -34,12 +28,12 @@ public class ButtonManager : MonoBehaviour
     private void AddButtonOnClickEvent()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName.Equals(SceneName.LobbyScene.ToString()))
+        if (currentSceneName.Equals(SceneNames.LobbyScene))
         {
             Button startBtn = GameObject.Find("Button_Start").GetComponent<Button>();
             if (startBtn != null)
             {
-                AddListenerOnButton(startBtn, SceneName.GameScene.ToString());
+                AddListenerOnButton(startBtn, SceneNames.GameScene);
             }
             Button settingsBtn = GameObject.Find("Button_Settings").GetComponent<Button>();
             if (settingsBtn != null)
@@ -48,18 +42,18 @@ public class ButtonManager : MonoBehaviour
             }
         }
 
-        if (currentSceneName.Equals(SceneName.GameEndScene.ToString()))
+        if (currentSceneName.Equals(SceneNames.GameEndScene))
         {
             Button retryBtn = GameObject.Find("Button_Retry").GetComponent<Button>();
             if (retryBtn != null)
             {
-                AddListenerOnButton(retryBtn, SceneName.GameScene.ToString());
+                AddListenerOnButton(retryBtn, SceneNames.GameScene);
             }
 
             Button goToLobbyBtn = GameObject.Find("Button_GoToLobby").GetComponent<Button>();
             if (goToLobbyBtn is not null)
             {
-                AddListenerOnButton(goToLobbyBtn, SceneName.LobbyScene.ToString());
+                AddListenerOnButton(goToLobbyBtn, SceneNames.LobbyScene);
             }
         }
     }

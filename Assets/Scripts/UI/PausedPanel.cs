@@ -37,7 +37,7 @@ public class PausedPanel : EscapeableUI
 
     private void onClickExitButton()
     {
-        GameManager.Instance.LoadSceneWithName("LobbyScene");
+        GameManager.Instance.LoadSceneWithName(SceneNames.LobbyScene);
         Close();
     }
 
