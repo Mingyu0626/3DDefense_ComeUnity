@@ -28,7 +28,7 @@ public class Basement : HPComponent
     protected override void ApplyDamage(int damage)
     {
         base.ApplyDamage(damage);
-        InGameUI.Instance.SetBasementHPSlider(curHP);
+        UIGameScene.Instance.SetBasementHPSlider(curHP);
     }
 
     protected override void OnTriggerEnter(Collider other)

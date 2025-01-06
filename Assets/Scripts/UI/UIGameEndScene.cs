@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEndUI : MonoBehaviour
+public class UIGameEndScene : MonoBehaviour
 {
     [SerializeField]
     private GameObject winText;
