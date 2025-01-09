@@ -5,19 +5,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class ButtonManager : MonoBehaviour
+public class ButtonManager : Singleton<ButtonManager>
 {
-    public static ButtonManager Instance { get; private set; }
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+        base.Awake();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
