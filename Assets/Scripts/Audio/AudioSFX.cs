@@ -13,7 +13,6 @@ public class AudioSFX : MonoBehaviour
         get {  return audioSourceSfx; }
         private set { audioSourceSfx = value; }
     }
-
     private void Awake()
     {
         audioSourceSfx = GetComponent<AudioSource>();
@@ -21,6 +20,7 @@ public class AudioSFX : MonoBehaviour
         audioSourceSfx.loop = false;
         UpdateVolume();
         AudioManager.Instance.AddSfxAudioSource(UpdateVolume);
+
     }
     private void OnDestroy()
     {

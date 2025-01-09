@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
 {
-    private UnityEvent sfxAudioSource;
-    private UnityEvent bgmAudioSource;
+    private UnityEvent sfxAudioSource = new UnityEvent();
+    private UnityEvent bgmAudioSource = new UnityEvent();
 
     public void AddSfxAudioSource(UnityAction callback)
     {
