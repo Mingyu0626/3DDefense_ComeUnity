@@ -27,9 +27,17 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             DontDestroyOnLoad(transform.root.gameObject);
         }
-        else
+        else 
         {
-            DontDestroyOnLoad(gameObject);
+            GameObject rootManagerGO = GameObject.FindGameObjectWithTag("Manager");
+            if (rootManagerGO != null)
+            {
+                transform.SetParent(rootManagerGO.transform);
+            }
+            else
+            {
+                DontDestroyOnLoad(gameObject);
+            }
         }
     }
 }
