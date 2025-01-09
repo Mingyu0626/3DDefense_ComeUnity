@@ -3,22 +3,10 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager Instance { get; private set; }
-
     private UnityEvent sfxAudioSource;
     private UnityEvent bgmAudioSource;
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
     public void AddSfxAudioSource(UnityAction callback)
     {

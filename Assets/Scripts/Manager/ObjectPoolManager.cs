@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ObjectPoolManager : MonoBehaviour
+public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
+    private string objectName;
 
     [System.Serializable]
     private class ObjectInfo
@@ -13,11 +14,9 @@ public class ObjectPoolManager : MonoBehaviour
         public GameObject prefab; // 생성할 GO 
         public int count; // 미리 생성해놓을 오브젝트 수
     }
+
     [SerializeField]
     private ObjectInfo[] objectInfoArray = null;
-
-    public static ObjectPoolManager Instance { get; private set; } // 싱글톤 인스턴스
-    private string objectName;
 
     private class ObjectPoolData
     {
@@ -37,14 +36,9 @@ public class ObjectPoolManager : MonoBehaviour
     // 풀링 오브젝트 일괄 비활성화를 위한 List
     private List<GameObject> activeObjects = new List<GameObject>(); 
 
-    void Awake()
+    protected override void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+        base.Awake();
         Init();
     }
 

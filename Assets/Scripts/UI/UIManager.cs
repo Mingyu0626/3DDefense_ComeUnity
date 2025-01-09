@@ -5,10 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    public static UIManager Instance { get; private set; }
-
     [Header("Prefab")]
     public GameObject settingsWarningPopupPrefab;
     [Header("Heirarchy")]
@@ -21,15 +19,9 @@ public class UIManager : MonoBehaviour
     InputActions action;
     InputAction pauseAction;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        base.Awake();
         if (popupCanvas != null)
         {
             DontDestroyOnLoad(popupCanvas);

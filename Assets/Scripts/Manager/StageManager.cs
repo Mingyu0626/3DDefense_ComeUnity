@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+public class StageManager : Singleton<StageManager>
 {
-    public static StageManager Instance { get; private set; } // 외부에서 StageManager에 접근하기 위한 인스턴스
     private int numOfStages = 4; // 전체 스테이지 수 
     private int currentStage = 1; // 현재 스테이지  
  
@@ -62,14 +61,9 @@ public class StageManager : MonoBehaviour
     // 스테이지 클리어 후 다음 스테이지를 기다리는 중인지 여부를 나타내는 변수
     [SerializeField] private List<Spawner> stageSpawnerList = new List<Spawner>();
 
-    private void Awake()
+    protected override void Awake()
     {   
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+
     }
 
 
