@@ -9,11 +9,13 @@ public class UIManager : Singleton<UIManager>
 {
     [Header("Prefab")]
     public GameObject settingsWarningPopupPrefab;
-    [Header("Heirarchy")]
-    public Transform popupCanvas;
-    public GameObject pausedPanelGO;
-    public GameObject settingsPanelGO;
+    public GameObject popupCanvasPrefab;
 
+    [Header("Heirarchy")]
+
+    private Transform popupCanvas;
+    private GameObject pausedPanelGO;
+    private GameObject settingsPanelGO;
     private List<UnityAction> escapeKeyDownEventList = new List<UnityAction>();
 
     InputActions action;
@@ -22,17 +24,13 @@ public class UIManager : Singleton<UIManager>
     protected override void Awake()
     {
         base.Awake();
-        if (popupCanvas != null)
-        {
-            DontDestroyOnLoad(popupCanvas);
-        }
-    }
-    private void Start()
-    {
         action = GameManager.Instance.Action;
         pauseAction = action.UI.Pause;
         pauseAction.performed += OnPaused;
-        SceneManager.sceneLoaded += OnSceneChanged;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void Start()
+    {
         SetCursorUseable(true);
     }
     private void OnDestroy()
@@ -42,9 +40,19 @@ public class UIManager : Singleton<UIManager>
             action.Dispose();
         }
     }
-    private void OnSceneChanged(Scene scene, LoadSceneMode mode)
+    private void InitPopupCanvas()
     {
-        Debug.Log(scene.name);
+        if (popupCanvas == null)
+        {
+            popupCanvas = Instantiate(popupCanvasPrefab).transform;
+            popupCanvas.gameObject.name = popupCanvas.gameObject.name.Replace("(Clone)", "");
+            pausedPanelGO = popupCanvas.transform.GetChild(0).gameObject;
+            settingsPanelGO = popupCanvas.transform.GetChild(1).gameObject;
+        }
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitPopupCanvas();
         if (scene.name.Equals(SceneNames.GameScene))
         {
             action.UI.Enable();
