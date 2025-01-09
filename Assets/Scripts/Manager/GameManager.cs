@@ -9,6 +9,12 @@ public class GameManager : Singleton<GameManager>
     public InputActions Action { get; private set; }
     private GameObject settingsPanel;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Action = new InputActions();
+    }
+
     public void EndGame(bool isWin)
     {
         IsWin = isWin;

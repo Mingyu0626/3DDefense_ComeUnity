@@ -38,7 +38,6 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
     protected override void Awake()
     {
-        base.Awake();
         Init();
     }
 
