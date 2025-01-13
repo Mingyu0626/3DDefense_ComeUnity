@@ -31,6 +31,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             isDestroyed = true;
             return;
         }
+        else
+        {
+            instance = this as T;
+        }
 
         if (transform.parent != null && transform.root != null)
         {
