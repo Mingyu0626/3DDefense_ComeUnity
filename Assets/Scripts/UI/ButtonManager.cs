@@ -10,12 +10,21 @@ public class ButtonManager : Singleton<ButtonManager>
     protected override void Awake()
     {
         base.Awake();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        AddButtonOnClickEvent();
+        if (!isDestroyed)
+        {
+            AddButtonOnClickEvent();
+        }
     }
 
     private void AddButtonOnClickEvent()

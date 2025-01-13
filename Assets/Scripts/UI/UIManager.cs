@@ -26,20 +26,18 @@ public class UIManager : Singleton<UIManager>
         base.Awake();
         action = GameManager.Instance.Action;
         pauseAction = action.UI.Pause;
+        pauseAction.performed -= OnPaused;
         pauseAction.performed += OnPaused;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Start()
+    protected override void OnDestroy()
     {
-        SetCursorUseable(true);
+        base.OnDestroy();
+        pauseAction.performed -= OnPaused;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    private void OnDestroy()
-    {
-        if (action != null)
-        {
-            action.Dispose();
-        }
-    }
+
     private void InitPopupCanvas()
     {
         if (popupCanvas == null)
@@ -52,15 +50,19 @@ public class UIManager : Singleton<UIManager>
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        InitPopupCanvas();
-        if (scene.name.Equals(SceneNames.GameScene))
+        if (!isDestroyed)
         {
-            action.UI.Enable();
-        }
-        else
-        {
-            action.UI.Disable();
-            SetCursorUseable(true);
+            InitPopupCanvas();
+            if (scene.name.Equals(SceneNames.GameScene))
+            {
+                action.UI.Enable();
+                SetCursorUseable(false);
+            }
+            else
+            {
+                action.UI.Disable();
+                SetCursorUseable(true);
+            }
         }
     }
     private void OnPaused(InputAction.CallbackContext context)

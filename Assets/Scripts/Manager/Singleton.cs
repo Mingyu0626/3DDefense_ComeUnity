@@ -5,6 +5,7 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected bool dontDestroy = true;
+    protected bool isDestroyed = false; // Destroy 이전에 등록한 이벤트 함수 중복 호출 방지
     private static T instance;
     public static T Instance
     {
@@ -27,6 +28,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         if (instance != null)
         {
             Destroy(transform.root.gameObject);
+            isDestroyed = true;
             return;
         }
 
@@ -46,5 +48,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 DontDestroyOnLoad(gameObject);
             }
         }
+    }
+    protected virtual void OnDestroy()
+    {
+
     }
 }
