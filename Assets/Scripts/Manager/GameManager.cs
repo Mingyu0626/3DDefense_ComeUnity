@@ -12,7 +12,10 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        Action = new InputActions();
+        if (!isDestroyed)
+        {
+            Action = new InputActions();
+        }
     }
 
     public void EndGame(bool isWin)
