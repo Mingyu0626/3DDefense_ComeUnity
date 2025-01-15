@@ -26,16 +26,20 @@ public class CameraAction : MonoBehaviour
     private Vector3 targetRotation;
     private Vector3 currentVelocity;
 
-    void Start()
+    private void Awake()
     {
         action = GameManager.Instance.Action;
-        turnAction = action.Player.Turn;
-        turnAction.Enable();
+        if (action != null)
+        {
+
+            turnAction = action.Player.Turn;
+            turnAction.Enable();
+        }
         mainCamera = gameObject.GetComponent<Camera>();
         UIManager.Instance.SetCursorUseable(false);
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         Vector2 mouseDelta = turnAction.ReadValue<Vector2>();
         Turn(mouseDelta);
@@ -43,9 +47,9 @@ public class CameraAction : MonoBehaviour
         UpdatePlayerRotation();
         UpdateShootingPointRotation();
     }
-    void OnDestroy()
+    private void OnDestroy()
     {
-        action.Player.Disable();
+        action.Player.Turn.Disable();
     }
 
     void Turn(Vector2 delta)
