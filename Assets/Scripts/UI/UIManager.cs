@@ -18,8 +18,8 @@ public class UIManager : Singleton<UIManager>
     private GameObject settingsPanelGO;
     private List<UnityAction> escapeKeyDownEventList = new List<UnityAction>();
 
-    InputActions action;
-    InputAction pauseAction;
+    private InputActions action;
+    private InputAction pauseAction;
 
     protected override void Awake()
     {
