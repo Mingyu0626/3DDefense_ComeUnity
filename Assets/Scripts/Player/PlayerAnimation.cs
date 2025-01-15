@@ -13,31 +13,38 @@ public class PlayerAnimation : MonoBehaviour
 
     void Start()
     {
-        
+        if (animator == null) Debug.Log("Animator°¡ null");
     }
 
     void Update()
     {
-        
     }
 
     public void PlayWalkAnimation()
     {
-        animator.SetBool("isWalking", true);
-        animator.SetBool("isShooting", false);
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isShooting", false);
+        }
     }
 
     public void PlayIdleAnimation()
     {
-        animator.SetBool("isWalking", false);
-        animator.SetBool("isShooting", false);
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isShooting", false);
+        }
     }
 
     public void PlayShootAnimation()
     {
-        animator.SetBool("isWalking", false);
-        animator.SetBool("isShooting", true);
-
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isShooting", true);
+        }
     }
 
 
