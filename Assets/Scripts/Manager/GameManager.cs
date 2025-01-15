@@ -14,7 +14,10 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         if (!isDestroyed)
         {
-            Action = new InputActions();
+            if (Action == null)
+            {
+                Action = new InputActions();
+            }
         }
     }
 

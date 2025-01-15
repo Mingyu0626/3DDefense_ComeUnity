@@ -21,15 +21,18 @@ public class PlayerAction : MonoBehaviour
     private void Awake()
     {
         action = GameManager.Instance.Action;
-        action.Player.Enable();
+        if (action != null)
+        {
+            action.Player.Enable();
+            playerAnimation = GetComponent<PlayerAnimation>();
 
-        moveAction = action.Player.Move;
-        playerAnimation = GetComponent<PlayerAnimation>();
-        moveAction.started += OnMoveStarted;
-        moveAction.canceled += OnMoveCanceled;
+            moveAction = action.Player.Move;
+            AddMoveActionEvent();
 
-        fireAction = action.Player.Fire;
-        fireAction.performed += OnFirePerformed;
+            fireAction = action.Player.Fire;
+            AddFireActionEvent();
+        }
+
         cameraTransform = Camera.main.transform;
 
         audioSfx = GetComponent<AudioSFX>();
@@ -41,33 +44,49 @@ public class PlayerAction : MonoBehaviour
         Vector3 keyboardVector = moveAction.ReadValue<Vector3>();
         Move(keyboardVector.x, keyboardVector.z);
     }
-
     private void OnDestroy()
     {
+        moveAction.started -= OnMoveStarted;
+        moveAction.canceled -= OnMoveCanceled;
+        fireAction.performed -= OnFirePerformed;
         action.Player.Disable();
     }
-
     void Move(float x, float z)
     {
         Vector3 moveDirection = new Vector3(x, 0, z);
-        // Rotate(moveDirection);
         transform.Translate(moveDirection * movementSpeed * Time.deltaTime, Space.Self);
     }
+    void AddMoveActionEvent()
+    {
+        if (moveAction != null && playerAnimation != null)
+        {
+            moveAction.started -= OnMoveStarted;
+            moveAction.started += OnMoveStarted;
 
+            moveAction.canceled -= OnMoveCanceled;
+            moveAction.canceled += OnMoveCanceled;
+        }
+    }
+    void AddFireActionEvent()
+    {
+        if (fireAction != null && playerAnimation != null)
+        {
+            fireAction.performed -= OnFirePerformed;
+            fireAction.performed += OnFirePerformed;
+        }
+    }
     void OnMoveStarted(InputAction.CallbackContext context)
     {
-        if (playerAnimation is not null)
+        if (playerAnimation != null)
         {
-            // Debug.Log("Play WalkAnimation");
             playerAnimation.PlayWalkAnimation();
         }
     }
 
     void OnMoveCanceled(InputAction.CallbackContext context)
     {
-        if (playerAnimation is not null)
+        if (playerAnimation != null)
         {
-            // Debug.Log("Play IdleAnimation");
             playerAnimation.PlayIdleAnimation();
         }
     }
