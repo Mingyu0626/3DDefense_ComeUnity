@@ -1,11 +1,11 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.7.17">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1686" dy="952" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3693" dy="2787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-1" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Scene(Game)Manager&lt;/font&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="480" y="40" width="310" height="260" as="geometry" />
+          <mxGeometry x="730" y="30" width="310" height="260" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-2" value="There is no any field." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-1">
           <mxGeometry y="26" width="310" height="84" as="geometry" />
@@ -13,35 +13,40 @@
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-1">
           <mxGeometry y="110" width="310" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-4" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ IsWin() : bool { get; private set; }&lt;br&gt;+ Action() : InputActions { get; private set; }&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ LoadSceneWithName(string) : void&lt;/font&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ EndGame(bool) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-1">
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-4" value="&lt;div&gt;&lt;span style=&quot;background-color: initial; font-size: 14px;&quot;&gt;+ IsWin() : bool { get; private set; }&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ Action() : InputActions { get; private set; }&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;# &amp;lt;&amp;lt;override&amp;gt;&amp;gt; Awake() : void&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ LoadSceneWithName(string) : void&lt;/font&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ EndGame(bool) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-1">
           <mxGeometry y="118" width="310" height="142" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-5" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Singleton&amp;lt;T&amp;gt;&lt;/font&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="160" y="40" width="290" height="228" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-33" style="edgeStyle=none;curved=0;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;strokeWidth=3;exitX=0.503;exitY=1.003;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="vxotQpGn6Yq8NNe8dFIu-8" target="vxotQpGn6Yq8NNe8dFIu-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-635" y="-110" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-6" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- instance : T&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;# isDestoryed : bool&lt;/font&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-5">
-          <mxGeometry y="26" width="290" height="84" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-5" value="&lt;font style=&quot;font-size: 30px;&quot;&gt;Singleton&amp;lt;T&amp;gt;&lt;/font&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-800" y="-414" width="330" height="214" as="geometry" />
+        </mxCell>
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-6" value="&lt;div style=&quot;font-size: 20px;&quot;&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;- instance : T&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;# isDestoryed : bool&lt;/font&gt;&lt;div style=&quot;font-size: 20px;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-5">
+          <mxGeometry y="50" width="330" height="74" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-5">
-          <mxGeometry y="110" width="290" height="8" as="geometry" />
+          <mxGeometry y="124" width="330" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-8" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;+ Instance() : T { get; }&lt;/font&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;#&amp;nbsp;&amp;lt;&amp;lt;virtual&amp;gt;&amp;gt; Awake() : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;#&amp;nbsp;&amp;lt;&amp;lt;virtual&amp;gt;&amp;gt; OnDestroy() : void&lt;/font&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-5">
-          <mxGeometry y="118" width="290" height="110" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-8" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;+ Instance() : T { get; }&lt;/font&gt;&lt;div style=&quot;font-size: 20px;&quot;&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;#&amp;nbsp;&amp;lt;&amp;lt;virtual&amp;gt;&amp;gt; Awake() : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 20px;&quot;&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;#&amp;nbsp;&amp;lt;&amp;lt;virtual&amp;gt;&amp;gt; OnDestroy() : void&lt;/font&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-5">
+          <mxGeometry y="132" width="330" height="82" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-9" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;UIManager&lt;/font&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="20" y="840" width="670" height="420" as="geometry" />
+          <mxGeometry x="20" y="30" width="670" height="470" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-10" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;- popupCanvas : Transform&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- pausedPanelGO : GameObject&lt;br&gt;- settingsPanelGO : GameObject&lt;br&gt;- escapeKeyDownEventList : List&amp;lt;UnityAction&amp;gt;&lt;br&gt;- action : InputActions&lt;br&gt;- pauseAction : InputAction&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-9">
-          <mxGeometry y="26" width="670" height="144" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-10" value="&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;+ settingsWarningPopupPrefab : GameObject&lt;br&gt;+ popupCanvasPrefab : GameObject&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- popupCanvas : Transform&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- pausedPanelGO : GameObject&lt;br&gt;- settingsPanelGO : GameObject&lt;br&gt;- escapeKeyDownEventList : List&amp;lt;UnityAction&amp;gt;&lt;br&gt;- action : InputActions&lt;br&gt;- pauseAction : InputAction&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-9">
+          <mxGeometry y="26" width="670" height="164" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-9">
-          <mxGeometry y="170" width="670" height="8" as="geometry" />
+          <mxGeometry y="190" width="670" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-12" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;- InitPopupCanvas() : void&lt;br&gt;- OnSceneLoaded(Scene, LoadSceneMode) : void&lt;br&gt;- OnPaused(InputAction.CallbackContext) : void&lt;br&gt;+ SetCursorUseable(bool) : void&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;+ AddEscapeListener(UnityAction) : void&lt;br&gt;+ RemoveEscapeListener(UnityAction) : void&lt;br&gt;+ CreateWarning2BtnPopup(SettingsWarningPopup, string, string, string, string, UnityAction, UnityAction) :&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 14px; background-color: initial;&quot;&gt;SettingsWarningPopup&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;+ CreateWarning2BtnPopup(SettingsWarningPopup, string, string, string, UnityAction) :&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 14px;&quot;&gt;SettingsWarningPopup&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial; font-size: 14px;&quot;&gt;+ OpenPausedPanel(bool) : void&lt;br&gt;+ OpenSettingsPanel(bool) : void&lt;br&gt;+ CheckPausedPanelOpened() : bool&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-9">
-          <mxGeometry y="178" width="670" height="242" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-12" value="&lt;div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;# &amp;lt;&amp;lt;override&amp;gt;&amp;gt; Awake() : void&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;# &amp;lt;&amp;lt;override&amp;gt;&amp;gt; OnDestroy() : void&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- InitPopupCanvas() : void&lt;br&gt;- OnSceneLoaded(Scene, LoadSceneMode) : void&lt;br&gt;- OnPaused(InputAction.CallbackContext) : void&lt;br&gt;+ SetCursorUseable(bool) : void&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;+ AddEscapeListener(UnityAction) : void&lt;br&gt;+ RemoveEscapeListener(UnityAction) : void&lt;br&gt;+ CreateWarning2BtnPopup(SettingsWarningPopup, string, string, string, string, UnityAction, UnityAction) :&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 14px; background-color: initial;&quot;&gt;SettingsWarningPopup&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;+ CreateWarning2BtnPopup(SettingsWarningPopup, string, string, string, UnityAction) :&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; font-size: 14px;&quot;&gt;SettingsWarningPopup&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial; font-size: 14px;&quot;&gt;+ OpenPausedPanel(bool) : void&lt;br&gt;+ OpenSettingsPanel(bool) : void&lt;br&gt;+ CheckPausedPanelOpened() : bool&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-9">
+          <mxGeometry y="198" width="670" height="272" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-13" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;ButtonManager&lt;/font&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="20" y="480" width="430" height="330" as="geometry" />
+          <mxGeometry x="-440" y="30" width="430" height="330" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-14" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;There is no any field.&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-13">
           <mxGeometry y="26" width="430" height="26" as="geometry" />
@@ -49,11 +54,11 @@
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-13">
           <mxGeometry y="52" width="430" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-16" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;- OnSceneLoaded(Scene, LoadSceneMode) : void&lt;/font&gt;&lt;div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddButtonOnClickEvent() : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddListenerOnButton(Button, string) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddListenerOnButton(Button, UnityAction) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddListenerOnButton(Button, UnityAction&amp;lt;T&amp;gt;, T) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddListenerOnButton(Button, UnityAction&amp;lt;T1, T2&amp;gt;, T1, T2) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- RemoveListenerOnButton(Button, string) : void&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-13">
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-16" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;# &amp;lt;&amp;lt;override&amp;gt;&amp;gt; Awake() : void&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;# &amp;lt;&amp;lt;override&amp;gt;&amp;gt; OnDestroy() : void&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- OnSceneLoaded(Scene, LoadSceneMode) : void&lt;/font&gt;&lt;div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddButtonOnClickEvent() : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddListenerOnButton(Button, string) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddListenerOnButton(Button, UnityAction) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddListenerOnButton(Button, UnityAction&amp;lt;T&amp;gt;, T) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- AddListenerOnButton(Button, UnityAction&amp;lt;T1, T2&amp;gt;, T1, T2) : void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- RemoveListenerOnButton(Button, string) : void&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-13">
           <mxGeometry y="60" width="430" height="270" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-18" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;AudioManager&lt;/font&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="480" y="480" width="330" height="290" as="geometry" />
+          <mxGeometry x="-800" y="30" width="330" height="290" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-19" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;- sfxAudioSource : UnityEvent&lt;/font&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;- bgmAudioSource : UnityEvent&lt;/font&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-18">
           <mxGeometry y="26" width="330" height="84" as="geometry" />
@@ -64,29 +69,75 @@
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-21" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;+ AddSfxAudioSource(UnityAction): void&lt;/font&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ AddBgmAudioSource(UnityAction): void&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ RemoveSfxAudioSource(UnityAction): void&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ RemoveBgmAudioSource(UnityAction): void&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;+ InvokeSfxVolumeChangeEvent() : void&lt;br&gt;+ InvokeBgmVolumeChangeEvent() : void&lt;/font&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-18">
           <mxGeometry y="118" width="330" height="172" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-23" value="StageManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="840" y="480" width="160" height="86" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-23" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;StageManager&lt;/font&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1060" y="30" width="560" height="488" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-24" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-23">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-24" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;- numOfStages : int&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- currentStage : int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- currentEnemyCount : int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- currentKilledEnemyCount : int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- goalEnemyCount : int[]&lt;br&gt;- enemyCountToFail : int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- delayBeforNextStage : float&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- watingNextStage : bool&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- stageSpawnerList : List&amp;lt;Spawner&amp;gt;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-23">
+          <mxGeometry y="26" width="560" height="164" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-25" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-23">
-          <mxGeometry y="52" width="160" height="8" as="geometry" />
+          <mxGeometry y="190" width="560" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-26" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-23">
-          <mxGeometry y="60" width="160" height="26" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-26" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;+ CurrentEnemyCount() : int { get; set; }&lt;br&gt;+ CurrentKilledEnemyCount() : int { get; set; }&lt;br&gt;+ WaitngNextStage() : bool { get; private set; }&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;# &amp;lt;&amp;lt;override&amp;gt;&amp;gt; Awake() : void&lt;/span&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- Start() : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- InitCountAndGoalEnemyCount() : void&lt;br&gt;- CheckClearCondition() : void&lt;br&gt;- CheckFailCondition() : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- ClearStage() : IEnumerator&lt;br&gt;- FailStage() : void&lt;br&gt;- SetActiveAllSpawners(bool) : void&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-23">
+          <mxGeometry y="198" width="560" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-27" value="ObjectPoolManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="827" y="40" width="160" height="86" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-27" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;ObjectPoolManager&lt;/font&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1650" y="30" width="470" height="340" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-28" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-27">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-28" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;- objectName : string&lt;br&gt;- [SerializeField] objectInfoArray : ObjectInfo[]&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- objectPoolDic : Dictionary&amp;lt;string, ObjectPoolData&amp;gt;&lt;br&gt;- activeObjects : List&amp;lt;GameObject&amp;gt;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-27">
+          <mxGeometry y="26" width="470" height="84" as="geometry" />
         </mxCell>
         <mxCell id="vxotQpGn6Yq8NNe8dFIu-29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-27">
-          <mxGeometry y="52" width="160" height="8" as="geometry" />
+          <mxGeometry y="110" width="470" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="vxotQpGn6Yq8NNe8dFIu-30" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-27">
-          <mxGeometry y="60" width="160" height="26" as="geometry" />
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-30" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;# &amp;lt;&amp;lt;override&amp;gt;&amp;gt; Awake() : void&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- Init() : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;- CreatePooledItem() : GameObject&lt;br&gt;- OnTakeFromPool(GameObject) : void&lt;br&gt;- OnReturnedPool(GameObject) : void&lt;br&gt;- OnDestroyPoolObject(GameObject) : void&lt;br&gt;+ GetGameObject(string) : GameObject&lt;br&gt;+ ReturnAllActiveObjectsToPool() : void&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="vxotQpGn6Yq8NNe8dFIu-27">
+          <mxGeometry y="118" width="470" height="222" as="geometry" />
+        </mxCell>
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-36" style="edgeStyle=none;curved=0;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;strokeWidth=3;exitX=0.5;exitY=1.003;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="vxotQpGn6Yq8NNe8dFIu-8" target="vxotQpGn6Yq8NNe8dFIu-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-225.82999999999998" y="-210" as="sourcePoint" />
+            <mxPoint x="-225.82999999999998" y="-70" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-635" y="-80" />
+              <mxPoint x="-225" y="-80" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-37" style="edgeStyle=none;curved=0;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;strokeWidth=3;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="vxotQpGn6Yq8NNe8dFIu-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-230" y="-80" as="sourcePoint" />
+            <mxPoint x="190.82999999999998" y="-40" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="355" y="-80" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-38" style="edgeStyle=none;curved=0;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;strokeWidth=3;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="vxotQpGn6Yq8NNe8dFIu-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="-80" as="sourcePoint" />
+            <mxPoint x="925" y="30" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="885" y="-80" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-39" style="edgeStyle=none;curved=0;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;strokeWidth=3;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="vxotQpGn6Yq8NNe8dFIu-23">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="890" y="-80" as="sourcePoint" />
+            <mxPoint x="1415" y="30" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1340" y="-80" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vxotQpGn6Yq8NNe8dFIu-40" style="edgeStyle=none;curved=0;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;strokeWidth=3;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="vxotQpGn6Yq8NNe8dFIu-27">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1340" y="-80" as="sourcePoint" />
+            <mxPoint x="1790" y="30" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1885" y="-80" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
