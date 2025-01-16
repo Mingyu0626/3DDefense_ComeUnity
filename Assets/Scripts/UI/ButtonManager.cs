@@ -1,61 +1,59 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class ButtonManager : Singleton<ButtonManager>
+public class ButtonManager : Singleton<ButtonManager>, ISceneObserver
 {
     protected override void Awake()
     {
         base.Awake();
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void Start()
     {
-        if (!isDestroyed)
-        {
-            AddButtonOnClickEvent();
-        }
+        GameManager.Instance.AddObserver(this);
     }
-
-    private void AddButtonOnClickEvent()
+    public void OnSceneChanged(string sceneName)
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName.Equals(SceneNames.LobbyScene))
+        AddButtonOnClickEvent(sceneName);
+    }
+    private void AddButtonOnClickEvent(string sceneName)
+    {
+        switch (sceneName)
         {
-            Button startBtn = GameObject.Find("Button_Start").GetComponent<Button>();
-            if (startBtn != null)
-            {
-                AddListenerOnButton(startBtn, SceneNames.GameScene);
-            }
-            Button settingsBtn = GameObject.Find("Button_Settings").GetComponent<Button>();
-            if (settingsBtn != null)
-            {
-                AddListenerOnButton(settingsBtn, UIManager.Instance.OpenSettingsPanel, true);
-            }
-        }
+            case SceneNames.LobbyScene:
+                Button startBtn = GameObject.Find("Button_Start").GetComponent<Button>();
+                if (startBtn != null)
+                {
+                    AddListenerOnButton(startBtn, SceneNames.GameScene);
+                }
+                Button settingsBtn = GameObject.Find("Button_Settings").GetComponent<Button>();
+                if (settingsBtn != null)
+                {
+                    AddListenerOnButton(settingsBtn, UIManager.Instance.OpenSettingsPanel, true);
+                }
+                break;
+            case SceneNames.GameEndScene:
+                Button retryBtn = GameObject.Find("Button_Retry").GetComponent<Button>();
+                if (retryBtn != null)
+                {
+                    AddListenerOnButton(retryBtn, SceneNames.GameScene);
+                }
 
-        if (currentSceneName.Equals(SceneNames.GameEndScene))
-        {
-            Button retryBtn = GameObject.Find("Button_Retry").GetComponent<Button>();
-            if (retryBtn != null)
-            {
-                AddListenerOnButton(retryBtn, SceneNames.GameScene);
-            }
-
-            Button goToLobbyBtn = GameObject.Find("Button_GoToLobby").GetComponent<Button>();
-            if (goToLobbyBtn is not null)
-            {
-                AddListenerOnButton(goToLobbyBtn, SceneNames.LobbyScene);
-            }
+                Button goToLobbyBtn = GameObject.Find("Button_GoToLobby").GetComponent<Button>();
+                if (goToLobbyBtn is not null)
+                {
+                    AddListenerOnButton(goToLobbyBtn, SceneNames.LobbyScene);
+                }
+                break;
+            default:
+                break;
         }
     }
     private void AddListenerOnButton(Button btn, string sceneName)

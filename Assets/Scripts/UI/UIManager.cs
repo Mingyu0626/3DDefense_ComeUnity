@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEditor.SearchService;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : Singleton<UIManager>, ISceneObserver
 {
+    private FadeManager fadeManager;
+    public ref FadeManager FadeManager
+    {
+        get { return ref fadeManager; }
+    }
     [Header("Prefab")]
     public GameObject settingsWarningPopupPrefab;
     public GameObject popupCanvasPrefab;
-
-    [Header("Heirarchy")]
 
     private Transform popupCanvas;
     private GameObject pausedPanelGO;
@@ -25,17 +29,33 @@ public class UIManager : Singleton<UIManager>
     {
         base.Awake();
         action = GameManager.Instance.Action;
+        fadeManager = new FadeManager();
         pauseAction = action.UI.Pause;
         pauseAction.performed -= OnPaused;
         pauseAction.performed += OnPaused;
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     protected override void OnDestroy()
     {
         base.OnDestroy();
         pauseAction.performed -= OnPaused;
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void Start()
+    {
+        GameManager.Instance.AddObserver(this);
+    }
+    public void OnSceneChanged(string sceneName)
+    {
+        InitPopupCanvas();
+        if (sceneName.Equals(SceneNames.GameScene))
+        {
+            action.UI.Enable();
+            SetCursorUseable(false);
+        }
+        else
+        {
+            action.UI.Disable();
+            SetCursorUseable(true);
+        }
     }
 
     private void InitPopupCanvas()
@@ -46,23 +66,6 @@ public class UIManager : Singleton<UIManager>
             popupCanvas.gameObject.name = popupCanvas.gameObject.name.Replace("(Clone)", "");
             pausedPanelGO = popupCanvas.transform.GetChild(0).gameObject;
             settingsPanelGO = popupCanvas.transform.GetChild(1).gameObject;
-        }
-    }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (!isDestroyed)
-        {
-            InitPopupCanvas();
-            if (scene.name.Equals(SceneNames.GameScene))
-            {
-                action.UI.Enable();
-                SetCursorUseable(false);
-            }
-            else
-            {
-                action.UI.Disable();
-                SetCursorUseable(true);
-            }
         }
     }
     private void OnPaused(InputAction.CallbackContext context)

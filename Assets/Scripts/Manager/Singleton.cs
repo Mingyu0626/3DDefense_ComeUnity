@@ -5,6 +5,7 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected Singleton() { }
+    protected bool dontDestroy = true;
     private static T instance;
     public static T Instance
     {
@@ -22,16 +23,11 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             return instance;
         }
     }
-
-    protected bool dontDestroy = true;
-    protected bool isDestroyed = false; // Destroy 이전에 등록한 이벤트 함수 중복 호출 방지
-
     protected virtual void Awake()
     {
         if (instance != null)
         {
             Destroy(transform.root.gameObject);
-            isDestroyed = true;
             return;
         }
         else
@@ -39,7 +35,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             instance = this as T;
         }
 
-        if (transform.parent != null && transform.root != null)
+        if (dontDestroy && transform.parent != null && transform.root != null)
         {
             DontDestroyOnLoad(transform.root.gameObject);
         }
@@ -50,7 +46,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             {
                 transform.SetParent(rootManagerGO.transform);
             }
-            else
+            else if (dontDestroy)
             {
                 DontDestroyOnLoad(gameObject);
             }

@@ -13,14 +13,8 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        if (!isDestroyed)
-        {
-            if (Action == null)
-            {
-                Action = new InputActions();
-                SceneManager.sceneLoaded += NotifySceneChanged;
-            }
-        }
+        Action = new InputActions();
+        SceneManager.sceneLoaded += NotifySceneChanged;
     }
 
     public void AddObserver(ISceneObserver observer)

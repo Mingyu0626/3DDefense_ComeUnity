@@ -3,11 +3,32 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : Singleton<AudioManager>, ISceneObserver
 {
     private UnityEvent sfxAudioSource = new UnityEvent();
     private UnityEvent bgmAudioSource = new UnityEvent();
-
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+    private void Start()
+    {
+        GameManager.Instance.AddObserver(this);
+    }
+    public void OnSceneChanged(string sceneName)
+    {
+        switch (sceneName)
+        {
+            case SceneNames.LobbyScene:
+                break;
+            case SceneNames.GameScene:
+                break;
+            case SceneNames.GameEndScene:
+                break;
+            default:
+                break;
+        }
+    }
     public void AddSfxAudioSource(UnityAction callback)
     {
         sfxAudioSource.RemoveListener(callback);
@@ -15,7 +36,7 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void AddBgmAudioSource(UnityAction callback)
     {
-        bgmAudioSource.RemoveListener(callback);
+        bgmAudioSource.RemoveAllListeners();
         bgmAudioSource.AddListener(callback);
     }
     public void RemoveSfxAudioSource(UnityAction callback)
@@ -24,7 +45,7 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void RemoveBgmAudioSource(UnityAction callback)
     {
-        bgmAudioSource.AddListener(callback);
+        bgmAudioSource.RemoveAllListeners();
     }
     public void InvokeSfxVolumeChangeEvent()
     {

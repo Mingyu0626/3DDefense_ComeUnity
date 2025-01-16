@@ -1208,7 +1208,7 @@ GameObject:
   - component: {fileID: 2132910437}
   - component: {fileID: 2132910438}
   m_Layer: 0
-  m_Name: LoadingAnimation
+  m_Name: IntroAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
