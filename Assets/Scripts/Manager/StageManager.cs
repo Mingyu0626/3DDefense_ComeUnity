@@ -36,7 +36,7 @@ public class StageManager : Singleton<StageManager>
     private int[] goalEnemyCount; // 스테이지 별 목표 적 처치수를 저장하는 배열 
     private int enemyCountToFail = 50; // 게임 오버가 되는 최소 적의 수
     private float delayBeforeNextStage = 3f; // 스테이지 클리어 후 다음 스테이지 시작 전까지의 딜레이
-    private bool waitingNextStage;
+    private bool waitingNextStage;     // 스테이지 클리어 후 다음 스테이지를 기다리는 중인지 여부를 나타내는 변수
     public bool WaitingNextStage 
     { 
         get
@@ -58,7 +58,7 @@ public class StageManager : Singleton<StageManager>
             }
         }
     } 
-    // 스테이지 클리어 후 다음 스테이지를 기다리는 중인지 여부를 나타내는 변수
+
     [SerializeField] private List<Spawner> stageSpawnerList = new List<Spawner>();
 
     protected override void Awake()

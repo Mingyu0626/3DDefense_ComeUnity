@@ -7,7 +7,6 @@ public class GameManager : Singleton<GameManager>
 {
     public bool IsWin { get; private set; } = false;
     public InputActions Action { get; private set; }
-    private GameObject settingsPanel;
 
     protected override void Awake()
     {
