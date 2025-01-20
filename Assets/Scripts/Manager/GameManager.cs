@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         Action = new InputActions();
-        SceneManager.sceneLoaded += NotifySceneChanged;
+        SceneManager.sceneLoaded += NotifyCompleteSceneChange;
     }
 
     public void AddObserver(ISceneObserver observer)
@@ -31,7 +31,14 @@ public class GameManager : Singleton<GameManager>
             observerList.Remove(observer);
         }
     }
-    public void NotifySceneChanged(Scene scene, LoadSceneMode mode)
+    public void NotifyStartSceneChange(Scene scene, LoadSceneMode mode)
+    {
+        foreach (var observer in observerList)
+        {
+            observer.OnSceneClosed(scene.name);
+        }
+    }
+    public void NotifyCompleteSceneChange(Scene scene, LoadSceneMode mode)
     {
         foreach (var observer in observerList)
         {
@@ -46,12 +53,13 @@ public class GameManager : Singleton<GameManager>
     }
     public void LoadSceneWithName(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        UIManager.Instance.OnSceneClosed(() => SceneManager.LoadScene(sceneName));
     }
 }
 
 public static class SceneNames
 {
+    public const string LoadingScene = "LoadingScene";
     public const string LobbyScene = "LobbyScene";
     public const string GameScene = "GameScene";
     public const string GameEndScene = "GameEndScene";

@@ -2,20 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using UnityEditor.SearchService;
+using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>, ISceneObserver
 {
-    private FadeManager fadeManager;
-    public ref FadeManager FadeManager
+    private UIFadeManager fadeManager;
+    public ref UIFadeManager FadeManager
     {
         get { return ref fadeManager; }
     }
+    private UIAnimationManager animationManager;
+    public ref UIAnimationManager AnimationManager
+    {
+        get { return ref animationManager; }
+    }
+
     [Header("Prefab")]
-    public GameObject settingsWarningPopupPrefab;
-    public GameObject popupCanvasPrefab;
+    [SerializeField] private GameObject settingsWarningPopupPrefab;
+    [SerializeField] private GameObject popupCanvasPrefab;
+    [SerializeField] private RectTransform leftPanelForSplitAnimation;
+    [SerializeField] private RectTransform rightPanelForSplitAnimation;
 
     private Transform popupCanvas;
     private GameObject pausedPanelGO;
@@ -29,7 +36,10 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     {
         base.Awake();
         action = GameManager.Instance.Action;
-        fadeManager = new FadeManager();
+        fadeManager = new UIFadeManager();
+        animationManager = new UIAnimationManager();
+        animationManager.InitSplitPanelRectTransform
+            (ref leftPanelForSplitAnimation, ref rightPanelForSplitAnimation);
         pauseAction = action.UI.Pause;
         pauseAction.performed -= OnPaused;
         pauseAction.performed += OnPaused;
@@ -45,6 +55,8 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     }
     public void OnSceneChanged(string sceneName)
     {
+        animationManager.AnimationSlideOut
+            (ref leftPanelForSplitAnimation, ref rightPanelForSplitAnimation);
         InitPopupCanvas();
         if (sceneName.Equals(SceneNames.GameScene))
         {
@@ -56,6 +68,12 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
             action.UI.Disable();
             SetCursorUseable(true);
         }
+    }
+    public void OnSceneClosed(System.Action callback)
+    {
+        animationManager.AnimationSlideIn
+            (ref leftPanelForSplitAnimation,
+            ref rightPanelForSplitAnimation, callback);
     }
 
     private void InitPopupCanvas()
