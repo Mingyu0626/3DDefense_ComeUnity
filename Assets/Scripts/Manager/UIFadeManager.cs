@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeManager
+public class UIFadeManager
 {
     public IEnumerator FadeIn(Graphic obj, float fadeTime = 1f, System.Action onComplete = null)
     {
