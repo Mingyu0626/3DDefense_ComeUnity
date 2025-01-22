@@ -21,8 +21,8 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     [Header("Prefab")]
     [SerializeField] private GameObject settingsWarningPopupPrefab;
     [SerializeField] private GameObject popupCanvasPrefab;
-    [SerializeField] private RectTransform leftPanelForSplitAnimation;
-    [SerializeField] private RectTransform rightPanelForSplitAnimation;
+    [SerializeField] private RectTransform leftPanelForSlideAnimation;
+    [SerializeField] private RectTransform rightPanelForSlideAnimation;
 
     private Transform popupCanvas;
     private GameObject pausedPanelGO;
@@ -38,8 +38,9 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
         action = GameManager.Instance.Action;
         fadeManager = new UIFadeManager();
         animationManager = new UIAnimationManager();
-        animationManager.InitSplitPanelRectTransform
-            (ref leftPanelForSplitAnimation, ref rightPanelForSplitAnimation);
+        animationManager.InitSlidePanelRectTransform
+            (ref leftPanelForSlideAnimation, ref rightPanelForSlideAnimation);
+        DontDestroyOnLoad(leftPanelForSlideAnimation.root.gameObject);
         pauseAction = action.UI.Pause;
         pauseAction.performed -= OnPaused;
         pauseAction.performed += OnPaused;
@@ -55,8 +56,7 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     }
     public void OnSceneChanged(string sceneName)
     {
-        animationManager.AnimationSlideOut
-            (ref leftPanelForSplitAnimation, ref rightPanelForSplitAnimation);
+        animationManager.AnimationSlideOut(1f);
         InitPopupCanvas();
         if (sceneName.Equals(SceneNames.GameScene))
         {
@@ -71,9 +71,7 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     }
     public void OnSceneClosed(System.Action callback)
     {
-        animationManager.AnimationSlideIn
-            (ref leftPanelForSplitAnimation,
-            ref rightPanelForSplitAnimation, callback);
+        animationManager.AnimationSlideIn(1f, callback);
     }
 
     private void InitPopupCanvas()

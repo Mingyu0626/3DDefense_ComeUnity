@@ -6,41 +6,59 @@ using UnityEngine;
 
 public class UIAnimationManager
 {
-    private float scalarSplitAnimation;
-    public void InitSplitPanelRectTransform(ref RectTransform left, ref RectTransform right)
-    {
-        scalarSplitAnimation = SavedSettingData.ResolutionWidth / 2;
-        if (left != null && right != null)
-        {
-            left.anchoredPosition3D = new Vector3(
-                -SavedSettingData.ResolutionWidth + SavedSettingData.ResolutionWidth / 4,
-                left.anchoredPosition3D.y,
-                left.anchoredPosition3D.z);
-            right.anchoredPosition3D = new Vector3(
-                SavedSettingData.ResolutionWidth - SavedSettingData.ResolutionWidth / 4,
-                right.anchoredPosition3D.y,
-                right.anchoredPosition3D.z);
+    private RectTransform slidePanelLeft, slidePanelRight;
 
-            left.localScale = new Vector3(
+    private float scalarSlideAnimation;
+
+
+    public void InitSlidePanelRectTransform(ref RectTransform left, ref RectTransform right)
+    {
+        slidePanelLeft = left;
+        slidePanelRight = right;
+        scalarSlideAnimation = SavedSettingData.ResolutionWidth / 2;
+        if (slidePanelLeft != null && right != null)
+        {
+            slidePanelLeft.anchoredPosition3D = new Vector3(
+                -SavedSettingData.ResolutionWidth + SavedSettingData.ResolutionWidth / 4,
+                slidePanelLeft.anchoredPosition3D.y,
+                slidePanelLeft.anchoredPosition3D.z);
+            slidePanelRight.anchoredPosition3D = new Vector3(
+                SavedSettingData.ResolutionWidth - SavedSettingData.ResolutionWidth / 4,
+                slidePanelRight.anchoredPosition3D.y,
+                slidePanelRight.anchoredPosition3D.z);
+
+            slidePanelLeft.localScale = new Vector3(
                 SavedSettingData.ResolutionWidth / 2,
                 SavedSettingData.ResolutionHeight,
                 1f);
-            right.localScale = new Vector3(
+            slidePanelRight.localScale = new Vector3(
                 SavedSettingData.ResolutionWidth / 2,
                 SavedSettingData.ResolutionHeight,
                 1f);
         }
     }
-    public void AnimationSlideIn(ref RectTransform left, ref RectTransform right, System.Action onComplete = null)
+    public void AnimationSlideIn(float slideTime = 1f, System.Action onComplete = null)
     {
-        left.DOAnchorPosX(left.anchoredPosition.x + scalarSplitAnimation, 1f);
-        right.DOAnchorPosX(right.anchoredPosition.x - scalarSplitAnimation, 1f)
+        slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x + scalarSlideAnimation, slideTime);
+        slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x - scalarSlideAnimation, slideTime)
             .OnComplete(() => onComplete?.Invoke());
     }
-    public void AnimationSlideOut(ref RectTransform left, ref RectTransform right, System.Action onComplete = null)
+    public void AnimationSlideIn(ref RectTransform left, ref RectTransform right, float slideTime = 1f, System.Action onComplete = null)
     {
-        left.DOAnchorPosX(left.anchoredPosition.x - scalarSplitAnimation, 1f).SetEase(Ease.OutQuad);
-        right.DOAnchorPosX(right.anchoredPosition.x + scalarSplitAnimation, 1f).SetEase(Ease.OutQuad)
+        left.DOAnchorPosX(left.anchoredPosition.x + scalarSlideAnimation, slideTime);
+        right.DOAnchorPosX(right.anchoredPosition.x - scalarSlideAnimation, slideTime)
+            .OnComplete(() => onComplete?.Invoke());
+    }
+    public void AnimationSlideOut(float slideTime = 1f, System.Action onComplete = null)
+    {
+        slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
+        slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
+            .OnComplete(() => onComplete?.Invoke());
+    }
+    public void AnimationSlideOut(ref RectTransform left, ref RectTransform right, float slideTime = 1f, System.Action onComplete = null)
+    {
+        left.DOAnchorPosX(left.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
+        right.DOAnchorPosX(right.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
             .OnComplete(() => onComplete?.Invoke());
     }
 }
