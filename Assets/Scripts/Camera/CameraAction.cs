@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class CameraAction : MonoBehaviour
 {
-    private InputActions action;
     private InputAction turnAction;
     private Camera mainCamera;
 
@@ -28,13 +27,7 @@ public class CameraAction : MonoBehaviour
 
     private void Awake()
     {
-        action = GameManager.Instance.Action;
-        if (action != null)
-        {
-
-            turnAction = action.Player.Turn;
-            turnAction.Enable();
-        }
+        turnAction = InputManager.Instance.Action.Player.Turn;
         mainCamera = gameObject.GetComponent<Camera>();
         UIManager.Instance.SetCursorUseable(false);
     }
@@ -47,11 +40,6 @@ public class CameraAction : MonoBehaviour
         UpdatePlayerRotation();
         UpdateShootingPointRotation();
     }
-    private void OnDestroy()
-    {
-        action.Player.Turn.Disable();
-    }
-
     void Turn(Vector2 delta)
     {
         turnSpeed = SavedSettingData.MouseSensitivity;

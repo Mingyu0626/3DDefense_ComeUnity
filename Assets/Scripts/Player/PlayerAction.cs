@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(AudioSFX))]
 public class PlayerAction : MonoBehaviour
 {
-    private InputActions action;
     private InputAction moveAction, fireAction;
     private PlayerAnimation playerAnimation;
     private float movementSpeed = 20f;
@@ -20,19 +19,12 @@ public class PlayerAction : MonoBehaviour
 
     private void Awake()
     {
-        action = GameManager.Instance.Action;
-        if (action != null)
-        {
-            action.Player.Enable();
-            playerAnimation = GetComponent<PlayerAnimation>();
+        moveAction = InputManager.Instance.Action.Player.Move;
+        fireAction = InputManager.Instance.Action.Player.Fire;
+        AddMoveActionEvent();
+        AddFireActionEvent();
 
-            moveAction = action.Player.Move;
-            AddMoveActionEvent();
-
-            fireAction = action.Player.Fire;
-            AddFireActionEvent();
-        }
-
+        playerAnimation = GetComponent<PlayerAnimation>();
         cameraTransform = Camera.main.transform;
 
         audioSfx = GetComponent<AudioSFX>();
@@ -49,7 +41,6 @@ public class PlayerAction : MonoBehaviour
         moveAction.started -= OnMoveStarted;
         moveAction.canceled -= OnMoveCanceled;
         fireAction.performed -= OnFirePerformed;
-        action.Player.Disable();
     }
     void Move(float x, float z)
     {

@@ -48,13 +48,13 @@ public class StageManager : Singleton<StageManager>
             waitingNextStage = value;
             SetActiveAllSpawners(!value);
             UIGameScene.Instance.SetActiveClearStageTextGO(value);
-            if (GameManager.Instance.Action.Player.enabled)
+            if (InputManager.Instance.IsPlayerActionEnabled())
             {
-                GameManager.Instance.Action.Player.Disable();
+                InputManager.Instance.SetPlayerActionState(false);
             }
             else
             {
-                GameManager.Instance.Action.Player.Enable();
+                InputManager.Instance.SetPlayerActionState(true);
             }
         }
     } 
@@ -62,11 +62,8 @@ public class StageManager : Singleton<StageManager>
     [SerializeField] private List<Spawner> stageSpawnerList = new List<Spawner>();
 
     protected override void Awake()
-    {   
-
+    {
     }
-
-
     private void Start()
     {
         // goalEnemyCount 배열 전체 스테이지 수만큼 동적 할당
@@ -78,6 +75,11 @@ public class StageManager : Singleton<StageManager>
             goalEnemyCount[i] = i;
         }
         InitCountAndGoalEnemyCountUI();
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        StopAllCoroutines();
     }
     private void InitCountAndGoalEnemyCountUI()
     {
@@ -119,7 +121,6 @@ public class StageManager : Singleton<StageManager>
     }
     private void FailStage()
     {
-        // GameManager의 EndGame을 호출
         GameManager.Instance.EndGame(false);
     }
 

@@ -6,14 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public bool IsWin { get; private set; } = false;
-    public InputActions Action { get; private set; }
-
     private List<ISceneObserver> observerList = new List<ISceneObserver>();
 
     protected override void Awake()
     {
         base.Awake();
-        Action = new InputActions();
         SceneManager.sceneLoaded += NotifyCompleteSceneChange;
     }
 

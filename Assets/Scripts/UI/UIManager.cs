@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>, ISceneObserver
 {
@@ -29,19 +28,20 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     private GameObject settingsPanelGO;
     private List<UnityAction> escapeKeyDownEventList = new List<UnityAction>();
 
-    private InputActions action;
-    private InputAction pauseAction;
 
+    private InputAction pauseAction;
     protected override void Awake()
     {
         base.Awake();
-        action = GameManager.Instance.Action;
+
         fadeManager = new UIFadeManager();
+
         animationManager = new UIAnimationManager();
         animationManager.InitSlidePanelRectTransform
             (ref leftPanelForSlideAnimation, ref rightPanelForSlideAnimation);
         DontDestroyOnLoad(leftPanelForSlideAnimation.root.gameObject);
-        pauseAction = action.UI.Pause;
+
+        pauseAction = InputManager.Instance.Action.UI.Pause;
         pauseAction.performed -= OnPaused;
         pauseAction.performed += OnPaused;
     }
@@ -60,12 +60,10 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
         InitPopupCanvas();
         if (sceneName.Equals(SceneNames.GameScene))
         {
-            action.UI.Enable();
             SetCursorUseable(false);
         }
         else
         {
-            action.UI.Disable();
             SetCursorUseable(true);
         }
     }
@@ -95,17 +93,17 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
             OpenPausedPanel();
         }
     }
-    public void SetCursorUseable(bool useCursor)
+    public void SetCursorUseable(bool val)
     {
-        if (useCursor)
+        if (val)
         {
             Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
+            Cursor.visible = val;
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            Cursor.visible = val;
         }
     }
     public void AddEscapeListener(UnityAction listener)

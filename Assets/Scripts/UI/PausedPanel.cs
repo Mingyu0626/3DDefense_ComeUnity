@@ -45,17 +45,19 @@ public class PausedPanel : EscapeableUI
     {
         if (isPause)
         {
+            // 게임 일시정지
             Time.timeScale = 0f;
             UIManager.Instance.SetCursorUseable(true);
-            GameManager.Instance.Action.Player.Disable();
+            InputManager.Instance.SetPlayerActionState(false);
         }
         else
         {
+            // 게임 일시정지 해제
             Time.timeScale = 1f;
             UIManager.Instance.SetCursorUseable(false);
             if (!StageManager.Instance.WaitingNextStage)
             {
-                GameManager.Instance.Action.Player.Enable();
+                InputManager.Instance.SetPlayerActionState(true);
             }
         }
     }
