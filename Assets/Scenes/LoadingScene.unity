@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 398113799}
   - component: {fileID: 398113798}
   m_Layer: 5
-  m_Name: LeftPanelForSplitAnimation
+  m_Name: LeftPanelForSlideAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 608781566}
   - component: {fileID: 608781565}
   m_Layer: 5
-  m_Name: RightPanelForSplitAnimation
+  m_Name: RightPanelForSlideAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1405,8 +1405,8 @@ MonoBehaviour:
     type: 3}
   popupCanvasPrefab: {fileID: 1716181558803477447, guid: 57dced4510fae2e46ba9db1b139d00b8,
     type: 3}
-  leftPanelForSplitAnimation: {fileID: 398113797}
-  rightPanelForSplitAnimation: {fileID: 608781564}
+  leftPanelForSlideAnimation: {fileID: 398113797}
+  rightPanelForSlideAnimation: {fileID: 608781564}
 --- !u!1 &2132910436
 GameObject:
   m_ObjectHideFlags: 0
