@@ -7,7 +7,7 @@ public class HPComponent : MonoBehaviour
 {
 
     [SerializeField]
-    public int MaxHP { get; private set; } = 100;
+    public int MaxHP { get; private set; } = 10;
     protected int curHP;
 
     protected virtual void Awake()
@@ -17,7 +17,7 @@ public class HPComponent : MonoBehaviour
     protected virtual void ApplyDamage(int damage)
     {
         curHP -= damage;
-        curHP = Mathf.Clamp(curHP, 0, MaxHP);
+        // curHP = Mathf.Clamp(curHP, 0, MaxHP);
     }
 
     public bool IsHPZero()
