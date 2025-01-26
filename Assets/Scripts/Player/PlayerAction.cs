@@ -62,7 +62,6 @@ public class PlayerAction : MonoBehaviour
     {
         if (fireAction != null && playerAnimation != null)
         {
-            Debug.Log("FireAction에 이벤트 추가");
             fireAction.performed -= OnFirePerformed;
             fireAction.performed += OnFirePerformed;
         }

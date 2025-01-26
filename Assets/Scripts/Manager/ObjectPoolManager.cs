@@ -71,7 +71,6 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
                 }
             }
         }
-        Debug.Log("오브젝트 풀링 준비 완료");
     }
 
     private GameObject CreatePooledItem()
