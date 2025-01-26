@@ -14,6 +14,10 @@ public class InputManager : Singleton<InputManager>, ISceneObserver
         base.Awake();
         action = new InputActions();
     }
+    private void Start()
+    {
+        GameManager.Instance.AddObserver(this);
+    }
     public void OnSceneChanged(string sceneName)
     {
         if (sceneName.Equals(SceneNames.GameScene))

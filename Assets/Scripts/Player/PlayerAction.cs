@@ -19,13 +19,13 @@ public class PlayerAction : MonoBehaviour
 
     private void Awake()
     {
+        cameraTransform = Camera.main.transform;
         moveAction = InputManager.Instance.Action.Player.Move;
         fireAction = InputManager.Instance.Action.Player.Fire;
-        AddMoveActionEvent();
-        AddFireActionEvent();
 
         playerAnimation = GetComponent<PlayerAnimation>();
-        cameraTransform = Camera.main.transform;
+        AddMoveActionEvent();
+        AddFireActionEvent();
 
         audioSfx = GetComponent<AudioSFX>();
         fireAudio = audioSfx.AudioSourceSfx;
@@ -62,6 +62,7 @@ public class PlayerAction : MonoBehaviour
     {
         if (fireAction != null && playerAnimation != null)
         {
+            Debug.Log("FireAction에 이벤트 추가");
             fireAction.performed -= OnFirePerformed;
             fireAction.performed += OnFirePerformed;
         }
@@ -84,6 +85,7 @@ public class PlayerAction : MonoBehaviour
 
     void OnFirePerformed(InputAction.CallbackContext context)
     {
+        Debug.Log("OnFirePerformed 실행");
         GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
         if (playerBulletGO != null && shootingPoint != null)
         {
