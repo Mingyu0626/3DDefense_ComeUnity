@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>, ISceneObserver
 {
@@ -56,7 +57,7 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     }
     public void OnSceneChanged(string sceneName)
     {
-        animationManager.AnimationSlideOut(1f);
+        animationManager.AnimationSlideOut(1f, () => InputManager.Instance.SetAllActionsState(sceneName));
         InitPopupCanvas();
         if (sceneName.Equals(SceneNames.GameScene))
         {
@@ -67,8 +68,9 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
             SetCursorUseable(true);
         }
     }
-    public void OnSceneClosed(System.Action callback)
+    public void OnSceneClosed(System.Action callback = null)
     {
+        InputManager.Instance.SetAllActionsState(false);
         animationManager.AnimationSlideIn(1f, callback);
     }
 

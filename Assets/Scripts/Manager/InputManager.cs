@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class InputManager : Singleton<InputManager>, ISceneObserver
+public class InputManager : Singleton<InputManager>
 {
     private InputActions action;
     public ref InputActions Action
@@ -14,11 +15,9 @@ public class InputManager : Singleton<InputManager>, ISceneObserver
         base.Awake();
         action = new InputActions();
     }
-    private void Start()
-    {
-        GameManager.Instance.AddObserver(this);
-    }
-    public void OnSceneChanged(string sceneName)
+    public bool IsPlayerActionEnabled() { return action.Player.enabled; }
+    public bool IsUIActionEnabled() { return action.UI.enabled; }
+    public void SetAllActionsState(string sceneName)
     {
         if (sceneName.Equals(SceneNames.GameScene))
         {
@@ -29,9 +28,17 @@ public class InputManager : Singleton<InputManager>, ISceneObserver
             action.Disable();
         }
     }
-    public bool IsPlayerActionEnabled() { return action.Player.enabled; }
-    public bool IsUIActionEnabled() { return action.UI.enabled; }
-
+    public void SetAllActionsState(bool isEnable)
+    {
+        if (isEnable)
+        {
+            action.Enable();
+        }
+        else
+        {
+            action.Disable();
+        }
+    }
     public void SetPlayerActionState(bool isEnable)
     {
         if (isEnable)
