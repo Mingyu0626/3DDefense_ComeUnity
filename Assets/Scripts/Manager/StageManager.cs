@@ -76,11 +76,6 @@ public class StageManager : Singleton<StageManager>
         }
         InitCountAndGoalEnemyCountUI();
     }
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-        StopAllCoroutines();
-    }
     private void InitCountAndGoalEnemyCountUI()
     {
         CurrentEnemyCount = 0;
