@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Settings;
+using TMPro;
 using UnityEngine;
 
 public class UIAnimationManager
@@ -85,4 +86,17 @@ public class UIAnimationManager
         right.DOAnchorPosX(right.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
             .OnComplete(() => onCompleteAction?.Invoke());
     }
+    public void AnimationFade(ref TextMeshProUGUI tmp, float targetFadeValue, float fadeTime = 1f, System.Action onCompleteAction = null)
+    {
+        tmp.DOFade(targetFadeValue, fadeTime).OnComplete(() => onCompleteAction?.Invoke());
+    }
+    public void AnimationFadeIn(ref TextMeshProUGUI tmp, float fadeTime = 1f, System.Action onCompleteAction = null)
+    {
+        tmp.DOFade(255, fadeTime).OnComplete(() => onCompleteAction?.Invoke());
+    }
+    public void AnimationFadeOut(ref TextMeshProUGUI tmp, float fadeTime = 1f, System.Action onCompleteAction = null)
+    {
+        tmp.DOFade(0, fadeTime).OnComplete(() => onCompleteAction?.Invoke()); 
+    }
+
 }

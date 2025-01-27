@@ -47,7 +47,7 @@ public class StageManager : Singleton<StageManager>
         {
             waitingNextStage = value;
             SetActiveAllSpawners(!value);
-            UIGameScene.Instance.SetActiveClearStageTextGO(value);
+            UIGameScene.Instance.ClearStageAnimation(value);
             if (InputManager.Instance.IsPlayerActionEnabled())
             {
                 InputManager.Instance.SetPlayerActionState(false);
@@ -80,7 +80,7 @@ public class StageManager : Singleton<StageManager>
     {
         CurrentEnemyCount = 0;
         CurrentKilledEnemyCount = 0;
-        UIGameScene.Instance.SetGoalEnemyCountTMP(CurrentEnemyCount);
+        UIGameScene.Instance.SetGoalEnemyCountTMP(goalEnemyCount[currentStage]);
     }
     public void CheckClearCondition()
     {
