@@ -57,8 +57,32 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     }
     public void OnSceneChanged(string sceneName)
     {
-        animationManager.AnimationSlideOut(1f, () => InputManager.Instance.SetAllActionsState(sceneName));
+        animationManager.AnimationSlideOut(1f, 
+            () => InputManager.Instance.SetAllActionsState(sceneName),
+            () => SetCursorUseableOnSceneName(sceneName));
         InitPopupCanvas();
+    }
+    public void OnSceneClosed(System.Action callback = null)
+    {
+        InputManager.Instance.SetAllActionsState(false);
+        SetCursorUseable(false);
+        animationManager.AnimationSlideIn(1f, callback);
+    }
+    public void SetCursorUseable(bool val)
+    {
+        if (val)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = val;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = val;
+        }
+    }
+    public void SetCursorUseableOnSceneName(string sceneName)
+    {
         if (sceneName.Equals(SceneNames.GameScene))
         {
             SetCursorUseable(false);
@@ -68,12 +92,6 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
             SetCursorUseable(true);
         }
     }
-    public void OnSceneClosed(System.Action callback = null)
-    {
-        InputManager.Instance.SetAllActionsState(false);
-        animationManager.AnimationSlideIn(1f, callback);
-    }
-
     private void InitPopupCanvas()
     {
         if (popupCanvas == null)
@@ -93,19 +111,6 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
         else
         {
             OpenPausedPanel();
-        }
-    }
-    public void SetCursorUseable(bool val)
-    {
-        if (val)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = val;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = val;
         }
     }
     public void AddEscapeListener(UnityAction listener)

@@ -29,7 +29,6 @@ public class CameraAction : MonoBehaviour
     {
         turnAction = InputManager.Instance.Action.Player.Turn;
         mainCamera = gameObject.GetComponent<Camera>();
-        UIManager.Instance.SetCursorUseable(false);
     }
 
     private void LateUpdate()
