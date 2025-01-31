@@ -6165,7 +6165,7 @@ Light:
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 5000
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -11957,7 +11957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &797180323
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11975,7 +11975,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 500, y: 500}
+  m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &797180324
 MonoBehaviour:
@@ -23449,10 +23449,9 @@ MonoBehaviour:
   goalEnemyCountTMP: {fileID: 682415576874015065}
   playerHpBar: {fileID: 1020958996144879922}
   basementHpBar: {fileID: 8318927214969511620}
-  clearStageTextGO: {fileID: 0}
-  clearStageTMP: {fileID: 0}
-  getReadyForTheNextStageTMP: {fileID: 0}
-  countDownTMP: {fileID: 0}
+  clearStageRT: {fileID: 1348061960}
+  getReadyForTheNextStageRT: {fileID: 1649510022}
+  countDownGO: {fileID: 797180322}
 --- !u!1001 &1488906640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33698,6 +33697,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6366618726606187794, guid: 8acc863c2cf77a84286660f9c20741d8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6859760106584582961, guid: 8acc863c2cf77a84286660f9c20741d8,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33717,6 +33726,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 46242081}
     m_Modifications:
+    - target: {fileID: 257753423251902642, guid: e12b1945c688ec9438184205545d6075,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 257753423251902642, guid: e12b1945c688ec9438184205545d6075,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 257753423251902642, guid: e12b1945c688ec9438184205545d6075,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257753423251902642, guid: e12b1945c688ec9438184205545d6075,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2683143000496844920, guid: e12b1945c688ec9438184205545d6075,
         type: 3}
       propertyPath: m_Pivot.x
@@ -33750,7 +33779,7 @@ PrefabInstance:
     - target: {fileID: 2683143000496844920, guid: e12b1945c688ec9438184205545d6075,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1200
+      value: 950
       objectReference: {fileID: 0}
     - target: {fileID: 2683143000496844920, guid: e12b1945c688ec9438184205545d6075,
         type: 3}
@@ -33816,6 +33845,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831676702709050324, guid: e12b1945c688ec9438184205545d6075,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 950
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831676702709050324, guid: e12b1945c688ec9438184205545d6075,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8854066656372146226, guid: e12b1945c688ec9438184205545d6075,
         type: 3}

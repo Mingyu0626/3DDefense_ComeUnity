@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,8 +19,6 @@ public class UIGameScene : MonoBehaviour
     private Slider playerHpBar;
     [SerializeField]
     private Slider basementHpBar;
-    [SerializeField]
-    private GameObject clearStageTextGO;
     [SerializeField]
     private RectTransform clearStageRT;
     [SerializeField]
@@ -87,31 +86,34 @@ public class UIGameScene : MonoBehaviour
 
         if (startWaiting)
         {
-            UIManager.Instance.AnimationManager.AnimationSlideIn(ref clearStageRT, ref getReadyForTheNextStageRT, 0.3f);
+            UIManager.Instance.AnimationManager.AnimationSlideIn(ref clearStageRT, ref getReadyForTheNextStageRT, 0.3f, 1600f);
         }
         else
         {
-            UIManager.Instance.AnimationManager.AnimationSlideOut(ref clearStageRT, ref getReadyForTheNextStageRT, 0.5f);
+            UIManager.Instance.AnimationManager.AnimationSlideOut(ref clearStageRT, ref getReadyForTheNextStageRT, 0.3f, 1600f);
         }
     }
-    private IEnumerator CountDown()
+    public IEnumerator CountDown()
     {
         if (countDownGO != null)
         {
             countDownGO.gameObject.SetActive(true);
             TextMeshProUGUI countDownTMP = countDownGO.GetComponent<TextMeshProUGUI>();
-            UIManager.Instance.AnimationManager.AnimationFadeIn(ref countDownTMP, 0.1f);
+            countDownTMP.SetText(3.ToString());
+            UIManager.Instance.AnimationManager.AnimationFadeIn(ref countDownTMP, 0.5f);
 
             int countInt = 3;
             while (countInt != 0)
             {
                 countDownTMP.SetText(countInt.ToString());
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSeconds(1f);
                 countInt--;
             }
-            countDownTMP.SetText("Go!!");
+            countDownTMP.SetText("Go!");
             // Slide 또는 Fade를 통해 안보이게하기
             // Slide의 경우 오리지널 포지션 임시객체에 저장해둘 것
+            UIManager.Instance.AnimationManager.AnimationFadeOut(ref countDownTMP, 0.5f,
+                () => countDownGO.gameObject.SetActive(false));
 
         }
         yield return null;

@@ -9,14 +9,12 @@ public class UIAnimationManager
 {
     private RectTransform slidePanelLeft, slidePanelRight;
 
-    private float scalarSlideAnimation;
 
 
     public void InitSlidePanelRectTransform(ref RectTransform left, ref RectTransform right)
     {
         slidePanelLeft = left;
         slidePanelRight = right;
-        scalarSlideAnimation = SavedSettingData.ResolutionWidth / 2;
         if (slidePanelLeft != null && right != null)
         {
             slidePanelLeft.anchoredPosition3D = new Vector3(
@@ -38,13 +36,13 @@ public class UIAnimationManager
                 1f);
         }
     }
-    public void AnimationSlideIn(float slideTime = 1f, System.Action onCompleteAction = null)
+    public void AnimationSlideIn(float slideTime = 1f, float scalarSlideAnimation = 0f, System.Action onCompleteAction = null)
     {
         slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x + scalarSlideAnimation, slideTime);
         slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x - scalarSlideAnimation, slideTime)
             .OnComplete(() => onCompleteAction?.Invoke());
     }
-    public void AnimationSlideIn(float slideTime = 1f, params System.Action[] onCompleteActions)
+    public void AnimationSlideIn(float slideTime = 1f, float scalarSlideAnimation = 0f, params System.Action[] onCompleteActions)
     {
         slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x + scalarSlideAnimation, slideTime);
         slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x - scalarSlideAnimation, slideTime)
@@ -56,19 +54,19 @@ public class UIAnimationManager
                 }
             });
     }
-    public void AnimationSlideIn(ref RectTransform left, ref RectTransform right, float slideTime = 1f, System.Action onCompleteAction = null)
+    public void AnimationSlideIn(ref RectTransform left, ref RectTransform right, float slideTime = 1f, float scalarSlideAnimation = 0f, System.Action onCompleteAction = null)
     {
         left.DOAnchorPosX(left.anchoredPosition.x + scalarSlideAnimation, slideTime);
         right.DOAnchorPosX(right.anchoredPosition.x - scalarSlideAnimation, slideTime)
             .OnComplete(() => onCompleteAction?.Invoke());
     }
-    public void AnimationSlideOut(float slideTime = 1f, System.Action onCompleteAction = null)
+    public void AnimationSlideOut(float slideTime = 1f, float scalarSlideAnimation = 0f, System.Action onCompleteAction = null)
     {
         slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
         slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
             .OnComplete(() => onCompleteAction?.Invoke());
     }
-    public void AnimationSlideOut(float slideTime = 1f, params System.Action[] onCompleteActions)
+    public void AnimationSlideOut(float slideTime = 1f, float scalarSlideAnimation = 0f, params System.Action[] onCompleteActions)
     {
         slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
         slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
@@ -80,7 +78,7 @@ public class UIAnimationManager
                 }
             });
     }
-    public void AnimationSlideOut(ref RectTransform left, ref RectTransform right, float slideTime = 1f, System.Action onCompleteAction = null)
+    public void AnimationSlideOut(ref RectTransform left, ref RectTransform right, float slideTime = 1f, float scalarSlideAnimation = 0f, System.Action onCompleteAction = null)
     {
         left.DOAnchorPosX(left.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
         right.DOAnchorPosX(right.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)

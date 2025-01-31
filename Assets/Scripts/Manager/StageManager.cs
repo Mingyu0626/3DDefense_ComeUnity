@@ -105,6 +105,7 @@ public class StageManager : Singleton<StageManager>
         }
         else
         {
+            StartCoroutine(UIGameScene.Instance.CountDown());
             currentStage++;
             ObjectPoolManager.Instance.ReturnAllActiveObjectsToPool();
             WaitingNextStage = true;

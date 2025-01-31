@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Settings;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>, ISceneObserver
 {
@@ -57,7 +57,7 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     }
     public void OnSceneChanged(string sceneName)
     {
-        animationManager.AnimationSlideOut(1f, 
+        animationManager.AnimationSlideOut(1f, SavedSettingData.ResolutionWidth / 2,
             () => InputManager.Instance.SetAllActionsState(sceneName),
             () => SetCursorUseableOnSceneName(sceneName));
         InitPopupCanvas();
@@ -66,7 +66,7 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     {
         InputManager.Instance.SetAllActionsState(false);
         SetCursorUseable(false);
-        animationManager.AnimationSlideIn(1f, callback);
+        animationManager.AnimationSlideIn(1f, SavedSettingData.ResolutionWidth / 2, callback);
     }
     public void SetCursorUseable(bool val)
     {
