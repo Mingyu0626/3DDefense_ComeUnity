@@ -7,11 +7,6 @@ using UnityEngine.InputSystem;
 
 public class UIManager : Singleton<UIManager>, ISceneObserver
 {
-    private UIFadeManager fadeManager;
-    public ref UIFadeManager FadeManager
-    {
-        get { return ref fadeManager; }
-    }
     private UIAnimationManager animationManager;
     public ref UIAnimationManager AnimationManager
     {
@@ -34,9 +29,6 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     protected override void Awake()
     {
         base.Awake();
-
-        fadeManager = new UIFadeManager();
-
         animationManager = new UIAnimationManager();
         animationManager.InitSlidePanelRectTransform
             (ref leftPanelForSlideAnimation, ref rightPanelForSlideAnimation);
