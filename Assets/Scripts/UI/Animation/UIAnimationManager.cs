@@ -30,6 +30,17 @@ public class UIAnimationManager
                 1f);
         }
     }
+    public void Slide(ref RectTransform target, float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions)
+    {
+        target.DOAnchorPosX(target.anchoredPosition.x + scalarSlideAnimation, slideTime)
+            .OnComplete(() =>
+            {
+                foreach (var action in onCompleteActions)
+                {
+                    action?.Invoke();
+                }
+            });
+    }
     public void SlideIn(ref RectTransform left, ref RectTransform right, float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions)
     {
         left.DOAnchorPosX(left.anchoredPosition.x + scalarSlideAnimation, slideTime);
