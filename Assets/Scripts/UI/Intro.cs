@@ -6,6 +6,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class Intro : MonoBehaviour
 {
@@ -14,10 +15,9 @@ public class Intro : MonoBehaviour
 
     private void Start()
     {
-        UIFadeManager fadeManager = UIManager.Instance.FadeManager;
-        StartCoroutine(fadeManager.FadeIn(introTMP, 1f, () => 
-            StartCoroutine(fadeManager.FadeOut(introTMP, 1f, () => 
-            GameManager.Instance.LoadSceneWithName(SceneNames.LobbyScene))))); 
+        UIManager.Instance.AnimationManager.FadeIn(ref introTMP, 2f,
+            () => UIManager.Instance.AnimationManager.FadeOut(ref introTMP, 2f,
+            () => GameManager.Instance.LoadSceneWithName(SceneNames.LobbyScene)));
     }
 }
 
