@@ -13,6 +13,7 @@ namespace EnemyControlState
         public int HP { get; protected set; }
         public int Damage { get; protected set; }
         public float Speed { get; protected set; }
+        public float RotationSpeed { get; protected set; }  
 
         private float playerDetectableDistance = 50f;
         private float playerAttackableDistance = 20f;

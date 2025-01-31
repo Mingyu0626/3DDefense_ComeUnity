@@ -33,16 +33,20 @@ namespace EnemyControlState
 
         public void Exit()
         {
-
         }
 
         private void GoBasement()
         {
             Transform basementTransform = Basement.Instance.BasementTransform;
-            enemyController.transform.LookAt(basementTransform);
-            enemyController.transform.position = Vector3.MoveTowards
-                (enemyController.transform.position,
-                basementTransform.position,
+            Transform enemyTransform = enemyController.transform;
+
+            enemyTransform.rotation = Quaternion.Slerp
+                (enemyTransform.rotation,
+                Quaternion.LookRotation(basementTransform.position - enemyTransform.position),
+                enemyController.RotationSpeed * Time.deltaTime);
+
+            enemyTransform.position = Vector3.MoveTowards
+                (enemyTransform.position, basementTransform.position, 
                 enemyController.Speed * Time.deltaTime);
         }
     }
