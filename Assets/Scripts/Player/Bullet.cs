@@ -9,7 +9,7 @@ public class Bullet : PoolAble
     private float durationTime = 3f;
     void OnEnable()
     {
-        Invoke("ReturnToPool", durationTime);
+        Invoke(nameof(ReturnToPool), durationTime);
     }
 
     void Update()
@@ -19,7 +19,7 @@ public class Bullet : PoolAble
 
     void OnDisable()
     {
-        CancelInvoke("ReturnToPool");
+        CancelInvoke(nameof(ReturnToPool));
     }
 
     private void ReturnToPool()
