@@ -36,13 +36,7 @@ public class UIAnimationManager
                 1f);
         }
     }
-    public void AnimationSlideIn(float slideTime = 1f, float scalarSlideAnimation = 0f, System.Action onCompleteAction = null)
-    {
-        slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x + scalarSlideAnimation, slideTime);
-        slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x - scalarSlideAnimation, slideTime)
-            .OnComplete(() => onCompleteAction?.Invoke());
-    }
-    public void AnimationSlideIn(float slideTime = 1f, float scalarSlideAnimation = 0f, params System.Action[] onCompleteActions)
+    public void SlideIn(float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions)
     {
         slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x + scalarSlideAnimation, slideTime);
         slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x - scalarSlideAnimation, slideTime)
@@ -54,19 +48,19 @@ public class UIAnimationManager
                 }
             });
     }
-    public void AnimationSlideIn(ref RectTransform left, ref RectTransform right, float slideTime = 1f, float scalarSlideAnimation = 0f, System.Action onCompleteAction = null)
+    public void SlideIn(ref RectTransform left, ref RectTransform right, float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions)
     {
         left.DOAnchorPosX(left.anchoredPosition.x + scalarSlideAnimation, slideTime);
         right.DOAnchorPosX(right.anchoredPosition.x - scalarSlideAnimation, slideTime)
-            .OnComplete(() => onCompleteAction?.Invoke());
+            .OnComplete(() =>
+            {
+                foreach (var action in onCompleteActions)
+                {
+                    action?.Invoke();
+                }
+            });
     }
-    public void AnimationSlideOut(float slideTime = 1f, float scalarSlideAnimation = 0f, System.Action onCompleteAction = null)
-    {
-        slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
-        slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
-            .OnComplete(() => onCompleteAction?.Invoke());
-    }
-    public void AnimationSlideOut(float slideTime = 1f, float scalarSlideAnimation = 0f, params System.Action[] onCompleteActions)
+    public void SlideOut(float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions) 
     {
         slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
         slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
@@ -78,23 +72,48 @@ public class UIAnimationManager
                 }
             });
     }
-    public void AnimationSlideOut(ref RectTransform left, ref RectTransform right, float slideTime = 1f, float scalarSlideAnimation = 0f, System.Action onCompleteAction = null)
+    public void SlideOut(ref RectTransform left, ref RectTransform right, float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions)
     {
         left.DOAnchorPosX(left.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
         right.DOAnchorPosX(right.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
-            .OnComplete(() => onCompleteAction?.Invoke());
+            .OnComplete(() =>
+            {
+                foreach (var action in onCompleteActions)
+                {
+                    action?.Invoke();
+                }
+            });
     }
-    public void AnimationFade(ref TextMeshProUGUI tmp, float targetFadeValue, float fadeTime = 1f, System.Action onCompleteAction = null)
+
+    public void Fade(ref TextMeshProUGUI tmp, float targetFadeValue, float fadeTime, params System.Action[] onCompleteActions)
     {
-        tmp.DOFade(targetFadeValue, fadeTime).OnComplete(() => onCompleteAction?.Invoke());
+        tmp.DOFade(targetFadeValue, fadeTime).OnComplete(() =>
+        {
+            foreach (var action in onCompleteActions)
+            {
+                action?.Invoke();
+            }
+        });
     }
-    public void AnimationFadeIn(ref TextMeshProUGUI tmp, float fadeTime = 1f, System.Action onCompleteAction = null)
+    public void FadeIn(ref TextMeshProUGUI tmp, float fadeTime, params System.Action[] onCompleteActions)
     {
-        tmp.DOFade(255, fadeTime).OnComplete(() => onCompleteAction?.Invoke());
+        tmp.DOFade(255, fadeTime).OnComplete(() =>
+        {
+            foreach (var action in onCompleteActions)
+            {
+                action?.Invoke();
+            }
+        });
     }
-    public void AnimationFadeOut(ref TextMeshProUGUI tmp, float fadeTime = 1f, System.Action onCompleteAction = null)
+    public void FadeOut(ref TextMeshProUGUI tmp, float fadeTime, params System.Action[] onCompleteActions)
     {
-        tmp.DOFade(0, fadeTime).OnComplete(() => onCompleteAction?.Invoke()); 
+        tmp.DOFade(0, fadeTime).OnComplete(() =>
+        {
+            foreach (var action in onCompleteActions)
+            {
+                action?.Invoke();
+            }
+        });
     }
 
 }

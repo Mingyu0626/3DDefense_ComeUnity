@@ -57,7 +57,7 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     }
     public void OnSceneChanged(string sceneName)
     {
-        animationManager.AnimationSlideOut(1f, SavedSettingData.ResolutionWidth / 2,
+        animationManager.SlideOut(1f, SavedSettingData.ResolutionWidth / 2,
             () => InputManager.Instance.SetAllActionsState(sceneName),
             () => SetCursorUseableOnSceneName(sceneName));
         InitPopupCanvas();
@@ -66,7 +66,7 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     {
         InputManager.Instance.SetAllActionsState(false);
         SetCursorUseable(false);
-        animationManager.AnimationSlideIn(1f, SavedSettingData.ResolutionWidth / 2, callback);
+        animationManager.SlideIn(1f, SavedSettingData.ResolutionWidth / 2, callback);
     }
     public void SetCursorUseable(bool val)
     {
