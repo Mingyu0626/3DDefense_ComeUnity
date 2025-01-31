@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using DG.Tweening;
 
 public class Intro : MonoBehaviour
 {
