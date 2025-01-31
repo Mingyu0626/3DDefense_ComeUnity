@@ -7,63 +7,33 @@ using UnityEngine;
 
 public class UIAnimationManager
 {
-    private RectTransform slidePanelLeft, slidePanelRight;
-
-
-
     public void InitSlidePanelRectTransform(ref RectTransform left, ref RectTransform right)
     {
-        slidePanelLeft = left;
-        slidePanelRight = right;
-        if (slidePanelLeft != null && right != null)
+        if (left != null && right != null)
         {
-            slidePanelLeft.anchoredPosition3D = new Vector3(
+            left.anchoredPosition3D = new Vector3(
                 -SavedSettingData.ResolutionWidth + SavedSettingData.ResolutionWidth / 4,
-                slidePanelLeft.anchoredPosition3D.y,
-                slidePanelLeft.anchoredPosition3D.z);
-            slidePanelRight.anchoredPosition3D = new Vector3(
+                left.anchoredPosition3D.y,
+                left.anchoredPosition3D.z);
+            right.anchoredPosition3D = new Vector3(
                 SavedSettingData.ResolutionWidth - SavedSettingData.ResolutionWidth / 4,
-                slidePanelRight.anchoredPosition3D.y,
-                slidePanelRight.anchoredPosition3D.z);
+                right.anchoredPosition3D.y,
+                right.anchoredPosition3D.z);
 
-            slidePanelLeft.localScale = new Vector3(
+            left.localScale = new Vector3(
                 SavedSettingData.ResolutionWidth / 2,
                 SavedSettingData.ResolutionHeight,
                 1f);
-            slidePanelRight.localScale = new Vector3(
+            right.localScale = new Vector3(
                 SavedSettingData.ResolutionWidth / 2,
                 SavedSettingData.ResolutionHeight,
                 1f);
         }
     }
-    public void SlideIn(float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions)
-    {
-        slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x + scalarSlideAnimation, slideTime);
-        slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x - scalarSlideAnimation, slideTime)
-            .OnComplete(() =>
-            {
-                foreach (var action in onCompleteActions)
-                {
-                    action?.Invoke();
-                }
-            });
-    }
     public void SlideIn(ref RectTransform left, ref RectTransform right, float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions)
     {
         left.DOAnchorPosX(left.anchoredPosition.x + scalarSlideAnimation, slideTime);
         right.DOAnchorPosX(right.anchoredPosition.x - scalarSlideAnimation, slideTime)
-            .OnComplete(() =>
-            {
-                foreach (var action in onCompleteActions)
-                {
-                    action?.Invoke();
-                }
-            });
-    }
-    public void SlideOut(float slideTime, float scalarSlideAnimation, params System.Action[] onCompleteActions) 
-    {
-        slidePanelLeft.DOAnchorPosX(slidePanelLeft.anchoredPosition.x - scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad);
-        slidePanelRight.DOAnchorPosX(slidePanelRight.anchoredPosition.x + scalarSlideAnimation, slideTime).SetEase(Ease.OutQuad)
             .OnComplete(() =>
             {
                 foreach (var action in onCompleteActions)
