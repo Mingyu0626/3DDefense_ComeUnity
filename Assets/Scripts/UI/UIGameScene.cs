@@ -110,9 +110,7 @@ public class UIGameScene : MonoBehaviour
                 countInt--;
             }
             countDownTMP.SetText("Go!");
-            // Slide 또는 Fade를 통해 안보이게하기
-            // Slide의 경우 오리지널 포지션 임시객체에 저장해둘 것
-            UIManager.Instance.AnimationManager.FadeOut(ref countDownTMP, 0.5f,
+            UIManager.Instance.AnimationManager.FadeOut(ref countDownTMP, 1f,
                 () => countDownGO.gameObject.SetActive(false));
 
         }

@@ -68,7 +68,7 @@ public class UIAnimationManager
 
     public void Fade(ref TextMeshProUGUI tmp, float targetFadeValue, float fadeTime, params System.Action[] onCompleteActions)
     {
-        tmp.DOFade(targetFadeValue, fadeTime).OnComplete(() =>
+        tmp.DOFade(targetFadeValue, fadeTime).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             foreach (var action in onCompleteActions)
             {
@@ -78,7 +78,7 @@ public class UIAnimationManager
     }
     public void FadeIn(ref TextMeshProUGUI tmp, float fadeTime, params System.Action[] onCompleteActions)
     {
-        tmp.DOFade(255, fadeTime).OnComplete(() =>
+        tmp.DOFade(1f, fadeTime).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             foreach (var action in onCompleteActions)
             {
@@ -88,7 +88,7 @@ public class UIAnimationManager
     }
     public void FadeOut(ref TextMeshProUGUI tmp, float fadeTime, params System.Action[] onCompleteActions)
     {
-        tmp.DOFade(0, fadeTime).OnComplete(() =>
+        tmp.DOFade(0f, fadeTime).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             foreach (var action in onCompleteActions)
             {
