@@ -109,6 +109,7 @@ public class UIGameScene : MonoBehaviour
                 countInt--;
             }
             countDownTMP.SetText("Go!");
+            yield return new WaitForSecondsRealtime(1f);
             UIManager.Instance.AnimationManager.FadeOut(ref countDownTMP, 1f,
                 () => countDownGO.gameObject.SetActive(false));
 
