@@ -11,7 +11,10 @@ namespace EnemyControlState
         public EnemyData enemyData;
 
         [SerializeField]
-        public GameObject attackPoint;
+        private GameObject attackPoint;
+        public GameObject AttackPoint
+        {  get { return attackPoint; } }
+
 
         protected virtual void Awake()
         {

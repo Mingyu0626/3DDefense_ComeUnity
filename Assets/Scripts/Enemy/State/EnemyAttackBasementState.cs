@@ -38,10 +38,10 @@ namespace EnemyControlState
             {
 
                 GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
-                if (enemyBulletGO != null && enemyController.attackPoint != null)
+                if (enemyBulletGO != null && enemyController.AttackPoint != null)
                 {
-                    enemyBulletGO.transform.position = enemyController.attackPoint.transform.position;
-                    enemyBulletGO.transform.rotation = enemyController.attackPoint.transform.rotation;
+                    enemyBulletGO.transform.position = enemyController.AttackPoint.transform.position;
+                    enemyBulletGO.transform.rotation = enemyController.AttackPoint.transform.rotation;
                     yield return new WaitForSeconds(attackBasementInterval);
                 }
                 yield return null;
