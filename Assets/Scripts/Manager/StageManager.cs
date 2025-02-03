@@ -46,7 +46,7 @@ public class StageManager : Singleton<StageManager>
         private set
         {
             waitingNextStage = value;
-            SetActiveAllSpawners(!value);
+            ActivateSpawners(!value);
             UIGameScene.Instance.ClearStageAnimation(value);
             if (InputManager.Instance.IsPlayerActionEnabled())
             {
@@ -69,6 +69,7 @@ public class StageManager : Singleton<StageManager>
         // goalEnemyCount 배열 전체 스테이지 수만큼 동적 할당
         // 스테이지 별 목표 적 처치 수를 설정(원하는 값으로 커스터마이즈)
         // 예시) 1스테이지는 20마리, 2스테이지는 50마리, 3스테이지는 100마리 ...
+        WaitingNextStage = false;
         goalEnemyCount = new int[numOfStages + 1];
         for (int i = 1; i <= numOfStages; i++)
         {
@@ -120,11 +121,14 @@ public class StageManager : Singleton<StageManager>
         GameManager.Instance.EndGame(false);
     }
 
-    private void SetActiveAllSpawners(bool val)
+    private void ActivateSpawners(bool val)
     {
         for (int i = 0; i < stageSpawnerList.Count; i++)
         {
-            stageSpawnerList[i].gameObject.SetActive(val);
+            if (stageSpawnerList[i].ActivateStageNum <= currentStage)
+            {
+                stageSpawnerList[i].gameObject.SetActive(val);
+            }
         }
     }
 }
