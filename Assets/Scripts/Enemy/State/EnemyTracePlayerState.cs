@@ -43,11 +43,11 @@ namespace EnemyControlState
             enemyTransform.rotation = Quaternion.Slerp
                 (enemyTransform.rotation,
                 Quaternion.LookRotation(playerTransform.position - enemyTransform.position),
-                enemyController.RotationSpeed * Time.deltaTime);
+                enemyController.enemyData.RotationSpeed * Time.deltaTime);
 
             enemyTransform.position = Vector3.MoveTowards
                 (enemyTransform.position, playerTransform.position, 
-                enemyController.Speed * Time.deltaTime);
+                enemyController.enemyData.MoveSpeed * Time.deltaTime);
         }
     }
 }

@@ -8,26 +8,21 @@ namespace EnemyControlState
     {
         public EnemyState tracePlayerState, attackPlayerState, goBasementState, attackBasementState;
         public EnemyStateContext enemyStateContext;
-
-        public int MaxHP { get; protected set; }
-        public int HP { get; protected set; }
-        public int Damage { get; protected set; }
-        public float Speed { get; protected set; }
-        public float RotationSpeed { get; protected set; }  
-
-        private float playerDetectableDistance = 50f;
-        private float playerAttackableDistance = 20f;
-        private float basementAttackableDistance = 20f;
+        public EnemyData enemyData;
 
         [SerializeField]
         public GameObject attackPoint;
 
+        protected virtual void Awake()
+        {
+
+        }
         protected virtual void OnEnable()
         {
-            HP = MaxHP;
+            enemyData.CurHP = enemyData.MaxHP;
         }
 
-        void Start()
+        private void Start()
         {
             enemyStateContext = new EnemyStateContext(this);
             tracePlayerState = new EnemyTracePlayerState();
@@ -39,8 +34,6 @@ namespace EnemyControlState
 
         protected virtual void OnDisable()
         {
-            // 뭔가 디자인 패턴 사용해서 개선될거같은데..
-            // 여기보다 더 Fit한 처리 부분이 있을거 같다
             StageManager.Instance.CurrentKilledEnemyCount++;
             StageManager.Instance.CurrentEnemyCount--;
         }
@@ -64,7 +57,7 @@ namespace EnemyControlState
 
         private void CreateDeathReactionGO()
         {
-            GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetGameObject("EnemyDeathReaction");
+            GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetGameObject(nameof(EnemyDeathReaction));
             if (enemyDeathReactionGO != null)
             {
                 enemyDeathReactionGO.transform.position = transform.position;
@@ -73,8 +66,8 @@ namespace EnemyControlState
 
         private void ApplyDamage(int damage)
         {
-            HP -= damage;
-            if (HP <= 0)
+            enemyData.CurHP -= damage;
+            if (enemyData.CurHP <= 0)
             {
                 ReleaseObject();
                 CreateDeathReactionGO();
@@ -85,19 +78,19 @@ namespace EnemyControlState
         public bool CanDetectPlayer()
         { 
             return Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position)
-                <= playerDetectableDistance;
+                <= enemyData.PlayerDetectableDistance;
         }
 
         public bool CanAttackPlayer()
         {
             return Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position)
-                <= playerAttackableDistance;
+                <= enemyData.PlayerAttackableDistance;
         }
 
         public bool CanAttackBasement()
         {
             return Vector3.Distance(Basement.Instance.BasementTransform.position, transform.position)
-                <= basementAttackableDistance;
+                <= enemyData.BasementAttackableDistance;
         }
 
         public void StartStateCoroutine(IEnumerator coroutine)
