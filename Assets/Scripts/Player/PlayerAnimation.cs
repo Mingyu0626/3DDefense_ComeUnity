@@ -25,7 +25,6 @@ public class PlayerAnimation : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("isWalking", true);
-            animator.SetBool("isShooting", false);
         }
     }
 
@@ -34,7 +33,6 @@ public class PlayerAnimation : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("isWalking", false);
-            animator.SetBool("isShooting", false);
         }
     }
 
@@ -42,8 +40,16 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (animator != null)
         {
-            animator.SetBool("isWalking", false);
             animator.SetBool("isShooting", true);
+            // Invoke(nameof(EndShootAnimation), 1f);
+        }
+    }
+
+    public void EndShootAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetBool("isShooting", false);
         }
     }
 
