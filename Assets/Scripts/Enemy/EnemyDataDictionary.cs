@@ -88,10 +88,10 @@ namespace EnemyControlState
     public static class EnemyDataDictionary
     {
         private static readonly Dictionary<EnemyName, EnemyData> enemyDataDict = new Dictionary<EnemyName, EnemyData>
-    {
-        { EnemyName.Slime, new EnemyData(nameof(EnemyName.Slime), 1, 1, 1, 8f, 4f, 50f, 20f, 20f) },
-        { EnemyName.TurtleShell, new EnemyData(nameof(EnemyName.TurtleShell), 3, 3, 2, 5f, 2f, 50f, 25f, 25f) }
-    };
+        {
+            { EnemyName.Slime, new EnemyData(nameof(EnemyName.Slime), 1, 1, 1, 8f, 4f, 50f, 20f, 20f) },
+            { EnemyName.TurtleShell, new EnemyData(nameof(EnemyName.TurtleShell), 3, 3, 2, 5f, 2f, 50f, 25f, 25f) }
+        };
 
         public static EnemyData GetEnemyData(EnemyName type)
         {
