@@ -133,7 +133,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             }
             else
             {
-                Debug.LogWarning("풀에 해당 오브젝트가 존재하지 않음 : " + activeObjectName);
+                Debug.LogWarning("풀에 해당 오브젝트가 존재하지 않습니다. : " + activeObjectName);
             }
         }
         activeObjects.Clear();

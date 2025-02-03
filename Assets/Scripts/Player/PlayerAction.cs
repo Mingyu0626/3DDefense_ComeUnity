@@ -84,7 +84,6 @@ public class PlayerAction : MonoBehaviour
 
     void OnFirePerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("OnFirePerformed ½ÇÇà");
         GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
         if (playerBulletGO != null && shootingPoint != null)
         {
