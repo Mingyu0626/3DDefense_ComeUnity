@@ -5,14 +5,12 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator animator;
-    private AnimatorStateInfo stateInfo; 
-    private enum AnimationName
+    private enum AnimationStateName
     {
-        Idle_gunMiddle_AR,
-        Run_guard_AR,
-        Shoot_Autoshot_AR,
-        Run_gunMiddle_AR,
-        SingleShot_ARShot_AR
+        Idle,
+        Walk,
+        Shoot,
+        ShootWhileRunning
     }
     private enum Parameter
     {
@@ -32,7 +30,6 @@ public class PlayerAnimation : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool(nameof(Parameter.isWalking), val);
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         }
     }
     public void SetIsShooting(bool val)
@@ -40,7 +37,6 @@ public class PlayerAnimation : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool(nameof(Parameter.isShooting), val);
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         }
     }
 }
