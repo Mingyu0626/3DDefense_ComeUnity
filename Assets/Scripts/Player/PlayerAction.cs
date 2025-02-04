@@ -9,7 +9,7 @@ public class PlayerAction : MonoBehaviour
     private InputAction moveAction, fireAction;
     private PlayerAnimation playerAnimation;
     private float movementSpeed = 20f;
-    private Transform cameraTransform;
+    private float roundsPerMinutes = 120f;
 
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private ParticleSystem fireEffect;
@@ -19,7 +19,6 @@ public class PlayerAction : MonoBehaviour
 
     private void Awake()
     {
-        cameraTransform = Camera.main.transform;
         moveAction = InputManager.Instance.Action.Player.Move;
         fireAction = InputManager.Instance.Action.Player.Fire;
 
@@ -40,14 +39,15 @@ public class PlayerAction : MonoBehaviour
     {
         moveAction.started -= OnMoveStarted;
         moveAction.canceled -= OnMoveCanceled;
-        fireAction.performed -= OnFirePerformed;
+        fireAction.started -= OnFireStarted;
+        fireAction.canceled -= OnFireCanceled;
     }
-    void Move(float x, float z)
+    private void Move(float x, float z)
     {
         Vector3 moveDirection = new Vector3(x, 0, z);
         transform.Translate(moveDirection * movementSpeed * Time.deltaTime, Space.Self);
     }
-    void AddMoveActionEvent()
+    private void AddMoveActionEvent()
     {
         if (moveAction != null && playerAnimation != null)
         {
@@ -58,62 +58,69 @@ public class PlayerAction : MonoBehaviour
             moveAction.canceled += OnMoveCanceled;
         }
     }
-    void AddFireActionEvent()
+    private void AddFireActionEvent()
     {
         if (fireAction != null && playerAnimation != null)
         {
-            fireAction.performed -= OnFirePerformed;
-            fireAction.performed += OnFirePerformed;
-        }
-    }
-    void OnMoveStarted(InputAction.CallbackContext context)
-    {
-        if (playerAnimation != null)
-        {
-            playerAnimation.PlayWalkAnimation();
-        }
-    }
+            fireAction.started -= OnFireStarted;
+            fireAction.started += OnFireStarted;
 
-    void OnMoveCanceled(InputAction.CallbackContext context)
-    {
-        if (playerAnimation != null)
-        {
-            playerAnimation.PlayIdleAnimation();
+            fireAction.canceled -= OnFireCanceled;
+            fireAction.canceled += OnFireCanceled;
         }
     }
-
-    void OnFirePerformed(InputAction.CallbackContext context)
+    private void OnMoveStarted(InputAction.CallbackContext context)
     {
-        GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
         if (playerAnimation != null)
         {
-            playerAnimation.PlayShootAnimation();
+            playerAnimation.SetIsWalking(true);
+        }
+    }
+    private void OnMoveCanceled(InputAction.CallbackContext context)
+    {
+        if (playerAnimation != null)
+        {
+            playerAnimation.SetIsWalking(false);
+        }
+    }
+    private void OnFireStarted(InputAction.CallbackContext context)
+    {
+        StopAllCoroutines();
+        StartCoroutine(Fire());
+        if (playerAnimation != null)
+        {
+            playerAnimation.SetIsShooting(true);
         } 
-        if (playerBulletGO != null && shootingPoint != null)
+    }
+    private void OnFireCanceled(InputAction.CallbackContext context)
+    {
+        StopAllCoroutines();
+        if (playerAnimation != null)
         {
-            playerBulletGO.transform.position = shootingPoint.position;
-            playerBulletGO.transform.rotation = shootingPoint.rotation;
-        }
-
-        if (fireEffect != null)
-        {
-            fireEffect.Play();
-        }
-
-        if (fireAudio != null)
-        {
-            fireAudio.Play();
+            playerAnimation.SetIsShooting(false);
         }
     }
-
-    void Rotate(Vector3 moveDirection) // 카메라 회전은 PlayerAction이 담당하지 않음, 미사용 함수
+    private IEnumerator Fire()
     {
-        if (moveDirection != Vector3.zero)
+        float fireInterval = 60f / roundsPerMinutes;
+        while (true)
         {
-            Vector3 cameraForward = cameraTransform.forward;
-            cameraForward.y = 0;
-            Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.1f);
+            GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
+            if (playerBulletGO != null && shootingPoint != null)
+            {
+                playerBulletGO.transform.position = shootingPoint.position;
+                playerBulletGO.transform.rotation = shootingPoint.rotation;
+            }
+            if (fireEffect != null)
+            {
+                fireEffect.Play();
+            }
+
+            if (fireAudio != null)
+            {
+                fireAudio.Play();
+            }
+            yield return new WaitForSeconds(fireInterval);
         }
     }
 }
