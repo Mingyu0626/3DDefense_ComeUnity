@@ -78,18 +78,16 @@ public class UIGameScene : MonoBehaviour
     }
     public void ClearStageAnimation(bool startWaiting)
     {
-        if (clearStageRT == null || getReadyForTheNextStageRT == null)
+        if (clearStageRT != null && getReadyForTheNextStageRT != null)
         {
-            Debug.Log("애니메이션이 동작할 객체가 Null");
-        }
-
-        if (startWaiting)
-        {
-            UIManager.Instance.AnimationManager.SlideIn(ref clearStageRT, ref getReadyForTheNextStageRT, 0.3f, 1600f);
-        }
-        else
-        {
-            UIManager.Instance.AnimationManager.SlideOut(ref clearStageRT, ref getReadyForTheNextStageRT, 0.3f, 1600f);
+            if (startWaiting)
+            {
+                UIManager.Instance.AnimationManager.SlideIn(ref clearStageRT, ref getReadyForTheNextStageRT, 0.3f, 1600f);
+            }
+            else
+            {
+                UIManager.Instance.AnimationManager.SlideOut(ref clearStageRT, ref getReadyForTheNextStageRT, 0.3f, 1600f);
+            }
         }
     }
     public IEnumerator CountDown()
