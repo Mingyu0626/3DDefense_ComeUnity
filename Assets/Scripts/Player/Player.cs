@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : HPComponent
+public class Player : MonoBehaviour
 {
     // 오로지 Enemy의 TracePlayer만을 위한 코드인데, 개선 방안이 분명 존재할것임
     // Enemy에서 다른 방식으로 공격 대상의 Transform을 실시간으로 변경할 수 있으면
     // 싱글톤으로 할 필요도 없어짐
     public static Player Instance { get; private set; }
     public Transform PlayerTransform { get; private set; }
+    private PlayerPresenter presenter;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -20,19 +20,31 @@ public class Player : HPComponent
         }
         Instance = this;
     }
-    void Update()
+    private void Start()
+    {
+        
+    }
+    private void Update()
     {
         PlayerTransform = transform;
     }
-
-    protected override void ApplyDamage(int damage)
+    private void OnTriggerEnter(Collider other)
     {
-        base.ApplyDamage(damage);
-        UIGameScene.Instance.SetPlayerHPSlider(curHP);
+        if (other.CompareTag("EnemyAttack"))
+        {
+            EnemyBullet EnemyAttack = other.GetComponent<EnemyBullet>();
+            if (EnemyAttack != null)
+            {
+                ApplyDamage(EnemyAttack.GetDamage());
+            }
+            if (presenter.GetPlayerHP() <= 0)
+            {
+                GameManager.Instance.EndGame(false);
+            }
+        }
     }
-
-    protected override void OnTriggerEnter(Collider other)
+    private void ApplyDamage(int damage)
     {
-        base.OnTriggerEnter(other);
+        presenter.OnPlayerDamaged(damage);
     }
 }
