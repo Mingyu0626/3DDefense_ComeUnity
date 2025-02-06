@@ -73,7 +73,6 @@ public class StageManager : Singleton<StageManager>
         }
         ActivateSpawners();
         InitCountAndGoalEnemyCountUI();
-
     }
     private void InitCountAndGoalEnemyCountUI()
     {
