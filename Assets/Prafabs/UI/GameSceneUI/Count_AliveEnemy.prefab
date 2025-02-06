@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9028483797486723649}
   m_Layer: 5
-  m_Name: Count_CurrentEnemy
+  m_Name: Count_AliveEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

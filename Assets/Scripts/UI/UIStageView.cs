@@ -9,7 +9,7 @@ public class UIStageView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentStageTMP;
     [SerializeField] private TextMeshProUGUI aliveEnemyCountTMP;
     [SerializeField] private TextMeshProUGUI killedEnemyCountTMP;
-    [SerializeField] private TextMeshProUGUI goalEnemyCountTMP;
+    [SerializeField] private TextMeshProUGUI killedEnemyCountToClearTMP;
 
     [SerializeField] private RectTransform clearStageRT;
     [SerializeField] private RectTransform getReadyForTheNextStageRT;
@@ -38,9 +38,9 @@ public class UIStageView : MonoBehaviour
     }
     public void SetTextGoalEnemyCount(int count)
     {
-        if (goalEnemyCountTMP != null)
+        if (killedEnemyCountToClearTMP != null)
         { 
-            goalEnemyCountTMP.SetText(count.ToString());
+            killedEnemyCountToClearTMP.SetText(count.ToString());
         }
     }
 
