@@ -37,8 +37,6 @@ namespace EnemyControlState
 
         protected virtual void OnDisable()
         {
-            StageManager.Instance.CurrentKilledEnemyCount++;
-            StageManager.Instance.CurrentEnemyCount--;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -74,7 +72,7 @@ namespace EnemyControlState
             {
                 ReleaseObject();
                 CreateDeathReactionGO();
-                StageManager.Instance.CheckClearCondition();
+                StagePresenter.Instance.OnEnemyKilled();
             }
         }
 
