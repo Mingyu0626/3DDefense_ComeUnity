@@ -36,7 +36,7 @@ public class StageManager : Singleton<StageManager>
     private int[] goalEnemyCount; // 스테이지 별 목표 적 처치수를 저장하는 배열 
     private int enemyCountToFail = 50; // 게임 오버가 되는 최소 적의 수
     private float delayBeforeNextStage = 3f; // 스테이지 클리어 후 다음 스테이지 시작 전까지의 딜레이
-    private bool waitingNextStage;     // 스테이지 클리어 후 다음 스테이지를 기다리는 중인지 여부를 나타내는 변수
+    private bool waitingNextStage = false;     // 스테이지 클리어 후 다음 스테이지를 기다리는 중인지 여부를 나타내는 변수
     public bool WaitingNextStage 
     { 
         get
@@ -66,16 +66,14 @@ public class StageManager : Singleton<StageManager>
     }
     private void Start()
     {
-        // goalEnemyCount 배열 전체 스테이지 수만큼 동적 할당
-        // 스테이지 별 목표 적 처치 수를 설정(원하는 값으로 커스터마이즈)
-        // 예시) 1스테이지는 20마리, 2스테이지는 50마리, 3스테이지는 100마리 ...
-        WaitingNextStage = false;
         goalEnemyCount = new int[numOfStages + 1];
         for (int i = 1; i <= numOfStages; i++)
         {
             goalEnemyCount[i] = i;
         }
+        ActivateSpawners();
         InitCountAndGoalEnemyCountUI();
+
     }
     private void InitCountAndGoalEnemyCountUI()
     {
@@ -121,7 +119,7 @@ public class StageManager : Singleton<StageManager>
         GameManager.Instance.EndGame(false);
     }
 
-    private void ActivateSpawners(bool val)
+    private void ActivateSpawners(bool val = true)
     {
         for (int i = 0; i < stageSpawnerList.Count; i++)
         {
