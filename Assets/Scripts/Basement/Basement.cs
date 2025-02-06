@@ -12,6 +12,7 @@ public class Basement : MonoBehaviour
     private BasementPresenter presenter;
     private void Awake()
     {
+        presenter = GetComponent<BasementPresenter>();
         if (Instance != null)
         {
             Destroy(gameObject);

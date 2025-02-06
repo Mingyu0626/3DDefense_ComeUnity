@@ -17,6 +17,5 @@ public class UIBasementView : MonoBehaviour
     public void SetSliderMaxValue(int maxValue)
     {
         basementHpBar.maxValue = maxValue;
-        SetSliderMaxValue(Convert.ToInt32(basementHpBar.maxValue));
     }
 }
