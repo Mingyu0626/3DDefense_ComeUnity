@@ -17,7 +17,7 @@ public class InputManager : Singleton<InputManager>
     }
     public bool IsPlayerActionEnabled() { return action.Player.enabled; }
     public bool IsUIActionEnabled() { return action.UI.enabled; }
-    public void SetAllActionsState(string sceneName)
+    public void SetAllActionsStateOnSceneName(string sceneName)
     {
         if (sceneName.Equals(SceneNames.GameScene))
         {

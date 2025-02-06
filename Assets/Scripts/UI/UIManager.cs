@@ -50,7 +50,7 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     public void OnSceneChanged(string sceneName)
     {
         animationManager.SlideOut(ref leftPanelForSlideAnimation, ref rightPanelForSlideAnimation, 1f, SavedSettingData.ResolutionWidth / 2,
-            () => InputManager.Instance.SetAllActionsState(sceneName),
+            () => InputManager.Instance.SetAllActionsStateOnSceneName(sceneName),
             () => SetCursorUseableOnSceneName(sceneName));
         InitPopupCanvas();
     }
