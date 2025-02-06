@@ -17,6 +17,5 @@ public class UIPlayerView : MonoBehaviour
     public void SetSliderMaxValue(int maxValue)
     {
         playerHpBar.maxValue = maxValue;
-        SetSliderMaxValue(Convert.ToInt32(playerHpBar.maxValue));
     }
 }

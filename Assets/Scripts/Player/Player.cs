@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        presenter = GetComponent<PlayerPresenter>();
         if (Instance != null)
         {
             Destroy(gameObject);

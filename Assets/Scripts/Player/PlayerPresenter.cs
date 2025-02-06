@@ -10,6 +10,7 @@ public class PlayerPresenter : MonoBehaviour
 
     private void Start()
     {
+        playerDataModel.PlayerHP = playerDataModel.PlayerHPMax;
         playerDataModel.PlayerHPChanged += playerView.SetSliderPlayerHP;
         playerView.SetSliderMaxValue(playerDataModel.PlayerHPMax);
     }
