@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour
                 float randZ = Random.Range(-5f, 5f);
                 enemyGameObject.transform.position = transform.position + new Vector3(randX, 0, randZ);
             }
-            StagePresenter.Instance.OnEnemySpawned();
+            StageManager.Instance.OnEnemySpawned();
             yield return wait;
         }
     }

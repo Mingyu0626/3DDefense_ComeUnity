@@ -72,7 +72,7 @@ namespace EnemyControlState
             {
                 ReleaseObject();
                 CreateDeathReactionGO();
-                StagePresenter.Instance.OnEnemyKilled();
+                StageManager.Instance.OnEnemyKilled();
             }
         }
 

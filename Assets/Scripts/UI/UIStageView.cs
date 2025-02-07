@@ -53,6 +53,7 @@ public class UIStageView : MonoBehaviour
             if (isWaiting)
             {
                 UIManager.Instance.AnimationManager.SlideIn(ref clearStageRT, ref getReadyForTheNextStageRT, 0.3f, 1600f);
+                StartCoroutine(CountDown());
             }
             else
             {
