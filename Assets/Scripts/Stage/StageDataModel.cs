@@ -86,7 +86,7 @@ public class StageDataModel : MonoBehaviour
         killedEnemyCountToClearArray = new int[numOfStages + 1];
         for (int i = 1; i <= numOfStages; i++)
         {
-            killedEnemyCountToClearArray[i] = i * 20;
+            killedEnemyCountToClearArray[i] = i * 2;
         }
     }
 }

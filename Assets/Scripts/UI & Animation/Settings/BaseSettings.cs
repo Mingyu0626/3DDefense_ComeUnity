@@ -36,7 +36,7 @@ public abstract class BaseSettings : MonoBehaviour
     {
         if (CheckCurrentCategorySettingsChange())
         {
-            SettingsWarningPopup popup = null;
+            WarningPopup popup = null;
             string title = "[Close Settings]";
             string description = "Changed have not been applied.\n Close Settings?";
             UIManager.Instance.CreateWarning2BtnPopup(out popup, title, description,

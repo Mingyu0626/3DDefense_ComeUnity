@@ -115,31 +115,31 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
         escapeKeyDownEventList.Remove(listener);
     }
 
-    public SettingsWarningPopup CreateWarning2BtnPopup(out SettingsWarningPopup popup, string title, string description, 
+    public WarningPopup CreateWarning2BtnPopup(out WarningPopup popup, string title, string description, 
         string okText, string cancelText, UnityAction okListener, UnityAction cancelListener)
     {
-        popup = Instantiate(settingsWarningPopupPrefab, popupCanvas).GetComponent<SettingsWarningPopup>();
+        popup = Instantiate(settingsWarningPopupPrefab, popupCanvas).GetComponent<WarningPopup>();
         popup.Set2BtnPopup(title, description, okText, cancelText, okListener, cancelListener);
         return popup;
     }
-    public SettingsWarningPopup CreateWarning2BtnPopup(out SettingsWarningPopup popup, string title, string description,
+    public WarningPopup CreateWarning2BtnPopup(out WarningPopup popup, string title, string description,
         UnityAction okListener, UnityAction cancelListener)
     {
-        popup = Instantiate(settingsWarningPopupPrefab, popupCanvas).GetComponent<SettingsWarningPopup>();
+        popup = Instantiate(settingsWarningPopupPrefab, popupCanvas).GetComponent<WarningPopup>();
         popup.Set2BtnPopup(title, description, okListener, cancelListener);
         return popup;
     }
-    public SettingsWarningPopup CreateWarning1BtnPopup(out SettingsWarningPopup popup, string title, string description,
+    public WarningPopup CreateWarning1BtnPopup(out WarningPopup popup, string title, string description,
         string okText, UnityAction okListener)
     {
-        popup = Instantiate(settingsWarningPopupPrefab, popupCanvas).GetComponent<SettingsWarningPopup>();
+        popup = Instantiate(settingsWarningPopupPrefab, popupCanvas).GetComponent<WarningPopup>();
         popup.Set1BtnPopup(title, description, okText, okListener);
         return popup;
     }
-    public SettingsWarningPopup CreateWarning1BtnPopup(out SettingsWarningPopup popup, string title, string description,
+    public WarningPopup CreateWarning1BtnPopup(out WarningPopup popup, string title, string description,
         UnityAction okListener)
     {
-        popup = Instantiate(settingsWarningPopupPrefab, popupCanvas).GetComponent<SettingsWarningPopup>();
+        popup = Instantiate(settingsWarningPopupPrefab, popupCanvas).GetComponent<WarningPopup>();
         popup.Set1BtnPopup(title, description, okListener);
         return popup;
     }

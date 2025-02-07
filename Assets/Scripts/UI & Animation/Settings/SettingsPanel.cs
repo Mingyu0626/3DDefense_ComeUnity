@@ -83,7 +83,7 @@ public class SettingsPanel : EscapeableUI
         {
             if (bs.CheckCurrentCategorySettingsChange())
             {
-                SettingsWarningPopup popup = null;
+                WarningPopup popup = null;
                 string title = "[Close Settings]";
                 string description = "Changed have not been applied.\n Change Tab?";
                 UIManager.Instance.CreateWarning2BtnPopup(out popup, title, description,

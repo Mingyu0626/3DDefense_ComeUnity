@@ -7,13 +7,13 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private string spawnedEnemyName;
     [SerializeField]
-    private int activateStageNum;
+    private int activateStageNumber;
     [SerializeField]
     private float spawnInterval;
 
-    public int ActivateStageNum
+    public int ActivateStageNumber
     {
-        get { return activateStageNum; }
+        get { return activateStageNumber; }
     }
 
     private void Awake()

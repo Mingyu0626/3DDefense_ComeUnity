@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
-public class SettingsWarningPopup : EscapeableUI
+public class WarningPopup : EscapeableUI
 {
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text descriptionText;

@@ -54,10 +54,9 @@ public class PausedPanel : EscapeableUI
             // 게임 일시정지 해제
             Time.timeScale = 1f;
             UIManager.Instance.SetCursorUseable(false);
-            if (!StageManager.Instance.WaitingNextStage)
-            {
-                InputManager.Instance.SetPlayerActionState(true);
-            }
+
+            // 스테이지 클리어 후 다음 스테이지 대기 중일때 처리 생각해봐야 한다.
+            InputManager.Instance.SetPlayerActionState(true);
         }
     }
 }
