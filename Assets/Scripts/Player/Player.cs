@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerPresenter))]
 public class Player : MonoBehaviour
 {
     // 오로지 Enemy의 TracePlayer만을 위한 코드인데, 개선 방안이 분명 존재할것임
@@ -9,21 +10,17 @@ public class Player : MonoBehaviour
     // 싱글톤으로 할 필요도 없어짐
     public static Player Instance { get; private set; }
     public Transform PlayerTransform { get; private set; }
-    private PlayerPresenter presenter;
+    private PlayerPresenter playerPresenter;
 
     private void Awake()
     {
-        presenter = GetComponent<PlayerPresenter>();
+        playerPresenter = GetComponent<PlayerPresenter>();
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-    }
-    private void Start()
-    {
-        
     }
     private void Update()
     {
@@ -38,7 +35,7 @@ public class Player : MonoBehaviour
             {
                 ApplyDamage(EnemyAttack.GetDamage());
             }
-            if (presenter.GetPlayerHP() <= 0)
+            if (playerPresenter.GetPlayerHP() <= 0)
             {
                 GameManager.Instance.EndGame(false);
             }
@@ -46,6 +43,6 @@ public class Player : MonoBehaviour
     }
     private void ApplyDamage(int damage)
     {
-        presenter.OnPlayerDamaged(damage);
+        playerPresenter.OnPlayerDamaged(damage);
     }
 }

@@ -16276,6 +16276,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3404586681258087608, guid: f432554f564e69242897607d34218939,
+        type: 3}
+      propertyPath: audioSfx
+      value: 
+      objectReference: {fileID: 1051334036}
     - target: {fileID: 5983219598984706006, guid: f432554f564e69242897607d34218939,
         type: 3}
       propertyPath: m_audioClip
@@ -16302,6 +16307,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1051334034}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1051334036 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 784120093648037303, guid: f432554f564e69242897607d34218939,
+    type: 3}
+  m_PrefabInstance: {fileID: 1051334034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5310afc55f0e74443909e8a7e04067ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1052651010
 PrefabInstance:
   m_ObjectHideFlags: 0
