@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     // Enemy에서 다른 방식으로 공격 대상의 Transform을 실시간으로 변경할 수 있으면
     // 싱글톤으로 할 필요도 없어짐
     public static Player Instance { get; private set; }
-    public Transform PlayerTransform { get; private set; }
     private PlayerPresenter playerPresenter;
 
     private void Awake()
@@ -21,10 +20,6 @@ public class Player : MonoBehaviour
             return;
         }
         Instance = this;
-    }
-    private void Update()
-    {
-        PlayerTransform = transform;
     }
     private void OnTriggerEnter(Collider other)
     {

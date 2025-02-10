@@ -37,16 +37,16 @@ namespace EnemyControlState
 
         private void TracePlayer()
         {
-            Transform playerTransform = Player.Instance.PlayerTransform;
+            Vector3 playerPosition = enemyController.GetPlayerPosition();
             Transform enemyTransform = enemyController.transform;
 
             enemyTransform.rotation = Quaternion.Slerp
                 (enemyTransform.rotation,
-                Quaternion.LookRotation(playerTransform.position - enemyTransform.position),
+                Quaternion.LookRotation(playerPosition - enemyTransform.position),
                 enemyController.enemyData.RotationSpeed * Time.deltaTime);
 
             enemyTransform.position = Vector3.MoveTowards
-                (enemyTransform.position, playerTransform.position, 
+                (enemyTransform.position, playerPosition, 
                 enemyController.enemyData.MoveSpeed * Time.deltaTime);
         }
     }

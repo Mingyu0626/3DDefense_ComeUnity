@@ -47,7 +47,6 @@ namespace EnemyControlState
                 ApplyDamage(playerBullet.GetDamage());
             }
         }
-
         protected virtual void Update()
         {
             if (enemyStateContext.currentState != null)
@@ -55,7 +54,15 @@ namespace EnemyControlState
                 enemyStateContext.currentState.Update();
             }
         }
+        public void StartStateCoroutine(IEnumerator coroutine)
+        {
+            StartCoroutine(coroutine);
+        }
 
+        public void StopStateCoroutine(IEnumerator coroutine)
+        {
+            StopCoroutine(coroutine);
+        }
         private void CreateDeathReactionGO()
         {
             GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetGameObject(nameof(EnemyDeathReaction));
@@ -75,33 +82,24 @@ namespace EnemyControlState
                 StageManager.Instance.OnEnemyKilled();
             }
         }
-
         public bool CanDetectPlayer()
         { 
-            return Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position)
+            return Vector3.Distance(GetPlayerPosition(), transform.position)
                 <= enemyData.PlayerDetectableDistance;
         }
 
         public bool CanAttackPlayer()
         {
-            return Vector3.Distance(Player.Instance.PlayerTransform.position, transform.position)
+            return Vector3.Distance(GetPlayerPosition(), transform.position)
                 <= enemyData.PlayerAttackableDistance;
         }
 
         public bool CanAttackBasement()
         {
-            return Vector3.Distance(Basement.Instance.BasementTransform.position, transform.position)
+            return Vector3.Distance(GetBasementPosition(), transform.position)
                 <= enemyData.BasementAttackableDistance;
         }
-
-        public void StartStateCoroutine(IEnumerator coroutine)
-        {
-            StartCoroutine(coroutine); 
-        }
-
-        public void StopStateCoroutine(IEnumerator coroutine)
-        {
-            StopCoroutine(coroutine);
-        }
+        public Vector3 GetPlayerPosition() { return Player.Instance.transform.position; }
+        public Vector3 GetBasementPosition() { return Basement.Instance.transform.position; }
     }
 }

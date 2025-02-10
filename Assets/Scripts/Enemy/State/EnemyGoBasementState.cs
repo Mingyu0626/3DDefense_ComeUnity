@@ -37,16 +37,16 @@ namespace EnemyControlState
 
         private void GoBasement()
         {
-            Transform basementTransform = Basement.Instance.BasementTransform;
+            Vector3 basementPosition = enemyController.GetBasementPosition();
             Transform enemyTransform = enemyController.transform;
 
             enemyTransform.rotation = Quaternion.Slerp
                 (enemyTransform.rotation,
-                Quaternion.LookRotation(basementTransform.position - enemyTransform.position),
+                Quaternion.LookRotation(basementPosition - enemyTransform.position),
                 enemyController.enemyData.RotationSpeed * Time.deltaTime);
 
             enemyTransform.position = Vector3.MoveTowards
-                (enemyTransform.position, basementTransform.position, 
+                (enemyTransform.position, basementPosition, 
                 enemyController.enemyData.MoveSpeed * Time.deltaTime);
         }
     }
