@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerMovement), typeof(PlayerFire))]
 public class PlayerAction : MonoBehaviour
@@ -9,17 +8,14 @@ public class PlayerAction : MonoBehaviour
     private List<IInputAction> interfaceInputActionList;
     private void Awake()
     {
-        interfaceInputActionList = new List<IInputAction>();
-        interfaceInputActionList.Add(GetComponent<PlayerMovement>());
-        interfaceInputActionList.Add(GetComponent<PlayerFire>());
+        interfaceInputActionList = new List<IInputAction>
+        { GetComponent<PlayerMovement>(), GetComponent<PlayerFire>() };
         AddActionEvent();
     }
-
     private void OnDestroy()
     {
         RemoveActionEvent();
     }
-
     public void AddActionEvent()
     {
         for (int i = 0; i < interfaceInputActionList.Count; i++)
@@ -27,7 +23,6 @@ public class PlayerAction : MonoBehaviour
             interfaceInputActionList[i].AddInputActionEvent();
         }
     }
-
     public void RemoveActionEvent()
     {
         for (int i = 0; i < interfaceInputActionList.Count; i++)
