@@ -1800,6 +1800,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1616200899}
     m_Modifications:
+    - target: {fileID: 1828690110328697197, guid: f432554f564e69242897607d34218939,
+        type: 3}
+      propertyPath: fireEffect
+      value: 
+      objectReference: {fileID: 136722499}
     - target: {fileID: 2836004475591197023, guid: f432554f564e69242897607d34218939,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1874,6 +1879,12 @@ Transform:
 --- !u!4 &136722498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1871507245889559769, guid: f432554f564e69242897607d34218939,
+    type: 3}
+  m_PrefabInstance: {fileID: 136722496}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &136722499 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9155291002205990585, guid: f432554f564e69242897607d34218939,
     type: 3}
   m_PrefabInstance: {fileID: 136722496}
   m_PrefabAsset: {fileID: 0}

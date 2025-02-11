@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerAnimation), typeof(PlayerVFX), typeof(PlayerSFX))]
+[RequireComponent(typeof(PlayerController), typeof(PlayerVFX), typeof(PlayerSFX))]
 public class PlayerFire : MonoBehaviour, IInputAction
 {
-    private PlayerAnimation playerAnimation;
+    private PlayerController playerController;
     private PlayerVFX playerVfx;
     private PlayerSFX playerSfx;
 
@@ -17,27 +17,10 @@ public class PlayerFire : MonoBehaviour, IInputAction
 
     private void Awake()
     {
-        playerAnimation = GetComponent<PlayerAnimation>();
+        playerController = GetComponent<PlayerController>();
         playerVfx = GetComponent<PlayerVFX>();
         playerSfx = GetComponent<PlayerSFX>();
         fireAction = InputManager.Instance.Action.Player.Fire;
-    }
-    public IEnumerator Fire()
-    {
-        float fireInterval = 60f / roundsPerMinutes;
-        while (true)
-        {
-            GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
-            if (playerBulletGO != null && shootingPoint != null)
-            {
-                playerBulletGO.transform.position = shootingPoint.position;
-                playerBulletGO.transform.rotation = shootingPoint.rotation;
-            }
-
-            playerVfx.PlayFireEffect();
-            playerSfx.PlayeFireAudio();
-            yield return new WaitForSeconds(fireInterval);
-        }
     }
     public void AddInputActionEvent()
     {
@@ -55,13 +38,13 @@ public class PlayerFire : MonoBehaviour, IInputAction
     public void OnInputActionStarted(InputAction.CallbackContext context)
     {
         StartFire();
-        playerAnimation.SetIsShooting(true);
+        playerController.SetIsShooting(true);
     }
 
     public void OnInputActionCanceled(InputAction.CallbackContext context)
     {
         StopFire();
-        playerAnimation.SetIsShooting(false);
+        playerController.SetIsShooting(false);
     }
     public void StartFire()
     {
@@ -71,5 +54,22 @@ public class PlayerFire : MonoBehaviour, IInputAction
     {
         StopCoroutine(Fire());
         StopAllCoroutines();
+    }
+    public IEnumerator Fire()
+    {
+        float fireInterval = 60f / roundsPerMinutes;
+        while (true)
+        {
+            GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
+            if (playerBulletGO != null && shootingPoint != null)
+            {
+                playerBulletGO.transform.position = shootingPoint.position;
+                playerBulletGO.transform.rotation = shootingPoint.rotation;
+            }
+
+            playerVfx.PlayFireEffect();
+            playerSfx.PlayeFireAudio();
+            yield return new WaitForSeconds(fireInterval);
+        }
     }
 }
