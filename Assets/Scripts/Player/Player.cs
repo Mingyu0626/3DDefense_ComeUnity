@@ -5,9 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerPresenter))]
 public class Player : MonoBehaviour
 {
-    // 오로지 Enemy의 TracePlayer만을 위한 코드인데, 개선 방안이 분명 존재할것임
-    // Enemy에서 다른 방식으로 공격 대상의 Transform을 실시간으로 변경할 수 있으면
-    // 싱글톤으로 할 필요도 없어짐
+    // 오로지 Enemy의 플레이어 추적만을 위한 싱글톤인데...
+    // Enemy에서 다른 방식으로 플레이어의 Transform을 실시간으로 접근할 수 있다면?
     public static Player Instance { get; private set; }
     private PlayerPresenter playerPresenter;
 
