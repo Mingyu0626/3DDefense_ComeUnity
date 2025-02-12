@@ -12,7 +12,7 @@ public class BasementPresenter : MonoBehaviour
     {
         basementDataModel.BasementHP = basementDataModel.BasementHPMax;
         basementDataModel.BasementHPChanged += basementView.SetSliderBasementHP;
-        basementView.SetSliderMaxValue(basementDataModel.BasementHPMax);
+        basementView.InitSliderBasementHP(basementDataModel.BasementHPMax);
     }
 
     public void OnBasementDamaged(int damage)
