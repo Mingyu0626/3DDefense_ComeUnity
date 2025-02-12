@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EnemyControlState
 {
-    public interface EnemyState
+    public interface IEnemyState
     {
         public void Enter(EnemyController controller);
         public void Update();
@@ -13,7 +13,7 @@ namespace EnemyControlState
 
     public class EnemyStateContext
     {
-        public EnemyState currentState { get; private set; }
+        public IEnemyState currentState { get; private set; }
         private EnemyController enemyController;
 
         public EnemyStateContext(EnemyController controller)
@@ -27,7 +27,7 @@ namespace EnemyControlState
             currentState.Enter(enemyController);
         }
 
-        public void ChangeState(EnemyState nextState)
+        public void ChangeState(IEnemyState nextState)
         {
             if (currentState == null)
             {

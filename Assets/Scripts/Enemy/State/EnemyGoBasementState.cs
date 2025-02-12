@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EnemyControlState
 {
-    public class EnemyGoBasementState : EnemyState
+    public class EnemyGoBasementState : IEnemyState
     {
         private EnemyController enemyController;
 

@@ -6,7 +6,7 @@ namespace EnemyControlState
 {
     public class EnemyController : PoolAble
     {
-        public EnemyState tracePlayerState, attackPlayerState, goBasementState, attackBasementState;
+        public IEnemyState tracePlayerState, attackPlayerState, goBasementState, attackBasementState;
         public EnemyStateContext enemyStateContext;
         public EnemyData enemyData;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EnemyControlState
 {
-    public class EnemyAttackBasementState : EnemyState
+    public class EnemyAttackBasementState : IEnemyState
     {
         private EnemyController enemyController;
         private float attackBasementInterval = 3f;

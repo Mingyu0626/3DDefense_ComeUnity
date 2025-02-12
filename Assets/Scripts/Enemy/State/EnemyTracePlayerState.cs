@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EnemyControlState
 {
-    public class EnemyTracePlayerState : EnemyState
+    public class EnemyTracePlayerState : IEnemyState
     {
         private EnemyController enemyController;
         public void Enter(EnemyController controller)
