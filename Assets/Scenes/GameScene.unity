@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 46242079}
   - component: {fileID: 46242078}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ======= [ Canvas ] =======
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34062,6 +34062,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 657152155486760194, guid: 78ba86013d81c6c469715021b1672578,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 657152155486760194, guid: 78ba86013d81c6c469715021b1672578,
+        type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -34069,6 +34074,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HP_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437260682963888525, guid: 78ba86013d81c6c469715021b1672578,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2560777792770285980, guid: 78ba86013d81c6c469715021b1672578,
         type: 3}
@@ -34683,6 +34693,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HP_Basement
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744949928133457170, guid: b482a19b7aead714cb0646f7571f824c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4744949928133457170, guid: b482a19b7aead714cb0646f7571f824c,
         type: 3}
