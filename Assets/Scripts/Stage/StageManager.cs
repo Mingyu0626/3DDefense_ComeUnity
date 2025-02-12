@@ -14,7 +14,7 @@ public class StageManager : Singleton<StageManager>
     }
     private void Start()
     {
-        ActivateSpawnersOnStage();
+        SetActiveSpawnersOnStage(true);
     }
 
     private void InitStageDataOnStageChanged(int currentStage)
@@ -59,11 +59,13 @@ public class StageManager : Singleton<StageManager>
         else
         {
             stageDataModel.CurrentStage++;
+            SetActiveSpawnersOnStage(false);
             ObjectPoolManager.Instance.ReturnAllActiveObjectsToPool();
             InitStageDataOnStageChanged(stageDataModel.CurrentStage);
             stageDataModel.IsWaitingNextStage = true; 
             yield return new WaitForSeconds(delayBeforeNextStage);
             stageDataModel.IsWaitingNextStage = false;
+            SetActiveSpawnersOnStage(true);
         }
         yield break;
     }
@@ -74,7 +76,7 @@ public class StageManager : Singleton<StageManager>
 
     // 얘는 옮겨야될듯?
     [SerializeField] private List<Spawner> stageSpawnerList = new List<Spawner>();
-    private void ActivateSpawnersOnStage(bool val = true)
+    private void SetActiveSpawnersOnStage(bool val = true)
     {
         for (int i = 0; i < stageSpawnerList.Count; i++)
         {
