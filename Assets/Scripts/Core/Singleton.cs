@@ -16,6 +16,11 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 instance = FindObjectOfType(typeof(T)) as T;
                 if (instance == null)
                 {
+                    if (!Application.isPlaying)  // 플레이 모드 종료 후에는 생성 금지
+                    {
+                        Debug.LogWarning($"[Singleton] {typeof(T).Name} 인스턴스를 생성하지 않는다. (플레이 모드가 아님)");
+                        return null;
+                    }
                     GameObject obj = new GameObject(typeof(T).Name, typeof(T));
                     instance = obj.GetComponent<T>();
                 }
@@ -52,8 +57,8 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             }
         }
     }
-    protected virtual void OnDestroy()
+    private void OnApplicationQuit()
     {
-
+        instance = null;
     }
 }

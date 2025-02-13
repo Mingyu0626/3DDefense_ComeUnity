@@ -10,13 +10,13 @@ public class ButtonManager : Singleton<ButtonManager>, ISceneObserver
     {
         base.Awake();
     }
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-    }
     private void Start()
     {
         GameManager.Instance.AddObserver(this);
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.RemoveObserver(this);
     }
     public void OnSceneChanged(string sceneName)
     {

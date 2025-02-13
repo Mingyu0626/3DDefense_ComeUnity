@@ -15,6 +15,10 @@ public class AudioManager : Singleton<AudioManager>, ISceneObserver
     {
         GameManager.Instance.AddObserver(this);
     }
+    private void OnDestroy()
+    {
+        GameManager.Instance.RemoveObserver(this);
+    }
     public void OnSceneChanged(string sceneName)
     {
         switch (sceneName)
