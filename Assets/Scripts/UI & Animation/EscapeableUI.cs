@@ -11,7 +11,7 @@ public class EscapeableUI : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        UIManager.Instance.RemoveEscapeListener(Close);
+        UIManager.Instance?.RemoveEscapeListener(Close);
     }
 
     protected virtual void Close()

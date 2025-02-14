@@ -24,7 +24,7 @@ public class AudioSFX : MonoBehaviour
     }
     private void OnDestroy()
     {
-        AudioManager.Instance.RemoveSfxAudioSource(UpdateVolume);
+        AudioManager.Instance?.RemoveSfxAudioSource(UpdateVolume);
     }
     private void UpdateVolume()
     {

@@ -10,7 +10,7 @@ public class AudioBGM : MonoBehaviour
     private AudioSource audioSourceBgm;
     private bool isPlayingBgm;
 
-    private float Volume // 
+    private float Volume
     { 
         get { return SavedSettingData.MasterVolume * SavedSettingData.BgmVolume * 0.0001f; }
         set { }
@@ -28,7 +28,7 @@ public class AudioBGM : MonoBehaviour
     }
     private void OnDestroy()
     {
-        AudioManager.Instance.RemoveBgmAudioSource(UpdateVolume);
+        AudioManager.Instance?.RemoveBgmAudioSource(UpdateVolume);
     }
     private void UpdateVolume()
     {

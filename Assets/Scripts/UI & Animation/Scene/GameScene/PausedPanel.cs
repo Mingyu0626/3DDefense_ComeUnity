@@ -42,6 +42,12 @@ public class PausedPanel : EscapeableUI
 
     private void SetPause(bool isPause)
     {
+        if (UIManager.Instance == null || InputManager.Instance == null)
+        {
+            Debug.LogWarning("UI매니저나 Input매니저 둘 중 하나가 null");
+            return;
+        }
+
         if (isPause)
         {
             // 게임 일시정지
