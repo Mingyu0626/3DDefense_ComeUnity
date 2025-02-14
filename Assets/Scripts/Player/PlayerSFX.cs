@@ -13,6 +13,5 @@ public class PlayerSFX : MonoBehaviour
     public void PlayeFireAudio()
     {
         audioSfx.AudioSourceSfx.Play();
-        Debug.Log("PlayFireAudio »£√‚");
     }
 }

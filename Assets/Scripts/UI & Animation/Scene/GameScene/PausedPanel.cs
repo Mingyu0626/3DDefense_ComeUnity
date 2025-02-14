@@ -44,7 +44,6 @@ public class PausedPanel : EscapeableUI
     {
         if (UIManager.Instance == null || InputManager.Instance == null)
         {
-            Debug.LogWarning("UI매니저나 Input매니저 둘 중 하나가 null");
             return;
         }
 

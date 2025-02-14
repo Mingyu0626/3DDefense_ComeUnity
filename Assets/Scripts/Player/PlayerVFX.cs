@@ -9,13 +9,11 @@ public class PlayerVFX : MonoBehaviour
     {
         
     }
-
     public void PlayFireEffect()
     {
         if (fireEffect != null)
         {
             fireEffect.Play();
-            Debug.Log("PlayFireEffect »£√‚");
         }
     }
 }
