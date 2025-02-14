@@ -6,21 +6,23 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected Singleton() { }
     protected bool dontDestroy = true;
+    private static bool isQuitting = false;
     private static T instance;
     public static T Instance
     {
         get
         {
+            if (isQuitting)
+            {
+                // Debug.LogWarning($"[Singleton] {typeof(T).Name} 인스턴스에 접근할 수 없습니다. 앱 종료중입니다.");
+                return null;
+            }
+
             if (instance == null)
             {
                 instance = FindObjectOfType(typeof(T)) as T;
                 if (instance == null)
                 {
-                    if (!Application.isPlaying)  // 플레이 모드 종료 후에는 생성 금지
-                    {
-                        Debug.LogWarning($"[Singleton] {typeof(T).Name} 인스턴스를 생성하지 않는다. (플레이 모드가 아님)");
-                        return null;
-                    }
                     GameObject obj = new GameObject(typeof(T).Name, typeof(T));
                     instance = obj.GetComponent<T>();
                 }
@@ -57,8 +59,16 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             }
         }
     }
+
     private void OnApplicationQuit()
     {
+        isQuitting = true;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        // Debug.Log($"[Singleton] {typeof(T).Name} 인스턴스가 삭제됩니다.");
+        isQuitting = true;
         instance = null;
     }
 }

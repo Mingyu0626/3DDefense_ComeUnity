@@ -44,9 +44,9 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     {
         GameManager.Instance.AddObserver(this);
     }
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
-        GameManager.Instance.RemoveObserver(this);
+        base.OnDestroy();
         pauseAction.performed -= OnPaused;
     }
     public void OnSceneChanged(string sceneName)

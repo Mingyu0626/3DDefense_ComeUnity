@@ -15,9 +15,11 @@ public class AudioManager : Singleton<AudioManager>, ISceneObserver
     {
         GameManager.Instance.AddObserver(this);
     }
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
-        GameManager.Instance.RemoveObserver(this);
+        base.OnDestroy();
+        sfxAudioSource.RemoveAllListeners();
+        bgmAudioSource.RemoveAllListeners();
     }
     public void OnSceneChanged(string sceneName)
     {

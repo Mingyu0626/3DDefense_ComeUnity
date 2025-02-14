@@ -14,10 +14,7 @@ public class ButtonManager : Singleton<ButtonManager>, ISceneObserver
     {
         GameManager.Instance.AddObserver(this);
     }
-    private void OnDestroy()
-    {
-        GameManager.Instance.RemoveObserver(this);
-    }
+
     public void OnSceneChanged(string sceneName)
     {
         AddButtonOnClickEvent(sceneName);

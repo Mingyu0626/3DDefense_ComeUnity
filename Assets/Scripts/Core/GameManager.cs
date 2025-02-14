@@ -13,6 +13,11 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         SceneManager.sceneLoaded += NotifyCompleteSceneChange;
     }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        observerList.Clear();
+    }
 
     public void AddObserver(ISceneObserver observer)
     {
