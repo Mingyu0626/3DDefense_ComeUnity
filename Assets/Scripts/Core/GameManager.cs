@@ -47,10 +47,14 @@ public class GameManager : Singleton<GameManager>
             observer.OnSceneChanged(scene.name);
         }
     }
-
-    public void EndGame(bool isWin)
+    public void WinGame()
     {
-        IsWin = isWin;
+        IsWin = true;
+        LoadSceneWithName(SceneNames.GameEndScene);
+    }
+    public void LoseGame()
+    {
+        IsWin = false;
         LoadSceneWithName(SceneNames.GameEndScene);
     }
     public void LoadSceneWithName(string sceneName)

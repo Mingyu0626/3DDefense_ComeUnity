@@ -40,7 +40,7 @@ public class Basement : MonoBehaviour
             }
             if (presenter.GetBasementHP() <= 0)
             {
-                GameManager.Instance.EndGame(false);
+                GameManager.Instance.LoseGame();
             }
         }
     }

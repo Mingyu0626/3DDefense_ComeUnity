@@ -53,7 +53,7 @@ public class StageManager : Singleton<StageManager>
     {
         if (stageDataModel.CurrentStage == stageDataModel.NumOfStages)
         {
-            GameManager.Instance.EndGame(true);
+            GameManager.Instance.WinGame();
             yield break;
         }
         else
@@ -71,7 +71,7 @@ public class StageManager : Singleton<StageManager>
     }
     private void StageFail()
     {
-        GameManager.Instance.EndGame(false);
+        GameManager.Instance.LoseGame();
     }
 
     // 얘는 옮겨야될듯?

@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
             }
             if (playerPresenter.GetPlayerHP() <= 0)
             {
-                GameManager.Instance.EndGame(false);
+                GameManager.Instance.LoseGame();
             }
         }
     }
