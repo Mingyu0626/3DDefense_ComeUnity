@@ -1807,6 +1807,21 @@ PrefabInstance:
       objectReference: {fileID: 136722499}
     - target: {fileID: 2836004475591197023, guid: f432554f564e69242897607d34218939,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836004475591197023, guid: f432554f564e69242897607d34218939,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836004475591197023, guid: f432554f564e69242897607d34218939,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836004475591197023, guid: f432554f564e69242897607d34218939,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -922.5421
       objectReference: {fileID: 0}
@@ -1859,6 +1874,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657982372241093635, guid: f432554f564e69242897607d34218939,
+        type: 3}
+      propertyPath: playerHPMax
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8815207891839499947, guid: f432554f564e69242897607d34218939,
         type: 3}
@@ -17923,7 +17943,7 @@ GameObject:
   - component: {fileID: 1149415745}
   - component: {fileID: 1149415747}
   m_Layer: 0
-  m_Name: ======= Stage =======
+  m_Name: ======= [ Stage ] =======
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25565,7 +25585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1616200899}
   m_Layer: 0
-  m_Name: ======= Player =======
+  m_Name: ======= [ Player ] =======
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31652,7 +31672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1985510580}
   m_Layer: 0
-  m_Name: ======= Basement =======
+  m_Name: ======= [ Basement ] =======
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34800,13 +34820,13 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 330585546}
-  - {fileID: 46242081}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 1460963234}
+  - {fileID: 1681564223}
+  - {fileID: 46242081}
   - {fileID: 771058940}
   - {fileID: 1773253005}
-  - {fileID: 1681564223}
   - {fileID: 1149415744}
   - {fileID: 1616200899}
   - {fileID: 1985510580}
-  - {fileID: 1460963234}

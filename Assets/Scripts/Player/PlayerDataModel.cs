@@ -7,7 +7,7 @@ public class PlayerDataModel : MonoBehaviour
 {
     public event Action<int> PlayerHPChanged;
 
-    private readonly int playerHPMax = 100;
+    [SerializeField] private int playerHPMax = 100;
     private int playerHP;
 
     public int PlayerHPMax { get => playerHPMax; }
