@@ -2685,7 +2685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2836004475591197023}
   - component: {fileID: 2836004473841745626}
-  - component: {fileID: 6567001480162786776}
+  - component: {fileID: 220114438976603839}
   - component: {fileID: 4397292526535987037}
   - component: {fileID: 5983219598984706006}
   - component: {fileID: 4532988951217681242}
@@ -2750,8 +2750,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &6567001480162786776
-BoxCollider:
+--- !u!136 &220114438976603839
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2768,9 +2768,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1.1, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 2.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!54 &4397292526535987037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2918,6 +2920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3706165e2ea3b1f49971abd762e5c9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHPMax: 100
 --- !u!114 &8815207891839499947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2981,6 +2984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54290ac458a34444098ea73509fdbcbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 20
 --- !u!114 &3404586681258087608
 MonoBehaviour:
   m_ObjectHideFlags: 0
