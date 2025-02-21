@@ -10,8 +10,7 @@ namespace EnemyControlState
         public EnemyStateContext enemyStateContext;
         public EnemyData enemyData;
 
-        [SerializeField]
-        private GameObject attackPoint;
+        [SerializeField] private GameObject attackPoint;
         public GameObject AttackPoint
         {  get { return attackPoint; } }
 
@@ -44,7 +43,14 @@ namespace EnemyControlState
             if (other.CompareTag("PlayerBullet"))
             {
                 Bullet playerBullet = other.GetComponent<Bullet>();
-                ApplyDamage(playerBullet.GetDamage());
+                if (playerBullet != null)
+                {
+                    ApplyDamage(playerBullet.GetDamage());
+                    if (CheckDeath())
+                    {
+                        HandleDeath();
+                    }
+                }
             }
         }
         protected virtual void Update()
@@ -75,13 +81,18 @@ namespace EnemyControlState
         private void ApplyDamage(int damage)
         {
             enemyData.CurHP -= damage;
-            if (enemyData.CurHP <= 0)
-            {
-                ReleaseObject();
-                CreateDeathReactionGO();
-                StageManager.Instance.OnEnemyKilled();
-            }
         }
+        private bool CheckDeath()
+        {
+            return enemyData.CurHP <= 0;
+        }
+        private void HandleDeath()
+        {
+            ReleaseObject();
+            CreateDeathReactionGO();
+            StageManager.Instance.OnEnemyKilled();
+        }
+
         public bool CanDetectPlayer()
         { 
             return Vector3.Distance(GetPlayerPosition(), transform.position)

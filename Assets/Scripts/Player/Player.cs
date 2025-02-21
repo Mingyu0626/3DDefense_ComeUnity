@@ -24,19 +24,23 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("EnemyAttack"))
         {
-            EnemyBullet EnemyAttack = other.GetComponent<EnemyBullet>();
-            if (EnemyAttack != null)
+            EnemyBullet enemyBullet = other.GetComponent<EnemyBullet>();
+            if (enemyBullet != null)
             {
-                ApplyDamage(EnemyAttack.GetDamage());
-            }
-            if (playerPresenter.GetPlayerHP() <= 0)
-            {
-                GameManager.Instance.LoseGame();
+                ApplyDamage(enemyBullet.GetDamage());
+                if (CheckDeath())
+                {
+                    GameManager.Instance.LoseGame();
+                }
             }
         }
     }
     private void ApplyDamage(int damage)
     {
         playerPresenter.OnPlayerDamaged(damage);
+    }
+    private bool CheckDeath()
+    {
+        return playerPresenter.GetPlayerHP() <= 0;
     }
 }
