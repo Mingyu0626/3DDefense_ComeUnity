@@ -3,11 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(PlayerDataModel), typeof(UIPlayerView))]
 public class PlayerPresenter : MonoBehaviour
 {
-    [SerializeField] private PlayerDataModel playerDataModel;
-    [SerializeField] private UIPlayerView playerView;
+    private PlayerDataModel playerDataModel;
+    private UIPlayerView playerView;
 
+    private void Awake()
+    {
+        playerDataModel = GetComponent<PlayerDataModel>();
+        playerView = GetComponent<UIPlayerView>();
+    }
     private void Start()
     {
         playerDataModel.PlayerHP = playerDataModel.PlayerHPMax;

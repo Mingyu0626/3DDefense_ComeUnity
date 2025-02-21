@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(PlayerController), typeof(PlayerDataModel))]
 public class PlayerMovement : MonoBehaviour, IInputAction
 {
     private PlayerController playerController;
-
+    private PlayerDataModel playerDataModel;
     private InputAction moveAction;
-    private float speed = 20f;
 
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
+        playerDataModel = GetComponent<PlayerDataModel>();
         moveAction = InputManager.Instance.Action.Player.Move;
     }
     private void Update()
@@ -45,6 +45,6 @@ public class PlayerMovement : MonoBehaviour, IInputAction
     }
     private void Move(Vector3 inputVector)
     {
-        transform.Translate(inputVector * speed * Time.deltaTime, Space.Self);
+        transform.Translate(inputVector * playerDataModel.PlayerSpeed * Time.deltaTime, Space.Self);
     }
 }
