@@ -52,7 +52,6 @@ public class PlayerFire : MonoBehaviour, IInputAction
     }
     public void StopFire()
     {
-        StopCoroutine(Fire());
         StopAllCoroutines();
     }
     public IEnumerator Fire()
@@ -60,7 +59,7 @@ public class PlayerFire : MonoBehaviour, IInputAction
         float fireInterval = 60f / roundsPerMinutes;
         while (true)
         {
-            GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject("Bullet");
+            GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject(typeof(Bullet).Name);
             if (playerBulletGO != null && shootingPoint != null)
             {
                 playerBulletGO.transform.position = shootingPoint.position;
