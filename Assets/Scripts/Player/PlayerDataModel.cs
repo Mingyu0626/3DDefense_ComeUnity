@@ -9,6 +9,7 @@ public class PlayerDataModel : MonoBehaviour
 
     [SerializeField] private int playerHPMax = 100;
     private int playerHP;
+    [SerializeField] private float playerSpeed = 20f;
 
     public int PlayerHPMax { get => playerHPMax; }
     public int PlayerHP
@@ -20,5 +21,13 @@ public class PlayerDataModel : MonoBehaviour
             playerHP = Mathf.Clamp(playerHP, 0, playerHPMax);
             PlayerHPChanged?.Invoke(value);
         }
+    }
+    public float PlayerSpeed 
+    { 
+        get => playerSpeed; 
+        set 
+        { 
+            playerSpeed = value;
+        } 
     }
 }
