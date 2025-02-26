@@ -29,8 +29,6 @@ public class UIManager : Singleton<UIManager>, ISceneObserver
     protected override void Awake()
     {
         base.Awake();
-        Debug.LogWarning($"[UIManager] Awake »£√‚µ  (Instance: {Instance})");
-
         animationManager = new UIAnimationManager();
         animationManager.InitSlidePanelRectTransform
             (ref leftPanelForSlideAnimation, ref rightPanelForSlideAnimation);

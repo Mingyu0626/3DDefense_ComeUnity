@@ -14,7 +14,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (isQuitting)
             {
-                // Debug.LogWarning($"[Singleton] {typeof(T).Name} 인스턴스에 접근할 수 없습니다. 앱 종료중입니다.");
                 return null;
             }
 
@@ -67,8 +66,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        // Debug.Log($"[Singleton] {typeof(T).Name} 인스턴스가 삭제됩니다.");
-        isQuitting = true;
         instance = null;
     }
 }
