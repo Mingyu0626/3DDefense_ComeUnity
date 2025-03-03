@@ -9,28 +9,19 @@ public class Bullet : PoolAble
     private float durationTime = 3f;
     void OnEnable()
     {
-        Invoke(nameof(ReturnToPool), durationTime);
+        Invoke(nameof(ReleaseObject), durationTime);
     }
-
     void Update()
     {
         transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
     }
-
     void OnDisable()
     {
-        CancelInvoke(nameof(ReturnToPool));
+        CancelInvoke(nameof(ReleaseObject));
     }
-
-    private void ReturnToPool()
-    {
-        ReleaseObject();
-    }
-
     public int GetDamage() { return damage; }
-
     private void OnTriggerEnter(Collider other)
     {
-        ReturnToPool();
+        ReleaseObject();
     }
 }
