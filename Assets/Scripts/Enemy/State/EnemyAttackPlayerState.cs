@@ -37,7 +37,7 @@ namespace EnemyControlState
             while (true)
             {
 
-                GameObject enemyBulletGO = ObjectPoolManager.Instance.GetGameObject("EnemyBullet");
+                GameObject enemyBulletGO = ObjectPoolManager.Instance.GetObject("EnemyBullet");
                 if (enemyBulletGO != null && enemyController.AttackPoint != null)
                 {
                     enemyBulletGO.transform.position = enemyController.AttackPoint.transform.position;

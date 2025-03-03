@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
         yield return wait;
         while (true)
         {
-            GameObject enemyGameObject = ObjectPoolManager.Instance.GetGameObject(spawnedEnemyName);
+            GameObject enemyGameObject = ObjectPoolManager.Instance.GetObject(spawnedEnemyName);
             if (enemyGameObject != null)
             {
                 float randX = Random.Range(-5f, 5f);

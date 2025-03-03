@@ -59,7 +59,7 @@ public class PlayerFire : MonoBehaviour, IInputAction
         float fireInterval = 60f / roundsPerMinutes;
         while (true)
         {
-            GameObject playerBulletGO = ObjectPoolManager.Instance.GetGameObject(typeof(Bullet).Name);
+            GameObject playerBulletGO = ObjectPoolManager.Instance.GetObject(typeof(Bullet).Name);
             if (playerBulletGO != null && shootingPoint != null)
             {
                 playerBulletGO.transform.position = shootingPoint.position;

@@ -71,7 +71,7 @@ namespace EnemyControlState
         }
         private void CreateDeathReactionGO()
         {
-            GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetGameObject(nameof(EnemyDeathReaction));
+            GameObject enemyDeathReactionGO = ObjectPoolManager.Instance.GetObject(nameof(EnemyDeathReaction));
             if (enemyDeathReactionGO != null)
             {
                 enemyDeathReactionGO.transform.position = transform.position;

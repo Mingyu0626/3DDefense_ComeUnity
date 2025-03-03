@@ -30,8 +30,9 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         }
     };
 
+    // 오브젝트를 최초로 생성하고, 생성 후 풀링을 위한 Dictionary
     private Dictionary<string, ObjectPoolData> objectPoolDic 
-        = new Dictionary<string, ObjectPoolData>(); // 오브젝트를 최초로 생성하고, 생성 후 풀링을 위한 Dictionary
+        = new Dictionary<string, ObjectPoolData>();
 
     // 풀링 오브젝트 일괄 비활성화를 위한 List
     private List<GameObject> activeObjects = new List<GameObject>(); 
@@ -46,7 +47,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         for (int i = 0; i < objectInfoArray.Length; i++)
         {
             IObjectPool<GameObject> pool = new ObjectPool<GameObject>(
-                CreatePooledItem, 
+                CreatePooledObject, 
                 OnTakeFromPool, 
                 OnReturnedPool,
                 OnDestroyPoolObject, 
@@ -64,7 +65,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             for (int j = 0; j < objectInfoArray[i].count; j++)
             {
                 objectName = objectInfoArray[i].objectName;
-                PoolAble poolAbleGo = CreatePooledItem().GetComponent<PoolAble>();
+                PoolAble poolAbleGo = CreatePooledObject().GetComponent<PoolAble>();
                 if (poolAbleGo != null)
                 {
                     poolAbleGo.Pool.Release(poolAbleGo.gameObject);
@@ -73,7 +74,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         }
     }
 
-    private GameObject CreatePooledItem()
+    private GameObject CreatePooledObject()
     {
         if (!objectPoolDic.ContainsKey(objectName))
         {
@@ -111,7 +112,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         Destroy(poolGameObject);
     }
 
-    public GameObject GetGameObject(string gameObjectName)
+    public GameObject GetObject(string gameObjectName)
     {
         objectName = gameObjectName;
         if (!objectPoolDic.ContainsKey(objectName))
